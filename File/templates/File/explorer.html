@@ -1,0 +1,11 @@
+{% if path != "" %}
+    <li><a href="{{host}}/back{{path}}">..</a></li>
+{% else %}
+    <li><a href="../../../">Dashboard</a></li>
+{% endif %}
+{% for i in dirs %}
+    <li><a href="{{host}}/explorer{{path}}/{{i}}">{{i}}</a></li>
+{% endfor%}
+{% for i in files%}
+    <li>{{i}}</li>
+{% endfor%}

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
+from django.conf.urls import include
 #from file import views
 from HomeCloud import views
 
@@ -9,8 +10,6 @@ urlpatterns = [
     path('',views.index),
     path('cpuusage',views.getCPUpercent),
     path('admin/', admin.site.urls),
-
-
     
-    #hell
+    re_path(r'^file/',include('File.urls'))
 ]
