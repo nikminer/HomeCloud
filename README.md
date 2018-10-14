@@ -1,3 +1,3 @@
 # HomeCloud
-FreeCloud for your Home
+Free cloud for your Home
 
