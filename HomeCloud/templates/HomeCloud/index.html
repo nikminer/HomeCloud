@@ -1,0 +1,279 @@
+{%load staticfiles%}
+<script src='{% static "canvasjs.min.js" %}'></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+<title>HomeCloud</title>
+
+<body>
+    <div class="logo">
+        <h1 style="font-weight: bold!important;">HomeCloud</h1>
+        <h4>Free Cloud in your home</h4>
+        
+    </div>
+        <nav>
+            <span style="font-size:80%;font-weight: bold;">APPS</span>
+            <li><img src="https://maxcdn.icons8.com/Share/icon/p1em/Very_Basic/folder1600.png"><br><span>File</span></li>
+            <li><img src="https://cdn1.iconfinder.com/data/icons/web-and-user-interface-28/512/360-512.png"><br><span>Terminal</span></li>
+            <style>
+
+                nav{
+                    grid-area: navigate;
+                    background-color: #63cdda;
+                    text-align: center;
+                    color:white;
+                    font-family: Arial, Helvetica, sans-serif;
+                    border-right: 1px #777;
+                }
+                nav li{
+                    
+                    margin-top: 10px;
+                    list-style: none;
+                    transition: all 1s ease;
+                    animation-direction: alternate;
+                }
+                nav li:hover{
+                    background-color: #3dc1d3;
+                    cursor: pointer;
+                }
+                nav li img{
+                    width: 50px;
+                }
+            </style>
+        </nav>
+        <div id=page>
+            <div id=content>
+                {% if Sysproblem %}
+                    <span style="grid-area: title; background-color: #e15f41!important"class="title">System information ( {{Sysproblem}} )</span>
+                {%else%}
+                    <span style="grid-area: title; background-color: #778beb" class="title">System information</span>
+                {%endif%} 
+                <span style="grid-area: osname;">Operation System: <b>{{osname}}</b></span>
+                <span style="grid-area: hostname;">Hostname: <b>{{Node}}</b></span>
+                <span style="grid-area: cpuname;">CPU name: <b>{{CPUname}}</b></span>
+                <span style="grid-area: cpucount;">CPU count:<b> {{CPUcount}} core</b></span>
+                <span style="grid-area: cpupercent;"> CPU Usage: 
+                    <div class="w3-light-grey">
+                        <div class="w3-container w3 w3-center" id=cpuusage style="width:0%;background-color:#63cdda; color: white">00%</div>
+                    </div>
+                </span>
+                <span style="grid-area: title1;" class="title">Memory information</span>
+                <span style="grid-area: title2;" class="title">Network information</span>
+                <span style="grid-area: Netinfo1;"> Data sent:<b> {{bytesent}}</b></span>
+                <span style="grid-area: Netinfo2;"> Data receive:<b> {{byterecv}}</b></span>
+                <span style="grid-area: Netinfo3;"> Packets sent:<b> {{packsent}}</b></span>
+                <span style="grid-area: Netinfo4;"> Packets receive:<b> {{packrecv}}</b></span>
+                {% if iflist%}
+                <ul style="grid-area: IFList; list-style:none">
+                    <span>Network interface:</span>
+                    {% for i in iflist.items %} 
+                    <details>
+                            <summary>{{i.0}}</summary>
+                            {% for i1 in i.1%}
+                                <p>Address:<b>{{i1.address}}</b> Netmask:<b>{{i1.netmask}}</b> Broadcast:<b>{{i1.broadcast}}</b></p>
+                            {%endfor%}
+                    </details>
+                    
+                    {% endfor %}
+                </ul>
+                {%endif%}
+                <div id=chart></div>
+                <div id=VMemory></div>
+                <div id=SMemory></div>
+            </div>
+        </div>
+</body>
+
+
+
+<style>
+
+
+#page{
+    grid-area: contentfield;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#content{
+    display: grid;
+    grid-template-columns:  50% auto;
+    grid-template-rows:5% auto auto  ;
+    grid-template-areas: 
+        "title title"
+        "osname chart"
+        "hostname chart"
+        "cpuname chart"
+        "cpucount chart"
+        "cpupercent chart"
+        ". ."
+        "title2 title2"
+        "Netinfo1 Netinfo2"
+        "Netinfo3 Netinfo4"
+        "IFList IFList"
+        "title1 title1"
+        "Vmemory Smemory"
+        ". ."
+        ;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+.title{
+    background-color: #778beb;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 150%;
+    color: white;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+ul {
+    padding: 0;
+    margin-left: 0;
+}
+ul details{
+    margin: 5px;
+}
+ul details summary{
+    font-size: 17px;
+    cursor: pointer;
+}
+ul span{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+body{
+    margin: 0;
+    min-height:100%;
+    display: grid;
+    grid-template-columns: 70px auto;
+    grid-template-rows:100px auto ;
+    grid-template-areas: 
+        
+        "navigate logoline "
+        "navigate contentfield ";
+    grid-column-gap: 10px;
+    align-content: stretch; 
+    justify-items: stretch;
+
+}
+#chart{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    width: 400px;
+    height: 250px;
+    grid-area: chart;
+}
+#VMemory{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    width: 400px;
+    height: 300px;
+    grid-area: Vmemory;
+}
+#SMemory{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    width: 400px;
+    height: 300px;
+    grid-area: Smemory;
+}
+
+.logo{
+    grid-area: logoline;
+    color: black;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 150%;
+}
+.logo h1{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.logo h4{
+    font-size: 60%;
+    margin: 0;
+    margin-left: 2px;
+    margin-top: -5px;
+    
+    color: #777777
+}
+</style>
+
+<script>
+    window.onload=function(){
+        var chart=new CanvasJS.Chart("chart",{
+            animationEnabled:true,
+            title:{text:"Main Disk Usage ({{totalspace}} GB)",fontFamily:"arial"},
+            data:[{
+                type:"pie",
+                startAngle:45,
+                yValueFormatString: "##0.000\" GB\"",
+                indexLabel:"{label} {y}",
+                dataPoints:[
+                    {y:'{{freespace}}',label:"Свободно", color:"#63cdda"},
+                    {y:'{{usedspace}}',label:"Занято", color:"#e15f41"}
+                ]
+            }]
+        });
+        chart.render();
+
+        var Vemory=new CanvasJS.Chart("VMemory",{
+            animationEnabled:true,
+            title:{text:"Virtual Memory ({{VMtotalspace}} GB)",fontFamily:"arial"},
+            data:[{
+                type:"pie",
+                startAngle:45,
+                yValueFormatString: "##0.000\" GB\"",
+                indexLabel:"{label} {y}",
+                dataPoints:[
+                    {y:'{{VMfreespace}}',label:"Свободно", color:"#63cdda",},
+                    {y:'{{VMusedspace}}',label:"Занято", color:"#e15f41"}
+                ]
+            }]
+        });
+        Vemory.render();
+        var Semory=new CanvasJS.Chart("SMemory",{
+            animationEnabled:true,
+            title:{text:"Swap Memory ({{SMtotalspace}} GB)",fontFamily:"arial"},
+            data:[{
+                type:"pie",
+                startAngle:45,
+                yValueFormatString: "##0.000\" GB\"",
+                indexLabel:"{label} {y}",
+                dataPoints:[
+                    {y:'{{SMfreespace}}',label:"Свободно", color:"#63cdda"},
+                    {y:'{{SMusedspace}}',label:"Занято", color:"#e15f41"}
+                ]
+            }]
+        });
+        Semory.render();
+    }
+</script>
+
+<script>
+    var cpu=document.getElementById("cpuusage");
+    requestCPU()
+    /*setInterval(function(){
+        requestCPU()
+    },5000);*/
+
+    function requestCPU(){
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET','./cpuusage',true);
+        xhr.send();
+        xhr.onreadystatechange=function(){
+            if(xhr.status==200){
+                cpu.style.width=xhr.response+"%";   
+                cpu.innerText=xhr.response+"%"
+                if(xhr.response>75)
+                    cpu.style.backgroundColor="#e77f67";
+                else
+                    cpu.style.backgroundColor="#63cdda";
+            }else{
+                
+                console.log(xhr.statusText  );
+            }
+        }
+    }
+</script>
