@@ -27,8 +27,9 @@ def disk_usage(path):
         free = info.f_bavail * info.f_frsize
         used = total - free
     elif os.name=="nt":
-        from . import _psutil_windows as psutil
-        total, free = psutil.disk_usage(path)
+        #from . import _psutil_windows as psutil
+        total= psutil.disk_usage(path).total
+        free= psutil.disk_usage(path).free
         used = total - free
     return {'total':total, 'used':used, 'free':free}
 

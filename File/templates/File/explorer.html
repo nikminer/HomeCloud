@@ -1,11 +1,48 @@
+
+
+
 {% if path != "" %}
-    <li><a href="{{host}}/back{{path}}">..</a></li>
-{% else %}
-    <li><a href="../../../">Dashboard</a></li>
+    <a href="{{host}}/back{{path}}"><li>..</li></a> 
 {% endif %}
 {% for i in dirs %}
-    <li><a href="{{host}}/explorer{{path}}/{{i}}">{{i}}</a></li>
+    <a href="{{host}}/explorer{{path}}/{{i}}"><li onmouseover=show(this) onmouseout=hide(this)>{{i}} <div class="panel"><img src=https://maxcdn.icons8.com/Share/icon/Network/download_from_cloud1600.png style="width:24px;"></div></li></a>
 {% endfor%}
 {% for i in files%}
     <li>{{i}}</li>
 {% endfor%}
+
+<style>
+.panel{
+    display:inline;
+    opacity: 0;
+}
+a{
+    margin: auto;
+    text-decoration: none;
+    color:black;
+}
+li{
+    height: 24px;
+    border-bottom: lightgrey 0.5px solid;
+    font-family: Arial, Helvetica, sans-serif;
+    list-style: none;
+    padding-top:10px;
+    padding-bottom: 10px;
+    margin-left: 10px;
+    transition: all 1s ease;
+}
+li:hover{
+    background-color: lightgray;
+}
+</style>
+
+<script>
+    function hide(handler){
+        handler.children[0].style.transition="all 1s ease"
+        handler.children[0].style.opacity=0        
+    }
+    function show(handler){
+        handler.children[0].style.transition="all 1s ease"
+        handler.children[0].style.opacity=1
+    }
+</script>
