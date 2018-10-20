@@ -19,8 +19,8 @@
                 <a href={{host}}/file/explorer~>
                     <img src={% static 'images/favicon.ico' %} title="Back to home folder" style="width:24px;cursor: pointer">
                 </a>
-                <a href='{{host}}/file/deldir{{path}}'>
-                    <img src=https://cdn0.iconfinder.com/data/icons/cloud-computing-2-5/73/75-512.png title="Delete currnet folder" style="width:24px;cursor: pointer"> 
+                
+                    <img onclick="if(confirm('You sure delete: {{path}}'))window.location.replace('{{host}}/file/deldir{{path}}')" src=https://cdn0.iconfinder.com/data/icons/cloud-computing-2-5/73/75-512.png title="Delete currnet folder" style="width:24px;cursor: pointer"> 
                 </a>   
         </div>
 </header>
