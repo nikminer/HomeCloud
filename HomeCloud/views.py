@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import psutil,os,platform
+import shutil
 
 
 def convertBytes(byte):
@@ -17,36 +18,21 @@ def convertBytes(byte):
 def getCPUpercent(request):
     return HttpResponse(psutil.cpu_percent(interval=1))
 
-def disk_usage(path):
-    total=0
-    used=0
-    free=0
-    if os.name == "posix":
-        info = os.statvfs(path)
-        total = info.f_blocks * info.f_frsize
-        free = info.f_bavail * info.f_frsize
-        used = total - free
-    elif os.name=="nt":
-        #from . import _psutil_windows as psutil
-        total= psutil.disk_usage(path).total
-        free= psutil.disk_usage(path).free
-        used = total - free
-    return {'total':total, 'used':used, 'free':free}
-
 def index(request):
     iflist={}
     for i in psutil.net_if_addrs():
         iflist[i]=[]
         for i1 in psutil.net_if_addrs()[i]:
             iflist[i].append({"address":i1.address,"netmask":i1.netmask,"broadcast":i1.broadcast})
+    import multiprocessing
     DataList={
         "osname":platform.system()+" "+platform.release(),
         "Node":platform.node(),
         "CPUname":platform.processor(),
-        "CPUcount":psutil.cpu_count(logical=False),
-        "freespace":round(disk_usage('.')['free']/1073741824,3),
-        "usedspace":round(disk_usage('.')['used']/1073741824,3),
-        "totalspace":round(disk_usage('.')['total']/1073741824,3),
+        "CPUcount":multiprocessing.cpu_count(),
+        "freespace":round(shutil.disk_usage("/").free/1073741824,3),
+        "usedspace":round(shutil.disk_usage("/").used/1073741824,3),
+        "totalspace":round(shutil.disk_usage("/").total/1073741824,3),
         "VMfreespace":round(psutil.virtual_memory().free/1073741824,3),
         "VMusedspace":round(psutil.virtual_memory().used/1073741824,3),
         "VMtotalspace":round(psutil.virtual_memory().total/1073741824,3),
@@ -59,6 +45,6 @@ def index(request):
         "packrecv":psutil.net_io_counters().packets_recv,
         "iflist":iflist
     }
-    if round(disk_usage('.')['free']/1073741824,3)<10:
+    if round(shutil.disk_usage('.').free/1073741824,3)<10:
         DataList['Sysproblem']="Free disk space less 10 GB"
     return render(request,'HomeCloud/index.html',DataList)

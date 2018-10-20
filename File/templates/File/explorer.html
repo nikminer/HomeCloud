@@ -1,43 +1,51 @@
+{%load staticfiles%}
 <title>HomeCloud File</title>
 <header>
         <div class="logo">
-            <h1 style="font-weight: bold!important;">HomeCloud</h1>
-            <h4>Free Cloud in your home</h4>
+            <a href={{host}}>
+                <h1 style="font-weight: bold!important;">HomeCloud</h1>
+                <h4>Free Cloud in your home</h4>
+            </a>
         </div>
         <div class="path">
             <span>CURRENT PATH:</span></br>
-            <a href="{{host}}/explorer/" style="font-size:150%">/</a>
+            <a href="{{host}}/file/explorer/" style="font-size:150%">/</a>
             {% for i in pathes %}
-               <a href="{{host}}/explorer/{{i.hierrarhy}}">{{i.dir}}/</a>
+               <a href="{{host}}/file/explorer/{{i.hierrarhy}}">{{i.dir}}/</a>
             {% endfor %}
+        </div>
+        <div class="nav">
+                <img src=https://maxcdn.icons8.com/Share/icon/Network/download_from_cloud1600.png title="Download currnet folder" style="width:24px;cursor: pointer">
+                <a href={{host}}/file/explorer~>
+                    <img src={% static 'images/favicon.ico' %} title="Back to home folder" style="width:24px;cursor: pointer">
+                </a>
+                <a href='{{host}}/file/deldir{{path}}'>
+                    <img src=https://cdn0.iconfinder.com/data/icons/cloud-computing-2-5/73/75-512.png title="Delete currnet folder" style="width:24px;cursor: pointer"> 
+                </a>   
         </div>
 </header>
 
-<div style="grid-area: content;">
-{% if path != "" %}
-<div class=row>
-    <a href="{{host}}/back{{path}}">
-        <span>..</span>
-    </a>
-</div>
-{% endif %}
-{% for i in dirs %}
-
-<div class=row  onmouseover=show(this) onmouseout=hide(this)> 
-    <a href="{{host}}/explorer{{path}}/{{i}}">
-        {{i}}
-    </a>
-    <div class="panel">
-        <img src=https://maxcdn.icons8.com/Share/icon/Network/download_from_cloud1600.png title="Download" style="width:24px;cursor: pointer">
-        <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png title="Copy" style="width:24px;cursor: pointer">
-        <img src=https://cdn0.iconfinder.com/data/icons/cloud-computing-2-5/73/75-512.png title="Delete" style="width:24px;cursor: pointer">
+<div class=content>
+    {% if path != "" %}
+    <div class=row>
+        <a href="{{host}}/file/back{{path}}">
+            <span>..</span>
+        </a>
     </div>
-</div>
-
-{% endfor%}
-{% for i in files%}
-<div class=row > 
-        <a href='{{host}}/view{{path}}/{{i}}'>
+    {% endif %}
+    {% for i in dirs %}
+    <div class=row  onmouseover=show(this) onmouseout=hide(this)> 
+        <a href="{{host}}/file/explorer{{path}}/{{i}}" title="HomeCloud Dashboard">{{i}}</a>
+        <div class="panel">
+            <img src=https://maxcdn.icons8.com/Share/icon/Network/download_from_cloud1600.png title="Download" style="width:24px;cursor: pointer">
+            <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png title="Copy" style="width:24px;cursor: pointer">
+            <img src=https://cdn0.iconfinder.com/data/icons/cloud-computing-2-5/73/75-512.png title="Delete" style="width:24px;cursor: pointer">
+        </div>
+    </div>
+    {% endfor%}
+    {% for i in files%}
+    <div class=row > 
+        <a href='{{host}}/file/view{{path}}/{{i}}'>
             {{i}}
         </a>
         <div class="panel">
@@ -46,109 +54,123 @@
             <img src=https://cdn0.iconfinder.com/data/icons/cloud-computing-2-5/73/75-512.png title="Delete" style="width:24px;cursor: pointer">
         </div>
     </div>
-    
-{% endfor%}
+    {% endfor%}
 </div>
-<style>
 
-header{
-    grid-area: headeres;
-    display: grid;
-    grid-template-columns: 290px auto;
-    
-    grid-template-areas: 
-        "logo paths"
-        "logo nav";
-    background-color: #63cdda;
-    grid-column-gap: 25px;
-}
-.path{
-    font-family: Arial, Helvetica, sans-serif;   
-    grid-area:paths;
-    padding: 10px;
-    font-size: 150%;
-    
-}
-.path span{
-    font-size: 50%;
-    color: #fff;
-    font-weight: bold
-}
-.path a{
-    margin-left: -2px;
-    color: #000;
-    text-decoration: none;
-    transition: all 1s ease;
-}
-.path a:hover{
-    border-radius: 10px;
-    background-color: white;
-}
-.row{
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items:center;
-    color: #000;
-    border-bottom: lightgrey 0.5px solid;
-    font-family: Arial, Helvetica, sans-serif;   
-    padding-top:10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    transition: all 1s ease;
-}
-.row:hover{
-    background-color: #63cdda;
-}
-.panel{
-    display:inline;
-    opacity: 0;
-}
-.panel img{
-    margin-right: 5px;
-    transition: all 0.7s ease;
-}
-.panel img:hover{
-    border-radius: 5px;
-    background-color: white;
-}
-.row a{
-    width: 80%;
-    text-decoration: none;
-    color:inherit;
-}
-body{
-   
-    margin: 0;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-areas: 
-        "headeres"
-        "content";
-}
-.logo{
-    grid-area:logo;
-    color: black;
-    text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 150%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-}
-.logo h1{
-    margin-top: 0;
-    margin-bottom: 0;
-}
-.logo h4{
-    font-size: 60%;
-    margin: 0;
-    margin-left: 2px;
-    margin-top: -5px;
-    
-    color: #777777
-}
+<!--Body-->
+<style>
+    body{
+        margin: 0;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-areas: 
+            "headeres"
+            "content";
+    }
+</style>
+<!--Header-->
+<style>
+    header{
+        grid-area: headeres;
+        display: grid;
+        grid-template-columns: 290px auto;
+        grid-template-areas: 
+            "logo paths"
+            "logo nav";
+        background-color: #63cdda;
+        grid-column-gap: 25px;
+    }
+    .nav{
+        grid-area: nav;
+    }
+    .path{
+        font-family: Arial, Helvetica, sans-serif;   
+        grid-area:paths;
+        padding: 10px;
+        font-size: 150%;
+    }
+    .path span{
+        font-size: 50%;
+        color: #fff;
+        font-weight: bold
+    }
+    .path a{
+        margin-left: -2px;
+        color: #000;
+        text-decoration: none;
+        transition: all 1s ease;
+    }
+    .path a:hover{
+        border-radius: 2px;
+        background-color: white;
+    }
+    .logo{
+        grid-area:logo;
+        color: black;
+        text-align: left;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 150%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+    }
+    .logo a{
+        text-decoration: none;
+        color: #000;
+    }
+    .logo h1{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .logo h4{
+        font-size: 60%;
+        margin: 0;
+        margin-left: 2px;
+        margin-top: -5px;
+        color: #777777
+    }
+</style>
+<!--content-->
+<style>
+    .content{
+        grid-area: content;
+    }
+    .row{
+        height: 24px;
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items:stretch;
+        color: #000;
+        border-bottom: lightgrey 0.5px solid;
+        font-family: Arial, Helvetica, sans-serif;   
+        padding-top:10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        transition: all 1s ease;
+    }  
+    .row:hover{
+        background-color: #63cdda;
+    }
+    .panel{
+        display:inline;
+        opacity: 0;
+    }
+    .panel img{
+        margin-right: 5px;
+        transition: all 0.7s ease;
+    }
+    .panel img:hover{
+        border-radius: 5px;
+        background-color: white;
+    }
+    .row a{
+        width: 80%;
+        height: 100%;
+        text-decoration: none;
+        color:inherit;
+    }
 </style>
 
 <script>
