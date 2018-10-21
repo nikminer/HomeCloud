@@ -1,5 +1,30 @@
 {%load staticfiles%}
 <title>HomeCloud File</title>
+
+<script>
+        function mkdir(){
+            var input=prompt('New folder name','New folder');
+            input?window.location.replace('{{host}}/file/mkdir{{path}}/'+input):null;
+        }
+        function confirmDelete(path){
+            confirm('You sure delete: '+path+' ?')? window.location.replace('{{host}}/file/deldir'+path):null;
+        }
+
+        
+        function moveDirectory(src,name){
+            var input=prompt('Distanation to file',src);
+            input?window.location.replace('{{host}}/file/movedir'+src+'?dst='+input+"&name="+name):null;   
+        }
+        function hide(handler){
+            handler.children[2].style.transition="all 1s ease"
+            handler.children[2].style.opacity=0        
+        }
+        function show(handler){
+            handler.children[2].style.transition="all 1s ease"
+            handler.children[2].style.opacity=1
+        }
+    </script>
+
 <header>
         <div class="logo">
             <a href={{host}}>
@@ -15,36 +40,35 @@
             {% endfor %}
         </div>
         <div class="nav">
-                <img src=https://maxcdn.icons8.com/Share/icon/Network/download_from_cloud1600.png title="Download currnet folder" style="width:24px;cursor: pointer">
-                <a href={{host}}/file/explorer~>
-                    <img src={% static 'images/favicon.ico' %} title="Back to home folder" style="width:24px;cursor: pointer">
-                </a>
-                
-                    <img onclick="if(confirm('You sure delete: {{path}}'))window.location.replace('{{host}}/file/deldir{{path}}')" src=https://cdn0.iconfinder.com/data/icons/cloud-computing-2-5/73/75-512.png title="Delete currnet folder" style="width:24px;cursor: pointer"> 
-                </a>   
+            <img onclick="mkdir()" src=http://cdn.onlinewebfonts.com/svg/img_197873.png title="Create folder" style="width:24px;cursor: pointer">
+            <img src=https://maxcdn.icons8.com/Share/icon/Network/download_from_cloud1600.png title="Download currnet folder" style="width:24px;cursor: pointer">
+            <img src={% static 'images/favicon.ico' %} onclick="window.location.replace('{{host}}/file/explorer~')" title="Back to home folder" style="width:24px;cursor: pointer">
+            <img onclick="confirmDelete('{{path}}')" src=https://cdn0.iconfinder.com/data/icons/cloud-computing-2-5/73/75-512.png title="Delete currnet folder" style="width:24px;cursor: pointer">   
         </div>
 </header>
 
 <div class=content>
     {% if path != "" %}
-    <div class=row>
-        <a href="{{host}}/file/back{{path}}">
-            <span>..</span>
+    <div class=row >
+        <a href="{{host}}/file/back{{path}}" style="width: 100%">
+            <img src="http://cdn.onlinewebfonts.com/svg/download_428418.png" style="width:24px;" >
         </a>
     </div>
     {% endif %}
     {% for i in dirs %}
     <div class=row  onmouseover=show(this) onmouseout=hide(this)> 
-        <a href="{{host}}/file/explorer{{path}}/{{i}}" title="HomeCloud Dashboard">{{i}}</a>
+        <img src="https://praxi.gr/homepage/wp-content/uploads/2017/11/bssykwmznxozbomboeqk-1024x1024.png" style="width:24px;" >
+        <a href="{{host}}/file/explorer{{path}}/{{i}}" title="{{i}}">{{i}}</a>
         <div class="panel">
-            <img src=https://maxcdn.icons8.com/Share/icon/Network/download_from_cloud1600.png title="Download" style="width:24px;cursor: pointer">
-            <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png title="Copy" style="width:24px;cursor: pointer">
-            <img src=https://cdn0.iconfinder.com/data/icons/cloud-computing-2-5/73/75-512.png title="Delete" style="width:24px;cursor: pointer">
+            <img src=https://maxcdn.icons8.com/Share/icon/Network/download_from_cloud1600.png title="Download" style="width:24px ;cursor: pointer">
+            <img src=https://cdn4.iconfinder.com/data/icons/vectory-multimedia-2/40/folder_move_up-512.png onclick="moveDirectory('{{path}}','{{i}}')" title="Movе folder" style="width:24px;cursor: pointer">
+            <img src=https://cdn0.iconfinder.com/data/icons/cloud-computing-2-5/73/75-512.png onclick="confirmDelete('{{path}}/{{i}}')" title="Delete" style="width:24px;cursor: pointer">
         </div>
     </div>
     {% endfor%}
     {% for i in files%}
     <div class=row > 
+            <img src="https://cdn0.iconfinder.com/data/icons/dicticons-files-folders/32/file-1-512.png" style="width:24px;" >
         <a href='{{host}}/file/view{{path}}/{{i}}'>
             {{i}}
         </a>
@@ -82,6 +106,13 @@
     }
     .nav{
         grid-area: nav;
+    }
+    .nav img{
+        transition: all 1s ease;
+    }
+    .nav img:hover{
+        border-radius: 5px;
+        background-color: white;
     }
     .path{
         font-family: Arial, Helvetica, sans-serif;   
@@ -135,9 +166,14 @@
     .content{
         grid-area: content;
     }
-    .row{
+    .row img{
         height: 24px;
+    }
+    .row{
+       
+        min-height: 24px;
         width: 80%;
+        max-width: 80%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -166,20 +202,11 @@
         background-color: white;
     }
     .row a{
+        word-break:break-all;
         width: 80%;
-        height: 100%;
+        height: 120%;
         text-decoration: none;
         color:inherit;
     }
 </style>
 
-<script>
-    function hide(handler){
-        handler.children[1].style.transition="all 1s ease"
-        handler.children[1].style.opacity=0        
-    }
-    function show(handler){
-        handler.children[1].style.transition="all 1s ease"
-        handler.children[1].style.opacity=1
-    }
-</script>
