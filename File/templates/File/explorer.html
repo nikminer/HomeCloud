@@ -8,12 +8,10 @@
         }
         function confirmDelete(path){
             confirm('You sure delete: '+path+' ?')? window.location.replace('{{host}}/file/deldir'+path):null;
-        }
-
-        
+        }      
         function moveDirectory(src,name){
-            var input=prompt('Distanation to file',src);
-            input?window.location.replace('{{host}}/file/movedir'+src+'?dst='+input+"&name="+name):null;   
+            var input=prompt('Distanation file to',src);
+            input?window.location.replace('{{host}}/file/movedir'+src+'+'+input+"?name="+name):null;   
         }
         function hide(handler){
             handler.children[2].style.transition="all 1s ease"

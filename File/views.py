@@ -15,10 +15,3 @@ def view1(request, path):
         "host":"http://"+request.get_host()+"/file",
     })
 
-def createdir(request,path):
-    os.mkdir(path)
-    return redirect("http://"+request.get_host()+"/file/back"+path) 
-
-def movedir(request,path):
-    os.replace(path+"/"+request.GET.get('name'),request.GET.get('dst')+"/"+request.GET.get('name'))
-    return redirect("http://"+request.get_host()+"/file/explorer"+request.GET.get('dst')) 
