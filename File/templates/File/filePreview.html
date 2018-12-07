@@ -1,1 +1,129 @@
-<img src='data:image/png;base64,{{hash}}' style="height:100%; width: 100%;">
+<title>{{filename}}</title>
+{%load staticfiles%}
+
+
+<header>
+    <div class="logo">
+        <a href={{host}}>
+            <h1 style="font-weight: bold!important;">HomeCloud</h1>
+            <h4>Free Cloud in your home</h4>
+        </a>
+    </div>
+    <div class="path">
+        <span>CURRENT PATH:</span></br>
+        <a href="{{host}}/file/explorer/" style="font-size:150%">/</a>
+        {% for i in pathes %}
+           <a href="{{host}}/file/explorer/{{i.hierrarhy}}">{{i.dir}}/</a>
+        {% endfor %}
+    </div>
+</header>
+
+
+<div    class="content">
+    <a href="{{host}}/file/explorer{{path}}" style="width: 100%">
+        <img src="{% static 'images/back.png' %}" style="width:36px;" >
+    </a>
+    <div class="listinfo">
+        <span><b>Filename:</b> {{filename}}</span>
+        <span><b>Path to file:</b> {{path}}</span>
+        <span><b>Created:</b> {{time}}</span>
+        <span><b>Size:</b> {{size}}</span>
+        <span><b>Preview:</b></span>
+    </div>
+    <center>
+        <img class="preview" src='data:image/png;base64,{{hash}}'>
+    </center>
+</div>  
+
+
+<!--content-->
+<style>
+    .content{
+        grid-area:content;
+        margin:1%;
+    }
+
+    .listinfo{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        display: flex;
+        flex-direction: column;
+    }
+    .listinfo span{
+        margin: 0.5%;
+    }
+    .preview{
+        max-width: 100%;
+    }
+</style>
+<!--Body-->
+<style>
+    body{
+        margin: 0;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-areas: 
+            "headeres"
+            "content";
+        font-family: Dejavu Sans; 
+    }
+</style>
+<!--Header-->
+<style>
+    header{
+        grid-area: headeres;
+        display: grid;
+        grid-template-columns: 290px auto;
+        grid-template-areas: 
+            "logo paths"
+            "logo nav";
+        background-color: #63cdda;
+        grid-column-gap: 25px;
+    }
+    .path{
+        font-family: Dejavu Sans;    
+        grid-area:paths;
+        padding: 10px;
+        font-size: 150%;
+    }
+    .path span{
+        font-size: 50%;
+        color: #fff;
+        font-weight: bold
+    }
+    .path a{
+        margin-left: -2px;
+        color: #000;
+        text-decoration: none;
+        transition: all 1s ease;
+    }
+    .path a:hover{
+        border-radius: 2px;
+        background-color: white;
+    }
+    .logo{
+        grid-area:logo;
+        color: black;
+        text-align: left;
+        font-family: Dejavu Sans;
+        font-size: 150%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+    }
+    .logo a{
+        text-decoration: none;
+        color: #000;
+    }
+    .logo h1{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .logo h4{
+        font-size: 60%;
+        margin: 0;
+        margin-left: 2px;
+        margin-top: -5px;
+        color: #777777
+    }
+</style>

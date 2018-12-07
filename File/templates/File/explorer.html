@@ -1,84 +1,6 @@
 {%load staticfiles%}
 <title>HomeCloud File</title>
 
-<script>
-        function mkdir(){
-            var input=prompt('New folder name','New folder');
-            input?window.location.replace('{{host}}/file/mkdir{{path}}/'+input):null;
-        }
-        function confirmDelete(path){
-            confirm('You sure delete: '+path+' ?')? window.location.replace('{{host}}/file/deldir'+path):null;
-        }      
-        function moveDirectory(src,name){
-            var input=prompt('Distanation file to',src);
-            input?window.location.replace('{{host}}/file/movedir'+src+'+'+input+"?name="+name):null;   
-        }
-        function hide(handler){
-            handler.children[2].style.transition="all 1s ease"
-            handler.children[2].style.opacity=0        
-        }
-        function show(handler){
-            handler.children[2].style.transition="all 1s ease"
-            handler.children[2].style.opacity=1
-        }
-    </script>
-
-<header>
-        <div class="logo">
-            <a href={{host}}>
-                <h1 style="font-weight: bold!important;">HomeCloud</h1>
-                <h4>Free Cloud in your home</h4>
-            </a>
-        </div>
-        <div class="path">
-            <span>CURRENT PATH:</span></br>
-            <a href="{{host}}/file/explorer/" style="font-size:150%">/</a>
-            {% for i in pathes %}
-               <a href="{{host}}/file/explorer/{{i.hierrarhy}}">{{i.dir}}/</a>
-            {% endfor %}
-        </div>
-        <div class="nav">
-            <img onclick="mkdir()" src=http://cdn.onlinewebfonts.com/svg/img_197873.png title="Create folder" style="width:24px;cursor: pointer">
-            <img src=https://maxcdn.icons8.com/Share/icon/Network/download_from_cloud1600.png title="Download currnet folder" style="width:24px;cursor: pointer">
-            <img src={% static 'images/favicon.ico' %} onclick="window.location.replace('{{host}}/file/explorer~')" title="Back to home folder" style="width:24px;cursor: pointer">
-            <img onclick="confirmDelete('{{path}}')" src=https://cdn0.iconfinder.com/data/icons/cloud-computing-2-5/73/75-512.png title="Delete currnet folder" style="width:24px;cursor: pointer">   
-        </div>
-</header>
-
-<div class=content>
-    {% if path != "" %}
-    <div class=row >
-        <a href="{{host}}/file/back{{path}}" style="width: 100%">
-            <img src="http://cdn.onlinewebfonts.com/svg/download_428418.png" style="width:24px;" >
-        </a>
-    </div>
-    {% endif %}
-    {% for i in dirs %}
-    <div class=row  onmouseover=show(this) onmouseout=hide(this)> 
-        <img src="https://praxi.gr/homepage/wp-content/uploads/2017/11/bssykwmznxozbomboeqk-1024x1024.png" style="width:24px;" >
-        <a href="{{host}}/file/explorer{{path}}/{{i}}" title="{{i}}">{{i}}</a>
-        <div class="panel">
-            <img src=https://maxcdn.icons8.com/Share/icon/Network/download_from_cloud1600.png title="Download" style="width:24px ;cursor: pointer">
-            <img src=https://cdn4.iconfinder.com/data/icons/vectory-multimedia-2/40/folder_move_up-512.png onclick="moveDirectory('{{path}}','{{i}}')" title="Movе folder" style="width:24px;cursor: pointer">
-            <img src=https://cdn0.iconfinder.com/data/icons/cloud-computing-2-5/73/75-512.png onclick="confirmDelete('{{path}}/{{i}}')" title="Delete" style="width:24px;cursor: pointer">
-        </div>
-    </div>
-    {% endfor%}
-    {% for i in files%}
-    <div class=row > 
-            <img src="https://cdn0.iconfinder.com/data/icons/dicticons-files-folders/32/file-1-512.png" style="width:24px;" >
-        <a href='{{host}}/file/view{{path}}/{{i}}'>
-            {{i}}
-        </a>
-        <div class="panel">
-            <img src=https://maxcdn.icons8.com/Share/icon/Network/download_from_cloud1600.png title="Download" style="width:24px;cursor: pointer">
-            <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png title="Copy" style="width:24px;cursor: pointer">
-            <img src=https://cdn0.iconfinder.com/data/icons/cloud-computing-2-5/73/75-512.png title="Delete" style="width:24px;cursor: pointer">
-        </div>
-    </div>
-    {% endfor%}
-</div>
-
 <!--Body-->
 <style>
     body{
@@ -209,3 +131,80 @@
     }
 </style>
 
+<script>
+        function mkdir(){
+            var input=prompt('New folder name','New folder');
+            input?window.location.replace('{{host}}/file/mkdir{{path}}/'+input):null;
+        }
+        function confirmDelete(path){
+            confirm('You sure delete: '+path+' ?')? window.location.replace('{{host}}/file/deldir'+path):null;
+        }      
+        function moveDirectory(src,name){
+            var input=prompt('Distanation file to',src);
+            input?window.location.replace('{{host}}/file/movedir'+src+'+'+input+"?name="+name):null;   
+        }
+        function hide(handler){
+            handler.children[2].style.transition="all 1s ease"
+            handler.children[2].style.opacity=0        
+        }
+        function show(handler){
+            handler.children[2].style.transition="all 1s ease"
+            handler.children[2].style.opacity=1
+        }
+    </script>
+
+<header>
+        <div class="logo">
+            <a href={{host}}>
+                <h1 style="font-weight: bold!important;">HomeCloud</h1>
+                <h4>Free Cloud in your home</h4>
+            </a>
+        </div>
+        <div class="path">
+            <span>CURRENT PATH:</span></br>
+            <a href="{{host}}/file/explorer/" style="font-size:150%">/</a>
+            {% for i in pathes %}
+               <a href="{{host}}/file/explorer/{{i.hierrarhy}}">{{i.dir}}/</a>
+            {% endfor %}
+        </div>
+        <div class="nav">
+            <img onclick="mkdir()" src={% static 'images/newFolder.png' %} title="Create folder" style="width:24px;cursor: pointer">
+            <img src={% static 'images/download.png' %} title="Download currnet folder" style="width:24px;cursor: pointer">
+            <img src={% static 'images/favicon.ico' %} onclick="window.location.replace('{{host}}/file/explorer~')" title="Back to home folder" style="width:24px;cursor: pointer">
+            <img onclick="confirmDelete('{{path}}')" src={% static 'images/delete.png' %} title="Delete currnet folder" style="width:24px;cursor: pointer">   
+        </div>
+</header>
+
+<div class=content>
+    {% if path != "" %}
+    <div class=row >
+        <a href="{{host}}/file/back{{path}}" style="width: 100%">
+            <img src="{% static 'images/back.png' %}" style="width:24px;" >
+        </a>
+    </div>
+    {% endif %}
+    {% for i in dirs %}
+    <div class=row  onmouseover=show(this) onmouseout=hide(this)> 
+        <img src="{% static 'images/folder.png' %}" style="width:24px;" >
+        <a href="{{host}}/file/explorer{{path}}/{{i}}" title="{{i}}">{{i}}</a>
+        <div class="panel">
+            <img src={% static 'images/download.png' %} title="Download" style="width:24px ;cursor: pointer">
+            <img src={% static 'images/move.png' %} onclick="moveDirectory('{{path}}','{{i}}')" title="Movе folder" style="width:24px;cursor: pointer">
+            <img src={% static 'images/delete.png' %} onclick="confirmDelete('{{path}}/{{i}}')" title="Delete" style="width:24px;cursor: pointer">
+        </div>
+    </div>
+    {% endfor%}
+    {% for i in files%}
+    <div class=row > 
+            <img src={% static 'images/file.png' %} style="width:24px;" >
+        <a href='{{host}}/file/view{{path}}/{{i}}'>
+            {{i}}
+        </a>
+        <div class="panel">
+            <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
+            <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png title="Copy" style="width:24px;cursor: pointer">
+            <img src={% static 'images/delete.png' %} title="Delete" style="width:24px;cursor: pointer">
+        </div>
+    </div>
+    {% endfor%}
+</div>
