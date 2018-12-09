@@ -35,7 +35,7 @@ def viewImage(request, path):
         "filename":os.path.basename(path),
         "path":os.path.split(path)[0],
         "time":time.ctime(os.path.getctime(path)),
-        "size":convertBytes(os.path.getsize(path)),
+        "size":os.path.getsize(path),
         "hash":base,
         "host":"http://"+request.get_host(),
         "pathes":getPathHierrarhyFile(path)

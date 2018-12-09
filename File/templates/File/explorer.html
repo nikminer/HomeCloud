@@ -86,6 +86,7 @@
 <style>
     .content{
         grid-area: content;
+        margin-left: 5px;
     }
     .row img{
         height: 24px;
@@ -129,6 +130,32 @@
         text-decoration: none;
         color:inherit;
     }
+    
+    .groupe{
+        width: 80%;
+        max-width: 80%;
+        cursor: pointer;
+        border-top: #000 2px solid;
+        border-bottom: #000 1px solid;
+        border-radius: 10px;
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
+    .groupe summary{
+        border-bottom: #000 1px solid;
+        border-radius: 10px;
+        padding: 5px;
+        font-weight: bold;
+        transition: all 1s ease;
+    }
+    .groupe summary:hover{
+        background-color: #63cdda;
+    }
+    .ingroupe{
+        margin-left: 2%;
+        width: 95%;
+        max-width: 95%;
+    }
 </style>
 
 <script>
@@ -151,8 +178,9 @@
             handler.children[2].style.transition="all 1s ease"
             handler.children[2].style.opacity=1
         }
-    </script>
+</script>
 
+<!--Header-->
 <header>
         <div class="logo">
             <a href={{host}}>
@@ -174,8 +202,9 @@
             <img onclick="confirmDelete('{{path}}')" src={% static 'images/delete.png' %} title="Delete currnet folder" style="width:24px;cursor: pointer">   
         </div>
 </header>
-
+<!--Content-->
 <div class=content>
+    <!--back-->
     {% if path != "" %}
     <div class=row >
         <a href="{{host}}/file/back{{path}}" style="width: 100%">
@@ -183,28 +212,78 @@
         </a>
     </div>
     {% endif %}
-    {% for i in dirs %}
-    <div class=row  onmouseover=show(this) onmouseout=hide(this)> 
-        <img src="{% static 'images/folder.png' %}" style="width:24px;" >
-        <a href="{{host}}/file/explorer{{path}}/{{i}}" title="{{i}}">{{i}}</a>
-        <div class="panel">
-            <img src={% static 'images/download.png' %} title="Download" style="width:24px ;cursor: pointer">
-            <img src={% static 'images/move.png' %} onclick="moveDirectory('{{path}}','{{i}}')" title="Movе folder" style="width:24px;cursor: pointer">
-            <img src={% static 'images/delete.png' %} onclick="confirmDelete('{{path}}/{{i}}')" title="Delete" style="width:24px;cursor: pointer">
+    <!--dirctories-->
+    {% if dirs%}
+    <details class=groupe open>
+        <summary>Directories ({{dirs|length }} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</summary>
+        {% for i in dirs %}
+        <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
+            <img src="{% static 'images/folder.png' %}" style="width:24px;" >
+            <a href="{{host}}/file/explorer{{path}}/{{i}}" title="{{i}}">{{i}}</a>
+            <div class="panel">
+                <img src={% static 'images/download.png' %} title="Download" style="width:24px ;cursor: pointer">
+                <img src={% static 'images/move.png' %} onclick="moveDirectory('{{path}}','{{i}}')" title="Movе folder" style="width:24px;cursor: pointer">
+                <img src={% static 'images/delete.png' %} onclick="confirmDelete('{{path}}/{{i}}')" title="Delete" style="width:24px;cursor: pointer">
+            </div>
         </div>
-    </div>
-    {% endfor%}
-    {% for i in files%}
-    <div class=row > 
-            <img src={% static 'images/file.png' %} style="width:24px;" >
-        <a href='{{host}}/file/view{{path}}/{{i}}'>
-            {{i}}
-        </a>
-        <div class="panel">
-            <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
-            <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png title="Copy" style="width:24px;cursor: pointer">
-            <img src={% static 'images/delete.png' %} title="Delete" style="width:24px;cursor: pointer">
-        </div>
-    </div>
-    {% endfor%}
+        {% endfor%}
+    </details>
+    {% endif %}
+    <!--images-->
+    {% if images%}
+    <details class=groupe open>
+            <summary>Images ({{images|length }}  <img src={% static 'images/image.png' %} style="width:20px;" >)</summary>
+            {% for i in images%}
+            <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
+                    <img src={% static 'images/image.png' %} style="width:24px;" >
+                <a href='{{host}}/file/view{{path}}/{{i}}'>
+                    {{i}}
+                </a>
+                <div class="panel">
+                    <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
+                    <img src={% static 'images/copy.png' %} title="Copy" style="width:24px;cursor: pointer">
+                    <img src={% static 'images/delete.png' %} title="Delete" onclick="confirmDelete('{{path}}/{{i}}')" style="width:24px;cursor: pointer">
+                </div>
+            </div>
+            {% endfor%}
+    </details>
+    {% endif %}
+    <!--archives-->
+    {% if archives%}
+    <details class=groupe open>
+            <summary>Archives ({{archives|length }}  <img src={% static 'images/archive.png' %} style="width:20px;" >)</summary>
+            {% for i in archives%}
+            <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
+                    <img src={% static 'images/archive.png' %} style="width:24px;" >
+                <a href='{{host}}/file/view{{path}}/{{i}}'>
+                    {{i}}
+                </a>
+                <div class="panel">
+                    <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
+                    <img src={% static 'images/copy.png' %} title="Copy" style="width:24px;cursor: pointer">
+                    <img src={% static 'images/delete.png' %} title="Delete" style="width:24px;cursor: pointer">
+                </div>
+            </div>
+            {% endfor%}
+    </details>
+    {% endif %}
+    <!--others-->
+    {% if files%}
+    <details class=groupe open>
+        <summary>Others ({{files|length }}  <img src={% static 'images/file.png' %} style="width:20px;" >)</summary>
+        {% for i in files%}
+            <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
+                    <img src={% static 'images/file.png' %} style="width:24px;" >
+                <a href='{{host}}/file/view{{path}}/{{i}}'>
+                    {{i}}
+                </a>
+                <div class="panel">
+                    <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
+                    <img src={% static 'images/copy.png' %} title="Copy" style="width:24px;cursor: pointer">
+                    <img src={% static 'images/delete.png' %} title="Delete" style="width:24px;cursor: pointer">
+                </div>
+            </div>
+        {% endfor%}
+    </details>
+    {% endif %}
 </div>

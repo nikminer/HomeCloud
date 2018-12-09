@@ -1,7 +1,6 @@
 <title>{{filename}}</title>
 {%load staticfiles%}
 
-
 <header>
     <div class="logo">
         <a href={{host}}>
@@ -24,10 +23,16 @@
         <img src="{% static 'images/back.png' %}" style="width:36px;" >
     </a>
     <div class="listinfo">
-        <span><b>Filename:</b> {{filename}}</span>
-        <span><b>Path to file:</b> {{path}}</span>
+        <span>
+            <b>Filename:</b><span id=file>{{filename}}</span>
+            <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(file)" title="Copy To Clipboard" style="width:20px;cursor: pointer">
+        </span>
+        <span>
+            <b>Path to file:</b><span id=path>{{path}}</span>
+            <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(path)" title="Copy To Clipboard" style="width:20px;cursor: pointer">
+        </span>
         <span><b>Created:</b> {{time}}</span>
-        <span><b>Size:</b> {{size}}</span>
+        <span><b>Size:</b> {{size|filesizeformat}}</span>
         <span><b>Preview:</b></span>
     </div>
     <center>
@@ -35,6 +40,20 @@
     </center>
 </div>  
 
+<script>
+    function copyToClipboard(obj){
+        var copytext = document.createElement('input')
+        copytext.value = obj.innerText;
+        document.body.appendChild(copytext)
+        copytext.select()
+        document.execCommand('copy')
+        document.body.removeChild(copytext)
+
+        var temp=obj.innerText;
+        obj.innerText="Сopied";
+        setTimeout(function(){obj.innerText=temp},700)
+    }
+</script>
 
 <!--content-->
 <style>

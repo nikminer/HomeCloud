@@ -13,13 +13,25 @@ def back(request,path):
 def explorer(request, path):
     DirList=[]
     FileList=[]
+
+    imagesForms=['WEBP','JPEG','PNG','GIF','JPG','BMP']
+    images=[]
+
+    archivesForms = ['ZIP','TAR','XZ','RAR']
+    archives=[]
+
     path= os.path.splitdrive(os.path.expanduser(path).replace("\\","/"))[1]
 
     for i in os.listdir(path):
         if os.path.isdir(os.path.abspath(path+"\\"+i)) and isAccess(os.path.abspath(path+"\\"+i)):
             DirList.append(i)
         elif os.path.isfile(os.path.abspath(path+"\\"+i)) and os.access(os.path.abspath(path+"\\"+i),os.R_OK):
-            FileList.append(i)
+            if i.split(".")[-1].upper() in imagesForms:
+                images.append(i)
+            elif i.split(".")[-1].upper() in archivesForms:
+                archives.append(i)
+            else:
+                FileList.append(i)
 
     if path=="/":
         path=""
@@ -28,6 +40,8 @@ def explorer(request, path):
     {
         "dirs": DirList,
         "files":FileList,
+        "images":images,
+        "archives":archives,
         "path":path,
         "host":"http://"+request.get_host(),
         "pathes":getPathHierrarhy(path),
