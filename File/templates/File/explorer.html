@@ -231,7 +231,7 @@
     {% endif %}
     <!--images-->
     {% if images%}
-    <details class=groupe open>
+    <details class=groupe>
             <summary>Images ({{images|length }}  <img src={% static 'images/image.png' %} style="width:20px;" >)</summary>
             {% for i in images%}
             <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
@@ -250,7 +250,7 @@
     {% endif %}
     <!--archives-->
     {% if archives%}
-    <details class=groupe open>
+    <details class=groupe>
             <summary>Archives ({{archives|length }}  <img src={% static 'images/archive.png' %} style="width:20px;" >)</summary>
             {% for i in archives%}
             <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
@@ -269,7 +269,7 @@
     {% endif %}
     <!--others-->
     {% if files%}
-    <details class=groupe open>
+    <details class=groupe>
         <summary>Others ({{files|length }}  <img src={% static 'images/file.png' %} style="width:20px;" >)</summary>
         {% for i in files%}
             <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
