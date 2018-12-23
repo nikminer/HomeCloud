@@ -44,13 +44,16 @@
     .path span{
         font-size: 50%;
         color: #fff;
-        font-weight: bold
+        font-weight: bold;
     }
     .path a{
         margin-left: -2px;
         color: #000;
         text-decoration: none;
         transition: all 1s ease;
+        word-wrap:break-word;
+        overflow-wrap: break-word;
+        
     }
     .path a:hover{
         border-radius: 2px;
@@ -92,10 +95,9 @@
         height: 24px;
     }
     .row{
-       
         min-height: 24px;
-        width: 80%;
-        max-width: 80%;
+        width: 70%;
+        max-width: 70%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -125,24 +127,25 @@
     }
     .row a{
         word-break:break-all;
-        width: 80%;
+        width: 70%;
         height: 120%;
         text-decoration: none;
         color:inherit;
     }
     
     .groupe{
-        width: 80%;
-        max-width: 80%;
+        width: 70%;
+        max-width:70%;
         cursor: pointer;
-        border-top: #000 2px solid;
-        border-bottom: #000 1px solid;
+        border-top: lightgrey 2px solid;
+        border-bottom: lightgrey 1px solid;
         border-radius: 10px;
         margin-top: 1%;
         margin-bottom: 1%;
+        margin-left: 2%;
     }
     .groupe summary{
-        border-bottom: #000 1px solid;
+        border-bottom: lightgrey 1px solid;
         border-radius: 10px;
         padding: 5px;
         font-weight: bold;
@@ -156,6 +159,30 @@
         width: 95%;
         max-width: 95%;
     }
+
+    panel{
+        font-family:Dejavu Sans;
+        position: fixed;
+        width: 20%;
+        height: 40%;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        font-size: 17px;
+    }
+    panel a{
+        text-decoration: none;
+        color:black;
+        cursor: pointer;
+        margin:1%;
+        padding: 5px;
+        transition: all 1s ease;
+    }
+    panel a:hover{
+        background-color: #63cdda;
+    }
 </style>
 
 <script>
@@ -165,7 +192,10 @@
         }
         function confirmDelete(path){
             confirm('You sure delete: '+path+' ?')? window.location.replace('{{host}}/file/deldir'+path):null;
-        }      
+        }
+        function confirmDeleteFile(path){
+            confirm('You sure delete: '+path+' ?')? window.location.replace('{{host}}/file/delfile'+path):null;
+        }     
         function moveDirectory(src,name){
             var input=prompt('Distanation file to',src);
             input?window.location.replace('{{host}}/file/movedir'+src+'+'+input+"?name="+name):null;   
@@ -214,7 +244,7 @@
     {% endif %}
     <!--dirctories-->
     {% if dirs%}
-    <details class=groupe open>
+    <details class=groupe open id=dirctories>
         <summary>Directories ({{dirs|length }} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</summary>
         {% for i in dirs %}
         <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
@@ -231,7 +261,7 @@
     {% endif %}
     <!--images-->
     {% if images%}
-    <details class=groupe>
+    <details class=groupe open id=images>
             <summary>Images ({{images|length }}  <img src={% static 'images/image.png' %} style="width:20px;" >)</summary>
             {% for i in images%}
             <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
@@ -242,7 +272,7 @@
                 <div class="panel">
                     <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
                     <img src={% static 'images/copy.png' %} title="Copy" style="width:24px;cursor: pointer">
-                    <img src={% static 'images/delete.png' %} title="Delete" onclick="confirmDelete('{{path}}/{{i}}')" style="width:24px;cursor: pointer">
+                    <img src={% static 'images/delete.png' %} title="Delete" onclick="confirmDeleteFile('{{path}}/{{i}}')" style="width:24px;cursor: pointer">
                 </div>
             </div>
             {% endfor%}
@@ -250,7 +280,7 @@
     {% endif %}
     <!--archives-->
     {% if archives%}
-    <details class=groupe>
+    <details class=groupe open id=archives>
             <summary>Archives ({{archives|length }}  <img src={% static 'images/archive.png' %} style="width:20px;" >)</summary>
             {% for i in archives%}
             <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
@@ -261,7 +291,7 @@
                 <div class="panel">
                     <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
                     <img src={% static 'images/copy.png' %} title="Copy" style="width:24px;cursor: pointer">
-                    <img src={% static 'images/delete.png' %} title="Delete" style="width:24px;cursor: pointer">
+                    <img src={% static 'images/delete.png' %} title="Delete"onclick="confirmDeleteFile('{{path}}/{{i}}')" style="width:24px;cursor: pointer">
                 </div>
             </div>
             {% endfor%}
@@ -269,7 +299,7 @@
     {% endif %}
     <!--others-->
     {% if files%}
-    <details class=groupe>
+    <details class=groupe open id="others">
         <summary>Others ({{files|length }}  <img src={% static 'images/file.png' %} style="width:20px;" >)</summary>
         {% for i in files%}
             <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
@@ -280,10 +310,28 @@
                 <div class="panel">
                     <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
                     <img src={% static 'images/copy.png' %} title="Copy" style="width:24px;cursor: pointer">
-                    <img src={% static 'images/delete.png' %} title="Delete" style="width:24px;cursor: pointer">
+                    <img src={% static 'images/delete.png' %} title="Delete" onclick="confirmDeleteFile('{{path}}/{{i}}')" style="width:24px;cursor: pointer">
                 </div>
             </div>
         {% endfor%}
     </details>
+    {% endif %}
+
+    {% if dirs or images or archives or files%}
+    <panel>
+        <b>Groups:</b>
+        {% if dirs%}
+            <a href="#dirctories">Directories ({{dirs|length }} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</a>
+        {% endif %}
+        {% if images%}
+            <a href="#images">Images ({{images|length }}  <img src={% static 'images/image.png' %} style="width:20px;" >)</a>
+        {% endif %}
+        {% if archives%}
+            <a href="#archives">Archives ({{archives|length }}  <img src={% static 'images/archive.png' %} style="width:20px;" >)</a>
+        {% endif %}
+        {% if files%}
+            <a href="#others">Others ({{files|length }}  <img src={% static 'images/file.png' %} style="width:20px;" >)</a>
+        {% endif %}
+    </panel>
     {% endif %}
 </div>

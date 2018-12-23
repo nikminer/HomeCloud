@@ -9,13 +9,17 @@ import time
 
 def view1(request,path):    
     images=['WEBP','JPEG','SVG','PNG','GIF','JPG']
-    texts= ['TXT','MB','LOG','PY']
+    texts= ['TXT','MB','LOG']
     if os.path.basename(path).split(".")[-1].upper() in images:
         return viewImage(request,path)
     elif os.path.basename(path).split(".")[-1].upper() in texts:
         return viewText(request,path)
     else:
         return back(request,path)
+
+def deletefile(request,path):
+    os.remove(path)
+    return redirect("http://"+request.get_host()+"/file/back"+path)
 
 def viewText(request, path):
     text = open(path,"r").read()

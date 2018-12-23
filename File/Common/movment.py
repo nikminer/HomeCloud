@@ -2,6 +2,7 @@ from django.shortcuts import redirect,render
 from .directory import isAccess,getPathHierrarhy
 import shutil
 import os
+import json
 
 def back(request,path):
     print (os.path.split(path)[0])
@@ -20,6 +21,8 @@ def explorer(request, path):
     archivesForms = ['ZIP','TAR','XZ','RAR']
     archives=[]
 
+    torrentsForms = ['TORRENT']
+    torrents=[]
     path= os.path.splitdrive(os.path.expanduser(path).replace("\\","/"))[1]
 
     for i in os.listdir(path):
@@ -30,6 +33,8 @@ def explorer(request, path):
                 images.append(i)
             elif i.split(".")[-1].upper() in archivesForms:
                 archives.append(i)
+            elif i.split(".")[-1].upper() in torrentsForms:
+                torrents.append(i)
             else:
                 FileList.append(i)
 
@@ -42,6 +47,7 @@ def explorer(request, path):
         "files":FileList,
         "images":images,
         "archives":archives,
+        "torrents":torrents,
         "path":path,
         "host":"http://"+request.get_host(),
         "pathes":getPathHierrarhy(path),
