@@ -259,54 +259,17 @@
         {% endfor%}
     </details>
     {% endif %}
-    <!--images-->
-    {% if images%}
-    <details class=groupe open id=images>
-            <summary>Images ({{images|length }}  <img src={% static 'images/image.png' %} style="width:20px;" >)</summary>
-            {% for i in images%}
-            <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
-                    <img src={% static 'images/image.png' %} style="width:24px;" >
-                <a href='{{host}}/file/view{{path}}/{{i}}'>
-                    {{i}}
-                </a>
-                <div class="panel">
-                    <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
-                    <img src={% static 'images/copy.png' %} title="Copy" style="width:24px;cursor: pointer">
-                    <img src={% static 'images/delete.png' %} title="Delete" onclick="confirmDeleteFile('{{path}}/{{i}}')" style="width:24px;cursor: pointer">
-                </div>
-            </div>
-            {% endfor%}
-    </details>
-    {% endif %}
-    <!--archives-->
-    {% if archives%}
-    <details class=groupe open id=archives>
-            <summary>Archives ({{archives|length }}  <img src={% static 'images/archive.png' %} style="width:20px;" >)</summary>
-            {% for i in archives%}
-            <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
-                    <img src={% static 'images/archive.png' %} style="width:24px;" >
-                <a href='{{host}}/file/view{{path}}/{{i}}'>
-                    {{i}}
-                </a>
-                <div class="panel">
-                    <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
-                    <img src={% static 'images/copy.png' %} title="Copy" style="width:24px;cursor: pointer">
-                    <img src={% static 'images/delete.png' %} title="Delete"onclick="confirmDeleteFile('{{path}}/{{i}}')" style="width:24px;cursor: pointer">
-                </div>
-            </div>
-            {% endfor%}
-    </details>
-    {% endif %}
-    <!--others-->
+    
+    
     {% if files%}
-    <details class=groupe open id="others">
-        <summary>Others ({{files|length }}  <img src={% static 'images/file.png' %} style="width:20px;" >)</summary>
-        {% for i in files%}
+    {% for i1 in files.groups%}
+    {% if i1.list %}
+    <details class=groupe open id="{{i1.name}}">
+        <summary>{{i1.name}} ({{i1.list|length }}  <img src={% static i1.icon %} style="width:20px;" >)</summary>
+        {% for i in i1.list %}
             <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
-                    <img src={% static 'images/file.png' %} style="width:24px;" >
-                <a href='{{host}}/file/view{{path}}/{{i}}'>
-                    {{i}}
-                </a>
+                    <img src={% static i1.icon %} style="width:24px;" >
+                <a href='{{host}}/file/view{{path}}/{{i}}'>{{i}}</a>
                 <div class="panel">
                     <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
                     <img src={% static 'images/copy.png' %} title="Copy" style="width:24px;cursor: pointer">
@@ -316,6 +279,12 @@
         {% endfor%}
     </details>
     {% endif %}
+    {% endfor %}
+    {% endif %}
+
+
+
+
 
     {% if dirs or images or archives or files%}
     <panel>
@@ -323,15 +292,12 @@
         {% if dirs%}
             <a href="#dirctories">Directories ({{dirs|length }} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</a>
         {% endif %}
-        {% if images%}
-            <a href="#images">Images ({{images|length }}  <img src={% static 'images/image.png' %} style="width:20px;" >)</a>
+
+        {% for i1 in files.groups%}
+        {% if i1.list %}
+            <a href="#{{i1.name}}">{{i1.name}} ({{i1.list|length }}  <img src={% static i1.icon %} style="width:20px;" >)</a>
         {% endif %}
-        {% if archives%}
-            <a href="#archives">Archives ({{archives|length }}  <img src={% static 'images/archive.png' %} style="width:20px;" >)</a>
-        {% endif %}
-        {% if files%}
-            <a href="#others">Others ({{files|length }}  <img src={% static 'images/file.png' %} style="width:20px;" >)</a>
-        {% endif %}
+        {% endfor %}
     </panel>
     {% endif %}
 </div>

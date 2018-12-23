@@ -1,0 +1,14 @@
+{
+    "Images":{
+        "formats":["WEBP","JPEG","PNG","GIF","JPG","BMP"],
+        "icon":"images/image.png"
+    },
+    "Archives":{
+        "formats":["ZIP","TAR","XZ","RAR"],
+        "icon":"images/archive.png"
+    },
+    "Documents":{
+        "formats":["DOC","ODF","PDF"],
+        "icon":"images/doc.jpg"
+    }
+}
