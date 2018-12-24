@@ -35,9 +35,9 @@ def explorer(request, path):
         elif os.path.isfile(os.path.abspath(path+"\\"+i)) and os.access(os.path.abspath(path+"\\"+i),os.R_OK):
             i1=FileList.formats.get(i.split(".")[-1].upper())
             if i1:
-                FileList.groups[GroupQueue[i1]].list.append(i)
+                FileList.groups[GroupQueue[i1]].list.append(fileobj(i,os.path.getsize(path+"\\"+i)))
             else:
-                FileList.groups[GroupQueue["Other"]].list.append(i)
+                FileList.groups[GroupQueue["Other"]].list.append(fileobj(i,os.path.getsize(path+"\\"+i)))
     if path=="/":
         path=""
     return render(request, "File/explorer.html", 
@@ -64,3 +64,10 @@ class Groupe(object):
         self.name=name
         self.list=[]
         self.icon=icon
+
+class fileobj(object):
+    name=""
+    size=0
+    def __init__(self,name,size):
+        self.name=name
+        self.size=size

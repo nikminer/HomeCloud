@@ -1,14 +1,26 @@
 {
-    "Images":{
-        "formats":["WEBP","JPEG","PNG","GIF","JPG","BMP"],
+    "Pictures":{
+        "formats":["WEBP","JPEG","ICO","PNG","GIF","JPG","BMP"],
         "icon":"images/image.png"
     },
     "Archives":{
-        "formats":["ZIP","TAR","XZ","RAR"],
+        "formats":["ZIP","TAR","XZ","RAR","7Z","JAR"],
         "icon":"images/archive.png"
     },
     "Documents":{
-        "formats":["DOC","ODF","PDF"],
+        "formats":["DOC","DOCX","ODS","ODT","PDF","XLS"],
         "icon":"images/doc.jpg"
+    },
+    "Text":{
+        "formats":["TXT","MD","LOG"],
+        "icon":"images/doc.jpg"
+    },
+    "Executed":{
+        "formats":["EXE","MSI"],
+        "icon":"images/exec.png"
+    },
+    "WEB":{
+        "formats":["HTML","HTM","XML","CSS","JSON","JS","PHP"],
+        "icon":"images/web.png"
     }
 }

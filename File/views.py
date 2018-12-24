@@ -8,7 +8,7 @@ import os
 import time
 
 def view1(request,path):    
-    images=['WEBP','JPEG','SVG','PNG','GIF','JPG']
+    images=['WEBP','JPEG','ICO','PNG','GIF','JPG']
     texts= ['TXT','MB','LOG']
     if os.path.basename(path).split(".")[-1].upper() in images:
         return viewImage(request,path)

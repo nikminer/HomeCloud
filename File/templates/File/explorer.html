@@ -1,6 +1,6 @@
 {%load staticfiles%}
 <title>HomeCloud File</title>
-
+<link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
 <!--Body-->
 <style>
     body{
@@ -164,7 +164,6 @@
         font-family:Dejavu Sans;
         position: fixed;
         width: 20%;
-        height: 40%;
         bottom: 0;
         right: 0;
         display: flex;
@@ -226,9 +225,9 @@
             {% endfor %}
         </div>
         <div class="nav">
+                <img src={% static 'images/favicon.ico' %} onclick="window.location.replace('{{host}}/file/explorer~')" title="Back to home folder" style="width:24px;cursor: pointer">
             <img onclick="mkdir()" src={% static 'images/newFolder.png' %} title="Create folder" style="width:24px;cursor: pointer">
             <img src={% static 'images/download.png' %} title="Download currnet folder" style="width:24px;cursor: pointer">
-            <img src={% static 'images/favicon.ico' %} onclick="window.location.replace('{{host}}/file/explorer~')" title="Back to home folder" style="width:24px;cursor: pointer">
             <img onclick="confirmDelete('{{path}}')" src={% static 'images/delete.png' %} title="Delete currnet folder" style="width:24px;cursor: pointer">   
         </div>
 </header>
@@ -260,7 +259,7 @@
     </details>
     {% endif %}
     
-    
+    <!--Files-->
     {% if files%}
     {% for i1 in files.groups%}
     {% if i1.list %}
@@ -269,11 +268,12 @@
         {% for i in i1.list %}
             <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
                     <img src={% static i1.icon %} style="width:24px;" >
-                <a href='{{host}}/file/view{{path}}/{{i}}'>{{i}}</a>
+                <a href='{{host}}/file/view{{path}}/{{i.name}}'>{{i.name}}</a>
+                {{i.size|filesizeformat}}
                 <div class="panel">
                     <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
                     <img src={% static 'images/copy.png' %} title="Copy" style="width:24px;cursor: pointer">
-                    <img src={% static 'images/delete.png' %} title="Delete" onclick="confirmDeleteFile('{{path}}/{{i}}')" style="width:24px;cursor: pointer">
+                    <img src={% static 'images/delete.png' %} title="Delete" onclick="confirmDeleteFile('{{path}}/{{i.name}}')" style="width:24px;cursor: pointer">
                 </div>
             </div>
         {% endfor%}
@@ -282,10 +282,7 @@
     {% endfor %}
     {% endif %}
 
-
-
-
-
+    <!--Groups panel-->
     {% if dirs or images or archives or files%}
     <panel>
         <b>Groups:</b>
