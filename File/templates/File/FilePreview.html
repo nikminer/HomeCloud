@@ -35,6 +35,8 @@
     }
     .preview{
         max-width: 100%;
+        width:100%;
+        margin: 20px;
     }
 </style>
 <!--Body-->
@@ -130,8 +132,8 @@
 <a class=Back href="{{host}}/file/explorer{{path}}">
     <img src="{% static 'images/back.png' %}" style="width:30px;" > <span class=SpanBack>Back</span>
 </a>
-<div    class="content">
-   
+<div class="content">
+    
     <div class="listinfo">
         <span>
             <b>Filename:</b><span id=file>{{filename}}</span>
@@ -143,11 +145,7 @@
         </span>
         <span><b>Created:</b> {{time}}</span>
         <span><b>Size:</b> {{size|filesizeformat}}</span>
-        <span><b>Preview:</b></span>
     </div>
-    <center>
-        <img class="preview" src='data:image/png;base64,{{hash}}'>
-    </center>
 </div>  
 
 <script>
@@ -158,7 +156,6 @@
         copytext.select()
         document.execCommand('copy')
         document.body.removeChild(copytext)
-
         var temp=obj.innerText;
         obj.innerText="Сopied";
         setTimeout(function(){obj.innerText=temp},700)

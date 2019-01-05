@@ -13,3 +13,7 @@ def createdir(request,path):
 def movedir(request,path,path1):
     os.replace(path+"/"+request.GET.get('name'),path1+"/"+request.GET.get('name'))
     return redirect("http://"+request.get_host()+"/file/explorer"+path1) 
+
+def deletefile(request,path):
+    os.remove(path)
+    return redirect("http://"+request.get_host()+"/file/back"+path)

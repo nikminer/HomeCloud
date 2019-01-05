@@ -2,91 +2,53 @@
 {%load staticfiles%}
 <link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
 
-<header>
-    <div class="logo">
-        <a href={{host}}>
-            <h1 style="font-weight: bold!important;">HomeCloud</h1>
-            <h4>Free Cloud in your home</h4>
-        </a>
-    </div>
-    <div class="path">
-        <span>CURRENT PATH:</span></br>
-        <a href="{{host}}/file/explorer/" style="font-size:150%">/</a>
-        {% for i in pathes %}
-           <a href="{{host}}/file/explorer/{{i.hierrarhy}}">{{i.dir}}/</a>
-        {% endfor %}
-    </div>
-</header>
-
-
-<div class="content">
-    <a href="{{host}}/file/explorer{{path}}" style="width: 100%">
-        <img src="{% static 'images/back.png' %}" style="width:36px;" >
-    </a>
-    <div class="listinfo">
-        <span>
-            <b>Filename:</b><span id=file>{{filename}}</span>
-            <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(file)" title="Copy To Clipboard" style="width:20px;cursor: pointer">
-        </span>
-        <span>
-            <b>Path to file:</b><span id=path>{{path}}</span>
-            <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(path)" title="Copy To Clipboard" style="width:20px;cursor: pointer">
-        </span>
-        <span><b>Created:</b> {{time}}</span>
-        <span><b>Size:</b> {{size|filesizeformat}}</span>
-        <span><b>Preview:</b></span>
-    </div>
-    <center>
-        <b>{{filename}}</b>
-    </center>
-    <span class=prewiew style="word-wrap: break-word;">{{text}}</span>
-</div>  
-
-<script>
-    function copyToClipboard(obj){
-        var copytext = document.createElement('input')
-        copytext.value = obj.innerText;
-        document.body.appendChild(copytext)
-        copytext.select()
-        document.execCommand('copy')
-        document.body.removeChild(copytext)
-
-        var temp=obj.innerText;
-        obj.innerText="Сopied";
-        setTimeout(function(){obj.innerText=temp},700)
-    }
-</script>
-
 <!--content-->
 <style>
+    .Back{
+        width: 98%;
+        text-decoration: none;
+        color: black;
+        padding: 1%;
+        grid-area:back;
+        transition: all 1s ease;
+    }
+    .Back:hover{
+        background-color: #63cdda
+    }
+    .SpanBack{
+        font-size: 25px;
+    }
     .content{
         grid-area:content;
-        margin:1%;
+        margin:5px;
+        margin-left: 10px;
+        
     }
 
     .listinfo{
-        margin-top: 1%;
-        margin-bottom: 1%;
         display: flex;
         flex-direction: column;
+        font-size: 20px;
+        margin-top: 10px;
     }
     .listinfo span{
-        margin: 0.5%;
+        margin: 10px;
     }
     .preview{
-        max-width: 100%;
-        width:100%;
-        margin: 20px;
+        word-wrap: break-word;
+        overflow-wrap: break-word; 
     }
+
 </style>
 <!--Body-->
 <style>
     body{
         margin: 0;
         display: grid;
-        grid-template-columns: auto;
+        grid-template-columns: 100%;
         grid-template-areas: 
             "headeres"
+            "back"
             "content";
         font-family: Dejavu Sans; 
     }
@@ -150,3 +112,61 @@
         color: #777777
     }
 </style>
+
+
+<header>
+    <div class="logo">
+        <a href={{host}}>
+            <h1 style="font-weight: bold!important;">HomeCloud</h1>
+            <h4>Free Cloud in your home</h4>
+        </a>
+    </div>
+    <div class="path">
+        <span>CURRENT PATH:</span></br>
+        <a href="{{host}}/file/explorer/" style="font-size:150%">/</a>
+        {% for i in pathes %}
+           <a href="{{host}}/file/explorer/{{i.hierrarhy}}">{{i.dir}}/</a>
+        {% endfor %}
+    </div>
+</header>
+
+<a class=Back href="{{host}}/file/explorer{{path}}">
+    <img src="{% static 'images/back.png' %}" style="width:30px;" > <span class=SpanBack>Back</span>
+</a>
+<div class="content">
+    
+    <div class="listinfo">
+        <span>
+            <b>Filename:</b><span id=file>{{filename}}</span>
+            <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(file)" title="Copy To Clipboard" style="width:20px;cursor: pointer">
+        </span>
+        <span>
+            <b>Path to file:</b><span id=path>{{path}}</span>
+            <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(path)" title="Copy To Clipboard" style="width:20px;cursor: pointer">
+        </span>
+        <span><b>Created:</b> {{time}}</span>
+        <span><b>Size:</b> {{size|filesizeformat}}</span>
+        <span><b>Preview:</b></span>
+    </div>
+    <center>
+        <h2>{{filename}}</h2>
+    </center>
+    <pre class=preview>{{text}}</pre>
+    
+</div>  
+
+<script>
+    function copyToClipboard(obj){
+        var copytext = document.createElement('input')
+        copytext.value = obj.innerText;
+        document.body.appendChild(copytext)
+        copytext.select()
+        document.execCommand('copy')
+        document.body.removeChild(copytext)
+
+        var temp=obj.innerText;
+        obj.innerText="Сopied";
+        setTimeout(function(){obj.innerText=temp},700)
+    }
+</script>
+

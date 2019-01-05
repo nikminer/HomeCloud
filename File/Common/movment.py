@@ -4,6 +4,8 @@ import shutil
 import os
 import json
 
+conf=json.loads(open("static/config/Groups.json","r").read())
+
 def back(request,path):
     if path=="\\":
         redirect("http://"+request.get_host())
@@ -19,7 +21,6 @@ def explorer(request, path):
 
     path= os.path.splitdrive(os.path.expanduser(path).replace("\\","/"))[1]
     
-    conf=json.loads(open("static/config/Groups.json","r").read())
     for i in conf:
         for i1 in conf[i]['formats']:
             FileList.formats.update({i1:i})

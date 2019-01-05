@@ -87,6 +87,9 @@
 </style>
 <!--content-->
 <style>
+    .Back{
+        font-size: 25px;
+    }
     .content{
         grid-area: content;
         margin-left: 5px;
@@ -236,8 +239,8 @@
     <!--back-->
     {% if path != "" %}
     <div class=row >
-        <a href="{{host}}/file/back{{path}}" style="width: 100%">
-            <img src="{% static 'images/back.png' %}" style="width:24px;" >
+        <a href="{{host}}/file/back{{path}}" style="width: 100%;text-decoration: none;color: black">
+            <img src="{% static 'images/back.png' %}" style="width:24px;"> <span class=Back>Back</span>
         </a>
     </div>
     {% endif %}
