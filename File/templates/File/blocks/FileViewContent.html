@@ -1,0 +1,44 @@
+<style>
+.listinfo{
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+        margin-top: 10px;
+    }
+    .listinfo{
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+        margin-top: 10px;
+    }
+    .listinfo span{
+        margin: 10px;
+    }
+</style>
+
+<div class="listinfo">
+    <span>
+        <b>Filename:</b><span id=file>{{filename}}</span>
+        <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(file)" title="Copy To Clipboard" style="width:20px;cursor: pointer">
+    </span>
+    <span>
+        <b>Path to file:</b><span id=path>{{path}}</span>
+        <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(path)" title="Copy To Clipboard" style="width:20px;cursor: pointer">
+    </span>
+    <span><b>Created:</b> {{time}}</span>
+    <span><b>Size:</b> {{size|filesizeformat}}</span>
+</div>
+
+<script>
+    function copyToClipboard(obj){
+        var copytext = document.createElement('input')
+        copytext.value = obj.innerText;
+        document.body.appendChild(copytext)
+        copytext.select()
+        document.execCommand('copy')
+        document.body.removeChild(copytext)
+        var temp=obj.innerText;
+        obj.innerText="Сopied";
+        setTimeout(function(){obj.innerText=temp},700)
+    }
+</script>

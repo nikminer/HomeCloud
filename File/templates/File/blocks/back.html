@@ -1,0 +1,22 @@
+{%load staticfiles%}
+
+<style>
+    .Back{
+        width: 98%;
+        text-decoration: none;
+        color: black;
+        padding: 1%;
+        grid-area:back;
+        transition: all 1s ease;
+    }
+    .Back:hover{
+        background-color: #63cdda
+    }
+    .SpanBack{
+        font-size: 25px;
+    }
+
+</style>
+<a class=Back href="{{host}}/file/explorer{{path}}">
+    <img src="{% static 'images/back.png' %}" style="width:30px;" > <span class=SpanBack>Back</span>
+</a>

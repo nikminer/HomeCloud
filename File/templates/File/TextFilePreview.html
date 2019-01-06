@@ -1,47 +1,16 @@
 <title>{{filename}}</title>
+
 {%load staticfiles%}
+
 <link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
 
 <!--content-->
 <style>
-    .Back{
-        width: 98%;
-        text-decoration: none;
-        color: black;
-        padding: 1%;
-        grid-area:back;
-        transition: all 1s ease;
-    }
-    .Back:hover{
-        background-color: #63cdda
-    }
-    .SpanBack{
-        font-size: 25px;
-    }
     .content{
         grid-area:content;
         margin:5px;
         margin-left: 10px;
-        
     }
-
-    .listinfo{
-        display: flex;
-        flex-direction: column;
-        font-size: 20px;
-        margin-top: 10px;
-    }
-    .listinfo span{
-        margin: 10px;
-    }
-    .preview{
-        word-wrap: break-word;
-        overflow-wrap: break-word; 
-    }
-
-</style>
-<!--Body-->
-<style>
     body{
         margin: 0;
         display: grid;
@@ -52,121 +21,20 @@
             "content";
         font-family: Dejavu Sans; 
     }
-</style>
-<!--Header-->
-<style>
-    header{
-        grid-area: headeres;
-        display: grid;
-        grid-template-columns: 290px auto;
-        grid-template-areas: 
-            "logo paths"
-            "logo nav";
-        background-color: #63cdda;
-        grid-column-gap: 25px;
+    .preview{
+        word-wrap: break-word;
+        overflow-wrap: break-word; 
     }
-    .path{
-        font-family: Dejavu Sans;    
-        grid-area:paths;
-        padding: 10px;
-        font-size: 150%;
-    }
-    .path span{
-        font-size: 50%;
-        color: #fff;
-        font-weight: bold
-    }
-    .path a{
-        margin-left: -2px;
-        color: #000;
-        text-decoration: none;
-        transition: all 1s ease;
-    }
-    .path a:hover{
-        border-radius: 2px;
-        background-color: white;
-    }
-    .logo{
-        grid-area:logo;
-        color: black;
-        text-align: left;
-        font-family: Dejavu Sans;
-        font-size: 150%;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 10px;
-    }
-    .logo a{
-        text-decoration: none;
-        color: #000;
-    }
-    .logo h1{
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-    .logo h4{
-        font-size: 60%;
-        margin: 0;
-        margin-left: 2px;
-        margin-top: -5px;
-        color: #777777
-    }
+
 </style>
 
+{% include "./blocks/header.html" %}
 
-<header>
-    <div class="logo">
-        <a href={{host}}>
-            <h1 style="font-weight: bold!important;">HomeCloud</h1>
-            <h4>Free Cloud in your home</h4>
-        </a>
-    </div>
-    <div class="path">
-        <span>CURRENT PATH:</span></br>
-        <a href="{{host}}/file/explorer/" style="font-size:150%">/</a>
-        {% for i in pathes %}
-           <a href="{{host}}/file/explorer/{{i.hierrarhy}}">{{i.dir}}/</a>
-        {% endfor %}
-    </div>
-</header>
-
-<a class=Back href="{{host}}/file/explorer{{path}}">
-    <img src="{% static 'images/back.png' %}" style="width:30px;" > <span class=SpanBack>Back</span>
-</a>
+{% include "./blocks/back.html" %}
 <div class="content">
-    
-    <div class="listinfo">
-        <span>
-            <b>Filename:</b><span id=file>{{filename}}</span>
-            <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(file)" title="Copy To Clipboard" style="width:20px;cursor: pointer">
-        </span>
-        <span>
-            <b>Path to file:</b><span id=path>{{path}}</span>
-            <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(path)" title="Copy To Clipboard" style="width:20px;cursor: pointer">
-        </span>
-        <span><b>Created:</b> {{time}}</span>
-        <span><b>Size:</b> {{size|filesizeformat}}</span>
-        <span><b>Preview:</b></span>
-    </div>
+    {% include "./blocks/FileViewContent.html" %}
     <center>
         <h2>{{filename}}</h2>
     </center>
     <pre class=preview>{{text}}</pre>
-    
 </div>  
-
-<script>
-    function copyToClipboard(obj){
-        var copytext = document.createElement('input')
-        copytext.value = obj.innerText;
-        document.body.appendChild(copytext)
-        copytext.select()
-        document.execCommand('copy')
-        document.body.removeChild(copytext)
-
-        var temp=obj.innerText;
-        obj.innerText="Сopied";
-        setTimeout(function(){obj.innerText=temp},700)
-    }
-</script>
-

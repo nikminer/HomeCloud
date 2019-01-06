@@ -1,0 +1,75 @@
+<!--Header-->
+<style>
+    header{
+        grid-area: headeres;
+        display: grid;
+        grid-template-columns: 290px auto;
+        grid-template-areas: 
+            "logo paths"
+            "logo nav";
+        background-color: #63cdda;
+        grid-column-gap: 25px;
+    }
+    .path{
+        font-family: Dejavu Sans;    
+        grid-area:paths;
+        padding: 10px;
+        font-size: 150%;
+    }
+    .path span{
+        font-size: 50%;
+        color: #fff;
+        font-weight: bold
+    }
+    .path a{
+        margin-left: -2px;
+        color: #000;
+        text-decoration: none;
+        transition: all 1s ease;
+    }
+    .path a:hover{
+        border-radius: 2px;
+        background-color: white;
+    }
+    .logo{
+        grid-area:logo;
+        color: black;
+        text-align: left;
+        font-family: Dejavu Sans;
+        font-size: 150%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+    }
+    .logo a{
+        text-decoration: none;
+        color: #000;
+    }
+    .logo h1{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .logo h4{
+        font-size: 60%;
+        margin: 0;
+        margin-left: 2px;
+        margin-top: -5px;
+        color: #777777
+    }
+</style>
+
+<header>
+    <div class="logo">
+        <a href={{host}}>
+            <h1 style="font-weight: bold!important;">HomeCloud</h1>
+            <h4>Free Cloud in your home</h4>
+        </a>
+    </div>
+    <div class="path">
+        <span>CURRENT PATH:</span></br>
+        <a href="{{host}}/file/explorer/" style="font-size:150%">/</a>
+        {% for i in pathes %}
+           <a href="{{host}}/file/explorer/{{i.hierrarhy}}">{{i.dir}}/</a>
+        {% endfor %}
+    </div>
+</header>
