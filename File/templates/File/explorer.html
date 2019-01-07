@@ -9,6 +9,7 @@
         grid-template-columns: auto;
         grid-template-areas: 
             "headeres"
+            "nav"
             "back"
             "content";
         font-family: Dejavu Sans; 
@@ -16,18 +17,11 @@
 </style>
 <!--Header-->
 <style>
-    header{
-        grid-area: headeres;
-        display: grid;
-        grid-template-columns: 290px auto;
-        grid-template-areas: 
-            "logo paths"
-            "logo nav";
-        background-color: #63cdda;
-        grid-column-gap: 25px;
-    }
+    
     .nav{
         grid-area: nav;
+        background-color: #63cdda;
+        padding: 10px;
     }
     .nav img{
         transition: all 1s ease;
@@ -36,61 +30,10 @@
         border-radius: 5px;
         background-color: white;
     }
-    .path{
-        font-family: Dejavu Sans;    
-        grid-area:paths;
-        padding: 10px;
-        font-size: 150%;
-    }
-    .path span{
-        font-size: 50%;
-        color: #fff;
-        font-weight: bold;
-    }
-    .path a{
-        margin-left: -2px;
-        color: #000;
-        text-decoration: none;
-        transition: all 1s ease;
-        word-wrap:break-word;
-        overflow-wrap: break-word;
-        
-    }
-    .path a:hover{
-        border-radius: 2px;
-        background-color: white;
-    }
-    .logo{
-        grid-area:logo;
-        color: black;
-        text-align: left;
-        font-family: Dejavu Sans;
-        font-size: 150%;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 10px;
-    }
-    .logo a{
-        text-decoration: none;
-        color: #000;
-    }
-    .logo h1{
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-    .logo h4{
-        font-size: 60%;
-        margin: 0;
-        margin-left: 2px;
-        margin-top: -5px;
-        color: #777777
-    }
+    
 </style>
-<!--content-->
+
 <style>
-    .Back{
-        font-size: 25px;
-    }
     .content{
         grid-area: content;
         margin-left: 5px;
@@ -100,24 +43,44 @@
     }
     .row{
         min-height: 24px;
-        width: 70%;
-        max-width: 70%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items:stretch;
+        width: 80%;
+        max-width: 80%;
+        display: grid;
+        grid-template-columns: 75% 15% 10%;
+        grid-template-rows: auto;
+        grid-template-areas: 
+        "Name size panel"
+        "Name time panel";
         color: #000;
         border-bottom: lightgrey 0.5px solid;
         font-family:Dejavu Sans;    
-        padding-top:10px;
-        padding-bottom: 10px;
+        padding-top:5px;
+        padding-bottom: 5px;
         padding-left: 20px;
-        transition: all 1s ease;
+        transition: all 0.5s ease;
     }  
     .row:hover{
         background-color: #63cdda;
     }
+    .name{
+        grid-area: Name;
+        display: flex;
+        flex-direction: row;
+        align-items: center
+    }
+    .name img{
+        margin-right: 10px;
+    }
+    .size{
+        grid-area: size;
+        font-size: 14px;
+    }
+    .time{
+        grid-area: time;
+        font-size: 14px;
+    }
     .panel{
+        grid-area: panel;
         display:inline;
         opacity: 0;
     }
@@ -131,15 +94,15 @@
     }
     .row a{
         word-break:break-all;
-        width: 70%;
+        width: 80%;
         height: 120%;
         text-decoration: none;
         color:inherit;
     }
     
     .groupe{
-        width: 70%;
-        max-width:70%;
+        width: 80%;
+        max-width:80%;
         cursor: pointer;
         border-top: lightgrey 2px solid;
         border-bottom: lightgrey 1px solid;
@@ -167,7 +130,7 @@
     panel{
         font-family:Dejavu Sans;
         position: fixed;
-        width: 20%;
+        width: 15%;
         bottom: 0;
         right: 0;
         display: flex;
@@ -204,56 +167,43 @@
             input?window.location.replace('{{host}}/file/movedir'+src+'+'+input+"?name="+name):null;   
         }
         function hide(handler){
-            handler.children[2].style.transition="all 1s ease"
-            handler.children[2].style.opacity=0        
+            handler.children[3].style.transition="all 1s ease"
+            handler.children[3].style.opacity=0        
         }
         function show(handler){
-            handler.children[2].style.transition="all 1s ease"
-            handler.children[2].style.opacity=1
+            handler.children[3].style.transition="all 1s ease"
+            handler.children[3].style.opacity=1
         }
 </script>
 
-<!--Header-->
-<header>
-        <div class="logo">
-            <a href={{host}}>
-                <h1 style="font-weight: bold!important;">HomeCloud</h1>
-                <h4>Free Cloud in your home</h4>
-            </a>
-        </div>
-        <div class="path">
-            <span>CURRENT PATH:</span></br>
-            <a href="{{host}}/file/explorer/" style="font-size:150%">/</a>
-            {% for i in pathes %}
-               <a href="{{host}}/file/explorer/{{i.hierrarhy}}">{{i.dir}}/</a>
-            {% endfor %}
-        </div>
-        <div class="nav">
-                <img src={% static 'images/favicon.ico' %} onclick="window.location.replace('{{host}}/file/explorer~')" title="Back to home folder" style="width:24px;cursor: pointer">
-            <img onclick="mkdir()" src={% static 'images/newFolder.png' %} title="Create folder" style="width:24px;cursor: pointer">
-            <img src={% static 'images/download.png' %} title="Download currnet folder" style="width:24px;cursor: pointer">
-            <img onclick="confirmDelete('{{path}}')" src={% static 'images/delete.png' %} title="Delete currnet folder" style="width:24px;cursor: pointer">   
-        </div>
-</header>
+{% include "./blocks/header.html" %}
 
-<!--Content-->
-<div class=content>
-    <!--back-->
-    {% if path != "" %}
-    <div class=row >
-        <a href="{{host}}/file/back{{path}}" style="width: 100%;text-decoration: none;color: black">
-            <img src="{% static 'images/back.png' %}" style="width:24px;"> <span class=Back>Back</span>
-        </a>
-    </div>
-    {% endif %}
+<div class="nav">
+        <img src={% static 'images/favicon.ico' %} onclick="window.location.replace('{{host}}/file/explorer~')" title="Back to home folder" style="width:24px;cursor: pointer">
+    <img onclick="mkdir()" src={% static 'images/newFolder.png' %} title="Create folder" style="width:24px;cursor: pointer">
+    <img src={% static 'images/download.png' %} title="Download currnet folder" style="width:24px;cursor: pointer">
+    <img onclick="confirmDelete('{{path}}')" src={% static 'images/delete.png' %} title="Delete currnet folder" style="width:24px;cursor: pointer">   
+</div>
+
+{% if path != "" %}
+    {% include "./blocks/back.html" %}
+{% endif %}
+
+<div class=content>    
     <!--dirctories-->
     {% if dirs%}
     <details class=groupe open id=dirctories>
         <summary>Directories ({{dirs|length }} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</summary>
         {% for i in dirs %}
         <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
-            <img src="{% static 'images/folder.png' %}" style="width:24px;" >
-            <a href="{{host}}/file/explorer{{path}}/{{i}}" title="{{i}}">{{i}}</a>
+            <div class=name>
+                <img src="{% static 'images/folder.png' %}" style="width:24px;" >
+                <a href="{{host}}/file/explorer{{path}}/{{i.name}}" title="{{i.name}}">{{i.name}}</a>
+            </div>
+                <span class=size></span>
+                <span class=time>
+                    {{i.date|date:"SHORT_DATE_FORMAT"}}
+                </span>
             <div class="panel">
                 <img src={% static 'images/download.png' %} title="Download" style="width:24px ;cursor: pointer">
                 <img src={% static 'images/move.png' %} onclick="moveDirectory('{{path}}','{{i}}')" title="Movе folder" style="width:24px;cursor: pointer">
@@ -271,10 +221,18 @@
     <details class=groupe open id="{{i1.name}}">
         <summary>{{i1.name}} ({{i1.list|length }}  <img src={% static i1.icon %} style="width:20px;" >)</summary>
         {% for i in i1.list %}
-            <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
+            <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)>
+                <div class=name>
                     <img src={% static i1.icon %} style="width:24px;" >
-                <a href='{{host}}/file/view{{path}}/{{i.name}}'>{{i.name}}</a>
-                {{i.size|filesizeformat}}
+                    <a href='{{host}}/file/view{{path}}/{{i.name}}'>{{i.name}}</a>
+                </div> 
+                <span class=size>
+                    {{i.size|filesizeformat}}
+                </span>
+                <span class=time>
+                    {{i.date|date:"SHORT_DATE_FORMAT"}}
+                </span>
+                
                 <div class="panel">
                     <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
                     <img src={% static 'images/copy.png' %} title="Copy" style="width:24px;cursor: pointer">

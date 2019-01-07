@@ -3,6 +3,7 @@ from .directory import isAccess,getPathHierrarhy
 import shutil
 import os
 import json
+import datetime
 
 conf=json.loads(open("static/config/Groups.json","r").read())
 
@@ -31,16 +32,17 @@ def explorer(request, path):
     GroupQueue.update({"Other":QueueIndex})
     
     for i in os.listdir(path):
+        if path=="/":
+            path=""
         if os.path.isdir(os.path.abspath(path+"\\"+i)) and isAccess(os.path.abspath(path+"\\"+i)):
-            DirList.append(i)
+            DirList.append(Dirictory(i,os.path.getctime(path+"\\"+i)))
         elif os.path.isfile(os.path.abspath(path+"\\"+i)) and os.access(os.path.abspath(path+"\\"+i),os.R_OK):
             i1=FileList.formats.get(i.split(".")[-1].upper())
             if i1:
-                FileList.groups[GroupQueue[i1]].list.append(fileobj(i,os.path.getsize(path+"\\"+i)))
+                FileList.groups[GroupQueue[i1]].list.append(fileobj(i,os.path.getsize(path+"\\"+i),os.path.getctime(path+"\\"+i)))
             else:
-                FileList.groups[GroupQueue["Other"]].list.append(fileobj(i,os.path.getsize(path+"\\"+i)))
-    if path=="/":
-        path=""
+                FileList.groups[GroupQueue["Other"]].list.append(fileobj(i,os.path.getsize(path+"\\"+i),os.path.getctime(path+"\\"+i)))
+    
     return render(request, "File/explorer.html", 
     {
         "dirs": DirList,
@@ -57,6 +59,13 @@ class Files:
         self.groups=[]
         self.formats={}
 
+class Dirictory:
+    name=""
+    date=""
+    def __init__(self,name,date):
+        self.name=name
+        self.date= datetime.date.fromtimestamp(date)
+
 class Groupe(object):
     name=""
     icon=""
@@ -69,6 +78,8 @@ class Groupe(object):
 class fileobj(object):
     name=""
     size=0
-    def __init__(self,name,size):
+    date=""
+    def __init__(self,name,size,date):
         self.name=name
         self.size=size
+        self.date= datetime.date.fromtimestamp(date)

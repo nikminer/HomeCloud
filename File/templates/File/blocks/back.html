@@ -2,21 +2,30 @@
 
 <style>
     .Back{
-        width: 98%;
+        width: 15%;
         text-decoration: none;
         color: black;
         padding: 1%;
         grid-area:back;
         transition: all 1s ease;
+        display: flex;
+        align-items: center;
     }
     .Back:hover{
         background-color: #63cdda
     }
     .SpanBack{
-        font-size: 25px;
+        margin-left: 20px;
+        font-size: 20px;
     }
 
 </style>
-<a class=Back href="{{host}}/file/explorer{{path}}">
-    <img src="{% static 'images/back.png' %}" style="width:30px;" > <span class=SpanBack>Back</span>
-</a>
+{% if filename%}
+    <a class=Back href="{{host}}/file/explorer{{path}}">
+        <img src="{% static 'images/back.png' %}" style="width:25px;" ><span class=SpanBack>Back</span>
+    </a>
+{% else %}
+    <a class=Back href="{{host}}/file/back{{path}}">
+        <img src="{% static 'images/back.png' %}" style="width:25px;" ><span class=SpanBack>Back</span>
+    </a>
+{% endif%}
