@@ -1,7 +1,7 @@
 {%load staticfiles%}
 <title>HomeCloud File</title>
 <link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
-<!--Body-->
+
 <style>
     body{
         margin: 0;
@@ -14,23 +14,21 @@
             "content";
         font-family: Dejavu Sans; 
     }
-</style>
-<!--Header-->
-<style>
-    
     .nav{
-        grid-area: nav;
         background-color: #63cdda;
         padding: 10px;
     }
+    #navbar{
+        grid-area: nav;
+        transition: top 0.3s;
+    }
     .nav img{
-        transition: all 1s ease;
+        transition: all 0.5s ease;
     }
     .nav img:hover{
         border-radius: 5px;
         background-color: white;
     }
-    
 </style>
 
 <style>
@@ -127,41 +125,30 @@
         max-width: 95%;
     }
 
-    panel{
-        font-family:Dejavu Sans;
-        position: fixed;
-        width: 15%;
-        bottom: 0;
-        right: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        font-size: 17px;
-    }
-    panel a{
-        text-decoration: none;
-        color:black;
-        cursor: pointer;
-        margin:1%;
-        padding: 5px;
-        transition: all 1s ease;
-    }
-    panel a:hover{
-        background-color: #63cdda;
-    }
+    
+    
 </style>
 
 <script>
+    window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    var nav=document.getElementById("navbar")
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
+        nav.style.position="fixed";
+        nav.style.top = "0";
+    }
+    else {
+        nav.style.position="static";
+        nav.style.top = "-15%";
+    }
+}
+        
         function mkdir(){
             var input=prompt('New folder name','New folder');
             input?window.location.replace('{{host}}/file/mkdir{{path}}/'+input):null;
         }
-        function confirmDelete(path){
-            confirm('You sure delete: '+path+' ?')? window.location.replace('{{host}}/file/deldir'+path):null;
-        }
-        function confirmDeleteFile(path){
-            confirm('You sure delete: '+path+' ?')? window.location.replace('{{host}}/file/delfile'+path):null;
-        }     
+       
         function moveDirectory(src,name){
             var input=prompt('Distanation file to',src);
             input?window.location.replace('{{host}}/file/movedir'+src+'+'+input+"?name="+name):null;   
@@ -177,12 +164,11 @@
 </script>
 
 {% include "./blocks/header.html" %}
-
-<div class="nav">
-        <img src={% static 'images/favicon.ico' %} onclick="window.location.replace('{{host}}/file/explorer~')" title="Back to home folder" style="width:24px;cursor: pointer">
-    <img onclick="mkdir()" src={% static 'images/newFolder.png' %} title="Create folder" style="width:24px;cursor: pointer">
-    <img src={% static 'images/download.png' %} title="Download currnet folder" style="width:24px;cursor: pointer">
-    <img onclick="confirmDelete('{{path}}')" src={% static 'images/delete.png' %} title="Delete currnet folder" style="width:24px;cursor: pointer">   
+<div class="nav" id="navbar">
+    <img src={% static 'images/favicon.ico' %} onclick="window.location.replace('{{host}}/file/explorer~')" title="Back to home folder" style="width:24px;cursor: pointer">
+    <img onclick="mkdir()" src="{% static 'images/newFolder.png' %}" title="Create folder" style="width:24px;cursor: pointer">
+    <img src="{% static 'images/download.png' %}" title="Download currnet folder" style="width:24px;cursor: pointer">
+    <img onclick="confirmDeleteDir('{{path}}')" src="{% static 'images/delete.png' %}" title="Delete currnet folder" style="width:24px;cursor: pointer">   
 </div>
 
 {% if path != "" %}
@@ -192,72 +178,102 @@
 <div class=content>    
     <!--dirctories-->
     {% if dirs%}
-    <details class=groupe open id=dirctories>
-        <summary>Directories ({{dirs|length }} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</summary>
-        {% for i in dirs %}
-        <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
-            <div class=name>
-                <img src="{% static 'images/folder.png' %}" style="width:24px;" >
-                <a href="{{host}}/file/explorer{{path}}/{{i.name}}" title="{{i.name}}">{{i.name}}</a>
-            </div>
-                <span class=size></span>
-                <span class=time>
-                    {{i.date|date:"SHORT_DATE_FORMAT"}}
-                </span>
-            <div class="panel">
-                <img src={% static 'images/download.png' %} title="Download" style="width:24px ;cursor: pointer">
-                <img src={% static 'images/move.png' %} onclick="moveDirectory('{{path}}','{{i}}')" title="Movе folder" style="width:24px;cursor: pointer">
-                <img src={% static 'images/delete.png' %} onclick="confirmDelete('{{path}}/{{i}}')" title="Delete" style="width:24px;cursor: pointer">
-            </div>
-        </div>
-        {% endfor%}
-    </details>
+        <details class=groupe open id=Directories>
+            <summary>Directories ({{dirs|length }} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</summary>
+            {% for i in dirs %}
+                <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
+                    <div class=name>
+                        <img src="{% static 'images/folder.png' %}" style="width:24px;" >
+                        <a href="{{host}}/file/explorer{{path}}/{{i.name}}" title="{{i.name}}">{{i.name}}</a>
+                    </div>
+                    <span class=size></span>
+                    <span class=time>
+                        {{i.date|date:"SHORT_DATE_FORMAT"}}
+                    </span>
+                    <div class="panel">
+                        <img src="{% static 'images/download.png' %}" title="Download" style="width:24px ;cursor: pointer">
+                        <img src="{% static 'images/move.png' %}" onclick="moveDirectory('{{path}}','{{i.name}}')" title="Movе folder" style="width:24px;cursor: pointer">
+                        <img src="{% static 'images/delete.png' %}" onclick="confirmDeleteDir('{{path}}/{{i.name}}')" title="Delete" style="width:24px;cursor: pointer">
+                    </div>
+                </div>
+            {% endfor%}
+        </details>
     {% endif %}
     
     <!--Files-->
     {% if files%}
-    {% for i1 in files.groups%}
-    {% if i1.list %}
-    <details class=groupe open id="{{i1.name}}">
-        <summary>{{i1.name}} ({{i1.list|length }}  <img src={% static i1.icon %} style="width:20px;" >)</summary>
-        {% for i in i1.list %}
-            <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)>
-                <div class=name>
-                    <img src={% static i1.icon %} style="width:24px;" >
-                    <a href='{{host}}/file/view{{path}}/{{i.name}}'>{{i.name}}</a>
-                </div> 
-                <span class=size>
-                    {{i.size|filesizeformat}}
-                </span>
-                <span class=time>
-                    {{i.date|date:"SHORT_DATE_FORMAT"}}
-                </span>
-                
-                <div class="panel">
-                    <img src={% static 'images/download.png' %} title="Download" style="width:24px;cursor: pointer">
-                    <img src={% static 'images/copy.png' %} title="Copy" style="width:24px;cursor: pointer">
-                    <img src={% static 'images/delete.png' %} title="Delete" onclick="confirmDeleteFile('{{path}}/{{i.name}}')" style="width:24px;cursor: pointer">
-                </div>
-            </div>
-        {% endfor%}
-    </details>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-
-    <!--Groups panel-->
-    {% if dirs or images or archives or files%}
-    <panel>
-        <b>Groups:</b>
-        {% if dirs%}
-            <a href="#dirctories">Directories ({{dirs|length }} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</a>
-        {% endif %}
-
         {% for i1 in files.groups%}
-        {% if i1.list %}
-            <a href="#{{i1.name}}">{{i1.name}} ({{i1.list|length }}  <img src={% static i1.icon %} style="width:20px;" >)</a>
-        {% endif %}
+            {% if i1.list %}
+                <details class=groupe open id="{{i1.name}}">
+                    <summary>{{i1.name}} ({{i1.list|length}}  <img src={% static i1.icon %} style="width:20px;" >)</summary>
+                    {% for i in i1.list %}
+                        <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)>
+                            <div class=name>
+                                <img src="{% static i1.icon %}" style="width:24px;" >
+                                <a href='{{host}}/file/view{{path}}/{{i.name}}'>{{i.name}}</a>
+                            </div> 
+                            <span class=size>
+                                {{i.size|filesizeformat}}
+                            </span>
+                            <span class=time>
+                                {{i.date|date:"SHORT_DATE_FORMAT"}}
+                            </span>
+                            <div class="panel">
+                                <img src="{% static 'images/download.png' %}" title="Download" style="width:24px;cursor: pointer">
+                                <img src="{% static 'images/copy.png' %}" title="Copy" style="width:24px;cursor: pointer">
+                                <img src="{% static 'images/delete.png' %}" title="Delete" onclick="confirmDeleteFile('{{path}}/{{i.name}}','{{i1.name}}')" style="width:24px;cursor: pointer">
+                            </div>
+                        </div>
+                    {% endfor%}
+                </details>
+            {% endif %}
         {% endfor %}
-    </panel>
+    {% endif %}
+    <style>
+            .groupitm{
+                font-size: 17px;
+                padding: 5px;
+                background-color: white;
+            }
+            .groupitm:hover{
+                cursor: pointer;
+            }
+            #groupcnt{
+                margin-top: 5px;
+                border: none;
+                background-color: white;
+            }
+            panel{
+                font-family:Dejavu Sans;
+                position: fixed;
+                width: 15%;
+                bottom: 0;
+                right: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                font-size: 17px;
+                background-color: #63cdda;
+                padding: 20px;
+            }
+        </style>
+    <!--Groups panel-->
+    {% if files.list or dirs%}
+        <panel>
+            <b>Groups:</b>
+            <select id=groupcnt size="6" onchange="window.location.replace('#'+this.selectedOptions[0].value);document.body.scrollTop-=60">
+            {% if dirs%}
+                <option value=Directories class=groupitm style="background:url('{% static images/folder.png %}') no-repeat;background-size: 20px;padding-left: 22px;background-position: 0 1px;">Directories ({{dirs|length}})</option>
+            {% endif %}
+            {% for i1 in files.groups%}
+                {% if i1.list %}
+                    <option value={{i1.name}} class=groupitm style="background:url('{% static i1.icon %}') no-repeat;background-size: 20px;padding-left: 22px;background-position: 0 1px;">{{i1.name}} ({{i1.list|length}})</option>
+                {% endif %}
+            {% endfor %}
+            </select>
+        </panel>
     {% endif %}
 </div>
+
+
+{% include "./blocks/DeleteModal.html" %}
