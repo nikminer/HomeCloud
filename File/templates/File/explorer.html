@@ -219,7 +219,7 @@ function scrollFunction() {
                                 {{i.date|date:"SHORT_DATE_FORMAT"}}
                             </span>
                             <div class="panel">
-                                <img src="{% static 'images/download.png' %}" title="Download" style="width:24px;cursor: pointer">
+                                <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfile{{path}}/{{i.name}}')" title="Download" style="width:24px;cursor: pointer">
                                 <img src="{% static 'images/copy.png' %}" title="Copy" style="width:24px;cursor: pointer">
                                 <img src="{% static 'images/delete.png' %}" title="Delete" onclick="confirmDeleteFile('{{path}}/{{i.name}}','{{i1.name}}')" style="width:24px;cursor: pointer">
                             </div>
@@ -263,7 +263,7 @@ function scrollFunction() {
             <b>Groups:</b>
             <select id=groupcnt size="6" onchange="window.location.replace('#'+this.selectedOptions[0].value);document.body.scrollTop-=60">
             {% if dirs%}
-                <option value=Directories class=groupitm style="background:url('{% static images/folder.png %}') no-repeat;background-size: 20px;padding-left: 22px;background-position: 0 1px;">Directories ({{dirs|length}})</option>
+                <option value=Directories class=groupitm style="background:url('{% static 'images/folder.png' %}') no-repeat;background-size: 20px;padding-left: 22px;background-position: 0 1px;">Directories ({{dirs|length}})</option>
             {% endif %}
             {% for i1 in files.groups%}
                 {% if i1.list %}

@@ -11,5 +11,6 @@ urlpatterns = [
     path('deldir<path:path>', deletedir),
     path('mkdir<path:path>', createdir),
     path('movedir<path:path>+<path:path1>', movedir),
+    path('downloadfile<path:path>', views.downloadFile),
     path('delfile<path:path>',deletefile)
 ]
