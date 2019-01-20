@@ -1,7 +1,6 @@
 {%load staticfiles%}
 <title>HomeCloud File</title>
 <link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
-
 <style>
     body{
         margin: 0;
@@ -25,18 +24,7 @@
         align-items: center;
         max-height: 30px;
     }
-    .nav img{
-        padding: 5px;
-        margin-left: 5px;
-        max-height: 25px;
-        transition: all 0.5s ease;
-    }
-    .nav img:hover{
-        border-radius: 5px;
-        background-color: white;
-    }
 </style>
-
 <style>
     .content{
         grid-area: content;
@@ -104,7 +92,6 @@
         color:inherit;
         cursor: pointer;
     }
-    
     .groupe{
         width: 80%;
         max-width:80%;
@@ -132,49 +119,40 @@
         max-width: 95%;
     }
 </style>
-
 <script>
     window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-    var nav=document.getElementById("navbar")
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
-        nav.style.position="fixed";
-        nav.style.top = "0";
+    function scrollFunction() {
+        var nav=document.getElementById("navbar")
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
+            nav.style.position="fixed";
+            nav.style.top = "0";
+        }
+        else {
+            nav.style.position="static";
+            nav.style.top = "-15%";
+        }
+    }    
+    function moveDirectory(src,name){
+        var input=prompt('Distanation file to',src);
+        input?window.location.replace('{{host}}/file/movedir'+src+'+'+input+"?name="+name):null;   
     }
-    else {
-        nav.style.position="static";
-        nav.style.top = "-15%";
+    function hide(handler){
+        handler.children[3].style.transition="all 1s ease"
+        handler.children[3].style.opacity=0        
     }
-}    
-        function moveDirectory(src,name){
-            var input=prompt('Distanation file to',src);
-            input?window.location.replace('{{host}}/file/movedir'+src+'+'+input+"?name="+name):null;   
-        }
-        function hide(handler){
-            handler.children[3].style.transition="all 1s ease"
-            handler.children[3].style.opacity=0        
-        }
-        function show(handler){
-            handler.children[3].style.transition="all 1s ease"
-            handler.children[3].style.opacity=1
-        }
+    function show(handler){
+        handler.children[3].style.transition="all 1s ease"
+        handler.children[3].style.opacity=1
+    }
 </script>
-
 {% include "./blocks/header.html" %}
 <div class="nav" id="navbar">
     {% if path != "" %}
         {% include "./blocks/back.html" %}
     {% endif %}
-    <img src={% static 'images/favicon.ico' %} onclick="window.location.replace('{{host}}/file/explorer~')" title="Back to home folder" style="width:24px;cursor: pointer">
-    <img onclick="showTextModal()" src="{% static 'images/newFolder.png' %}" title="Create folder" style="width:24px;cursor: pointer">
-    <img src="{% static 'images/download.png' %}" title="Download currnet folder" style="width:24px;cursor: pointer">
-    <img onclick="confirmDeleteDir('{{path}}')" src="{% static 'images/delete.png' %}" title="Delete currnet folder" style="width:24px;cursor: pointer">   
+    {% include "./blocks/navbuttons.html" %}
 </div>
-
-
 <div class=content>    
-    <!--dirctories-->
     {% if dirs%}
         <details class=groupe open id=Directories>
             <summary>Directories ({{dirs|length }} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</summary>
@@ -187,16 +165,14 @@ function scrollFunction() {
                     <span class=size></span>
                     <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"}}</span>
                     <div class="panel">
-                        <img src="{% static 'images/download.png' %}" title="Download" style="width:24px ;cursor: pointer">
-                        <img src="{% static 'images/move.png' %}" onclick="moveDirectory('{{path}}','{{i.name}}')" title="Movе folder" style="width:24px;cursor: pointer">
+                        <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfolder{{path}}/{{i.name}}')" title="Download" style="width:24px ;cursor: pointer">
+                        <!--<img src="{% static 'images/move.png' %}" onclick="moveDirectory('{{path}}','{{i.name}}')" title="Movе folder" style="width:24px;cursor: pointer">-->
                         <img src="{% static 'images/delete.png' %}" onclick="confirmDeleteDir('{{path}}/{{i.name}}')" title="Delete" style="width:24px;cursor: pointer">
                     </div>
                 </div>
             {% endfor%}
         </details>
     {% endif %}
-    
-    <!--Files-->
     {% if files%}
         {% for i1 in files.groups%}
             {% if i1.list %}
@@ -212,7 +188,7 @@ function scrollFunction() {
                             <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"}}</span>
                             <div class="panel">
                                 <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfile{{path}}/{{i.name}}')" title="Download" style="width:24px;cursor: pointer">
-                                <img src="{% static 'images/copy.png' %}" title="Copy" style="width:24px;cursor: pointer">
+                                <!--<img src="{% static 'images/copy.png' %}" title="Copy" style="width:24px;cursor: pointer">-->
                                 <img src="{% static 'images/delete.png' %}" title="Delete" onclick="confirmDeleteFile('{{path}}/{{i.name}}','{{i1.name}}')" style="width:24px;cursor: pointer">
                             </div>
                         </div>
@@ -248,8 +224,7 @@ function scrollFunction() {
                 background-color: #63cdda;
                 padding: 20px;
             }
-        </style>
-    <!--Groups panel-->
+    </style>
     {% if files.list or dirs%}
         <panel>
             <b>Groups:</b>
@@ -266,6 +241,5 @@ function scrollFunction() {
         </panel>
     {% endif %}
 </div>
-
 {% include "./Modals/DeleteModal.html" %}
 {% include "./Modals/TextInputModal.html" %}

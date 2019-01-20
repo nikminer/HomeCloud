@@ -1,0 +1,73 @@
+{%load staticfiles%}
+
+<style>
+    .navBtn {
+        display: flex;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        padding: 10px;
+        color: black;
+        transition-property: width;
+        transition-duration: .2s,.2s;
+        background-color: #63cdda;
+    }
+    .navBtn:hover {
+        width: 200px;
+        max-width: 200px;
+        transition-property: width;
+        transition-duration: 0.2s;
+    }
+
+    .navBtn:hover > .navBtn_text {
+        opacity: 1;
+        transition-property: opacity;
+        transition-duration: 0.3s;
+        transition-delay: 0.2s;
+    }
+
+    .navBtn:hover > .navBtn_img {
+        background-color: white;
+        transition-duration: 0.5s;
+    }
+    .navBtn_text {
+        padding-left: 7px;
+        padding-right: 3px;
+        margin-top: 2px;
+        opacity: 0;
+    }
+    .navBtn_text span {
+        color: black;
+        font-size: 17px;
+    }
+    .navBtn_img{
+        max-height: 28px
+    }
+</style>
+
+<div class='navBtn' onclick="window.location.replace('{{host}}/file/explorer~')">
+    <img class=navBtn_img src="{% static 'images/favicon.ico' %}">
+    <div class='navBtn_text'>
+        <span>Back to home</span>
+    </div>
+</div>
+
+<div class='navBtn' onclick="showTextModal()">
+    <img class=navBtn_img src="{% static 'images/newFolder.png' %}">
+    <div class='navBtn_text'>
+        <span>Create folder</span>
+    </div>
+</div>
+<div class='navBtn' onclick="window.location.replace('{{host}}/file/downloadfolder{{path}}')" >
+    <img class=navBtn_img src="{% static 'images/download.png' %}">
+    <div class='navBtn_text'>
+        <span>Download folder</span>
+    </div>
+</div>
+<div class='navBtn' onclick="confirmDeleteDir('{{path}}')">
+    <img class=navBtn_img src="{% static 'images/delete.png' %}">
+    <div class='navBtn_text'>
+        <span>Delete folder</span>
+    </div>
+</div>
+
