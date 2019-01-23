@@ -109,6 +109,7 @@
         padding: 5px;
         font-weight: bold;
         transition: all 1s ease;
+        cursor: pointer;
     }
     .groupe summary:hover{
         background-color: #63cdda;
@@ -154,8 +155,8 @@
 </div>
 <div class=content>    
     {% if dirs%}
-        <details class=groupe open id=Directories>
-            <summary>Directories ({{dirs|length }} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</summary>
+        <details class=groupe open id=Folders>
+            <summary>Folders ({{dirs|length }} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</summary>
             {% for i in dirs %}
                 <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
                     <a href="{{host}}/file/explorer{{path}}/{{i.name}}" title="{{i.name}}" class=name>
@@ -230,7 +231,7 @@
             <b>Groups:</b>
             <select id=groupcnt size="6" onchange="window.location.replace('#'+this.selectedOptions[0].value);document.body.scrollTop-=60">
             {% if dirs%}
-                <option value=Directories class=groupitm style="background:url('{% static 'images/folder.png' %}') no-repeat;background-size: 20px;padding-left: 22px;background-position: 0 1px;">Directories ({{dirs|length}})</option>
+                <option value=Folders class=groupitm style="background:url('{% static 'images/folder.png' %}') no-repeat;background-size: 20px;padding-left: 22px;background-position: 0 1px;">Folders ({{dirs|length}})</option>
             {% endif %}
             {% for i1 in files.groups%}
                 {% if i1.list %}
