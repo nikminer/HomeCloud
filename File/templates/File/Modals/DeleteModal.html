@@ -79,6 +79,7 @@
         function confirmDeleteFile(path,grope){
             var yes = document.createElement('span');
             yes.className="btn btnyes";
+            
             yes.onclick=function(){window.location.replace('{{host}}/file/delfile'+path)}
             yes.innerText="Yes";
             ModalPanel.appendChild(yes);

@@ -1,0 +1,127 @@
+<style>
+    #FileModal{
+        position: fixed;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: black;
+        opacity: 0;
+        z-index: -100;
+    }
+    .windowUp{
+        display: grid;
+        grid-template-columns: auto auto 40px;
+        grid-template-rows: 50px auto 60px;
+        grid-template-areas: 
+            "Header Header close"
+            "file file file"
+            "panel panel panel";
+        background-color:white;
+        opacity: 1;
+        min-width: 200px;
+        min-height: 250px;
+        margin: 10% 20%;
+        border-radius: 3px;
+    }
+
+    .windowUp label label, .windowUp label input{
+        display: none;
+    }
+    .header{
+        padding: 10px;
+        background-color: #63cdda;
+        grid-area: Header;
+        font-size: 25px;
+        color: #000;
+        border-bottom: lightgrey 0.5px solid;
+    }
+    .header:hover{
+        transition: all 200ms ease;
+        background-color: #3dc1d3;
+    }
+    .close{
+        grid-area: close;
+        margin:auto;
+        padding: 10px;
+        margin: 1px;
+        font-size: 25px;
+        transition: all 200ms ease;
+    }
+    .close:hover{
+        background-color: #e15f41;
+        border-radius: 3px;
+        cursor: pointer;
+    }        
+    .fileinput{
+        display: static!important;
+        grid-area: file;
+        cursor: pointer;
+        padding: 5px;
+        background-color: #63cdda;
+        margin: auto 20%;
+        margin-top: 30px;
+        text-align: center;
+    }
+    .fileinput:hover{
+        transition: all 200ms ease;
+        background-color: #3dc1d3;
+    }
+    .fileinput span {
+        line-height: 40px;
+        font-weight:bold;
+    }
+
+    #btnUpload{
+        background-color: #63cdda;
+        line-height: 40px;
+        font-weight:bold;
+        cursor: pointer;
+        font-size: 20px;
+        border: none;
+    }
+    #btnUpload:hover{
+        transition: all 200ms ease;
+        background-color: #3dc1d3;
+    }
+    #btnUpload:disabled{
+        display: none;
+    }
+</style>
+
+    
+
+<script>
+    function getFileName () {
+        if (id_File.files.length==1)
+            fileNameBtn.innerText=id_File.files[0].name;
+        else if (id_File.files.length==0)
+            fileNameBtn.innerText="Select file";
+        else
+            fileNameBtn.innerText="Selected "+id_File.files.length+" files";
+            
+        if (id_File.files.length >0)
+            btnUpload.disabled=false;
+        else
+            btnUpload.disabled=true;
+    }
+    function showUpModal(){
+            FileModal.style.zIndex=200;
+            FileModal.style.opacity=0.8; 
+        }
+        function closeUpModal(){
+            FileModal.style.opacity=0;
+            FileModal.style.zIndex=-100;
+        }
+</script>
+
+<div id=FileModal>
+    <form class=windowUp action="{% url 'upload' %}" enctype="multipart/form-data" method="POST">
+        <span class=Header id=UpPath>Uploading files</span>
+        <span class=close onclick="closeUpModal()">X</span>
+        {% csrf_token %}
+        <input type="hidden" value="{{path}}" name=path>
+        <label class="fileinput" ><span id=fileNameBtn>Select file</span>{{ forms }}</label>
+        <input id=btnUpload disabled style="grid-area:panel" type="submit" value="Upload">
+    </form>
+</div>

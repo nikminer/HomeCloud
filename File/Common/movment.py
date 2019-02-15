@@ -1,14 +1,30 @@
 from django.shortcuts import redirect,render
 from .directory import isAccess,getPathHierrarhy
+
 import shutil
 import os
 import json
 import datetime
 
+from ..forms import UploadFileForm
+from .uploads import handle_uploaded_file
+
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['File'],request.POST['path'],request)
+            return redirect("http://"+request.get_host()+"/file/explorer"+request.POST['path'])
+            
+    explorer(request,request.POST['path'])
+
+
+
 conf=json.loads(open("static/config/Groups.json","r").read())
 
 def back(request,path):
-    if path=="\\":
+    if path=="/":
         redirect("http://"+request.get_host())
     else:
         return redirect("http://"+request.get_host()+"/file/explorer"+os.path.split(path)[0])
@@ -20,8 +36,8 @@ def explorer(request, path):
     GroupQueue={}
     QueueIndex=0
 
-    path= os.path.splitdrive(os.path.expanduser(path).replace("\\","/"))[1]
     
+    path= os.path.splitdrive(os.path.expanduser(path).replace('\\','/'))[1]
     for i in conf:
         for i1 in conf[i]['formats']:
             FileList.formats.update({i1:i})
@@ -34,14 +50,14 @@ def explorer(request, path):
     for i in os.listdir(path):
         if path=="/":
             path=""
-        if os.path.isdir(os.path.abspath(path+"\\"+i)) and isAccess(os.path.abspath(path+"\\"+i)):
-            DirList.append(Dirictory(i,os.path.getctime(path+"\\"+i)))
-        elif os.path.isfile(os.path.abspath(path+"\\"+i)) and os.access(os.path.abspath(path+"\\"+i),os.R_OK):
+        if os.path.isdir(os.path.abspath(path+"/"+i)) and isAccess(os.path.abspath(path+"/"+i)):
+            DirList.append(Dirictory(i,os.path.getctime(path+"/"+i)))
+        elif os.path.isfile(os.path.abspath(path+"/"+i)) and os.access(os.path.abspath(path+"/"+i),os.R_OK):
             i1=FileList.formats.get(i.split(".")[-1].upper())
             if i1:
-                FileList.groups[GroupQueue[i1]].list.append(fileobj(i,os.path.getsize(path+"\\"+i),os.path.getctime(path+"\\"+i)))
+                FileList.groups[GroupQueue[i1]].list.append(fileobj(i,os.path.getsize(path+"/"+i),os.path.getctime(path+"/"+i)))
             else:
-                FileList.groups[GroupQueue["Other"]].list.append(fileobj(i,os.path.getsize(path+"\\"+i),os.path.getctime(path+"\\"+i)))
+                FileList.groups[GroupQueue["Other"]].list.append(fileobj(i,os.path.getsize(path+"/"+i),os.path.getctime(path+"/"+i)))
     
     return render(request, "File/explorer.html", 
     {
@@ -50,6 +66,7 @@ def explorer(request, path):
         "path":path,
         "host":"http://"+request.get_host(),
         "pathes":getPathHierrarhy(path),
+        "forms":UploadFileForm()
     })
 
 class Files:

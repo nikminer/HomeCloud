@@ -1,6 +1,6 @@
 from django.urls import path, re_path
 from . import views
-from .Common.movment import back, explorer
+from .Common.movment import back, explorer,upload_file 
 from .Common.actions import deletedir, createdir, movedir, deletefile
 from .Common.downloads import downloadFile,downloadFolder
 from .Common.Preview import ViewSwitcher
@@ -14,5 +14,6 @@ urlpatterns = [
     path('movedir<path:path>+<path:path1>', movedir),
     path('downloadfile<path:path>', downloadFile),
     path('delfile<path:path>',deletefile),
-    path('downloadfolder<path:path>', downloadFolder)
+    path('downloadfolder<path:path>', downloadFolder),
+    path('uploadfile', upload_file,name="upload")
 ]

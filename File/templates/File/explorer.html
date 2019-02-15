@@ -9,7 +9,8 @@
         grid-template-areas: 
             "headeres"
             "nav"
-            "content";
+            "content"
+            "file";
         font-family: Dejavu Sans; 
     }
     .nav{
@@ -121,10 +122,9 @@
     }
 </style>
 <script>
-    window.onscroll = function() {scrollFunction()};
-    function scrollFunction() {
+    window.onscroll = function() {
         var nav=document.getElementById("navbar")
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
+        if (document.body.scrollTop >= 25 || document.documentElement.scrollTop >= 25){
             nav.style.position="fixed";
             nav.style.top = "0";
         }
@@ -188,7 +188,7 @@
                             <span class=size>{{i.size|filesizeformat}}</span>
                             <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"}}</span>
                             <div class="panel">
-                                <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfile{{path}}/{{i.name}}')" title="Download" style="width:24px;cursor: pointer">
+                                <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfile{{path}}\{{i.name}}')" title="Download" style="width:24px;cursor: pointer">
                                 <!--<img src="{% static 'images/copy.png' %}" title="Copy" style="width:24px;cursor: pointer">-->
                                 <img src="{% static 'images/delete.png' %}" title="Delete" onclick="confirmDeleteFile('{{path}}/{{i.name}}','{{i1.name}}')" style="width:24px;cursor: pointer">
                             </div>
@@ -244,3 +244,4 @@
 </div>
 {% include "./Modals/DeleteModal.html" %}
 {% include "./Modals/TextInputModal.html" %}
+{% include "./Modals/FileModal.html" %}
