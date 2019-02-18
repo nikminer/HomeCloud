@@ -5,12 +5,12 @@
     body{
         margin: 0;
         display: grid;
-        grid-template-columns: auto;
+        grid-template-columns: auto 15%;
+        grid-template-rows: auto 50px auto;
         grid-template-areas: 
-            "headeres"
-            "nav"
-            "content"
-            "file";
+            "headeres headeres"
+            "nav nav"
+            "content panel";
         font-family: Dejavu Sans; 
     }
     .nav{
@@ -94,9 +94,8 @@
         cursor: pointer;
     }
     .groupe{
-        width: 80%;
-        max-width:80%;
-        
+        width: auto;
+        margin-right: 1%;
         border-top: lightgrey 2px solid;
         border-bottom: lightgrey 1px solid;
         border-radius: 10px;
@@ -122,17 +121,26 @@
     }
 </style>
 <script>
-    window.onscroll = function() {
+    function setFixed(){
         var nav=document.getElementById("navbar")
+        var panel=document.getElementById("panelcnt")
         if (document.body.scrollTop >= 25 || document.documentElement.scrollTop >= 25){
             nav.style.position="fixed";
             nav.style.top = "0";
+            panel.style.position="fixed";
+            panel.style.top = "0";
+            panel.style.right="0";
+            panel.style.bottom="0";
+            panel.style.width="15%";
         }
         else {
             nav.style.position="static";
-            nav.style.top = "-15%";
+            panel.style.position="static";
+            panel.style.width="auto";
         }
-    }    
+    }
+    window.onload  = setFixed;
+    window.onscroll = setFixed;
     function moveDirectory(src,name){
         var input=prompt('Distanation file to',src);
         input?window.location.replace('{{host}}/file/movedir'+src+'+'+input+"?name="+name):null;   
@@ -167,6 +175,7 @@
                     <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"}}</span>
                     <div class="panel">
                         <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfolder{{path}}/{{i.name}}')" title="Download" style="width:24px ;cursor: pointer">
+                        <img src="{% static 'images/Upload.png' %}" onclick="showUpModal('{{path}}/{{i.name}}')" title="Upload" style="width:24px;height:23px;cursor: pointer">
                         <!--<img src="{% static 'images/move.png' %}" onclick="moveDirectory('{{path}}','{{i.name}}')" title="Movе folder" style="width:24px;cursor: pointer">-->
                         <img src="{% static 'images/delete.png' %}" onclick="confirmDeleteDir('{{path}}/{{i.name}}')" title="Delete" style="width:24px;cursor: pointer">
                     </div>
@@ -188,7 +197,7 @@
                             <span class=size>{{i.size|filesizeformat}}</span>
                             <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"}}</span>
                             <div class="panel">
-                                <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfile{{path}}\{{i.name}}')" title="Download" style="width:24px;cursor: pointer">
+                                <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfile{{path}}/{{i.name}}')" title="Download" style="width:24px;cursor: pointer">
                                 <!--<img src="{% static 'images/copy.png' %}" title="Copy" style="width:24px;cursor: pointer">-->
                                 <img src="{% static 'images/delete.png' %}" title="Delete" onclick="confirmDeleteFile('{{path}}/{{i.name}}','{{i1.name}}')" style="width:24px;cursor: pointer">
                             </div>
@@ -198,50 +207,10 @@
             {% endif %}
         {% endfor %}
     {% endif %}
-    <style>
-            .groupitm{
-                font-size: 17px;
-                padding: 5px;
-                background-color: white;
-            }
-            .groupitm:hover{
-                cursor: pointer;
-            }
-            #groupcnt{
-                margin-top: 5px;
-                border: none;
-                background-color: white;
-            }
-            panel{
-                font-family:Dejavu Sans;
-                position: fixed;
-                width: 15%;
-                bottom: 0;
-                right: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-end;
-                font-size: 17px;
-                background-color: #63cdda;
-                padding: 20px;
-            }
-    </style>
-    {% if files.list or dirs%}
-        <panel>
-            <b>Groups:</b>
-            <select id=groupcnt size="6" onchange="window.location.replace('#'+this.selectedOptions[0].value);document.body.scrollTop-=60">
-            {% if dirs%}
-                <option value=Folders class=groupitm style="background:url('{% static 'images/folder.png' %}') no-repeat;background-size: 20px;padding-left: 22px;background-position: 0 1px;">Folders ({{dirs|length}})</option>
-            {% endif %}
-            {% for i1 in files.groups%}
-                {% if i1.list %}
-                    <option value={{i1.name}} class=groupitm style="background:url('{% static i1.icon %}') no-repeat;background-size: 20px;padding-left: 22px;background-position: 0 1px;">{{i1.name}} ({{i1.list|length}})</option>
-                {% endif %}
-            {% endfor %}
-            </select>
-        </panel>
-    {% endif %}
 </div>
+{% include "./blocks/panel.html" %}
+
 {% include "./Modals/DeleteModal.html" %}
 {% include "./Modals/TextInputModal.html" %}
 {% include "./Modals/FileModal.html" %}
+

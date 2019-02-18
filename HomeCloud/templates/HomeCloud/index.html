@@ -201,20 +201,20 @@
         </div>
 </body>
 
-
+{{diskspace.free}}
 <script>
     window.onload=function(){
         var chart=new CanvasJS.Chart("chart",{
             animationEnabled:true,
-            title:{text:"Main Disk Usage ({{totalspace}} GB)",fontFamily:"arial"},
+            title:{text:"Main Disk Usage ({{diskspace.total}} GB)",fontFamily:"arial"},
             data:[{
                 type:"pie",
                 startAngle:45,
                 yValueFormatString: "##0.000\" GB\"",
                 indexLabel:"{label} {y}",
                 dataPoints:[
-                    {y:'{{freespace}}',label:"Свободно", color:"#63cdda"},
-                    {y:'{{usedspace}}',label:"Занято", color:"#e15f41"}
+                    {y:'{{diskspace.free}}',label:"Свободно", color:"#63cdda"},
+                    {y:'{{diskspace.used}}',label:"Занято", color:"#e15f41"}
                 ]
             }]
         });

@@ -6,17 +6,21 @@
         width: 30px;
         height: 30px;
         cursor: pointer;
-        padding: 10px;
+        padding: 5px;
+        margin: 5px;
+
         color: black;
         transition-property: width;
         transition-duration: .2s,.2s;
         background-color: #63cdda;
+        border-right: gray 1px solid;
     }
     .navBtn:hover {
         width: 200px;
         max-width: 200px;
         transition-property: width;
         transition-duration: 0.2s;
+        background-color: white;
     }
 
     .navBtn:hover > .navBtn_text {
@@ -26,10 +30,7 @@
         transition-delay: 0.2s;
     }
 
-    .navBtn:hover > .navBtn_img {
-        background-color: white;
-        transition-duration: 0.5s;
-    }
+
     .navBtn_text {
         padding-left: 7px;
         padding-right: 3px;
@@ -38,10 +39,10 @@
     }
     .navBtn_text span {
         color: black;
-        font-size: 17px;
+        font-size: 20px;
     }
     .navBtn_img{
-        max-height: 28px
+        height: 25px
     }
 </style>
 
@@ -64,7 +65,7 @@
         <span>Download folder</span>
     </div>
 </div>
-<div class='navBtn' onclick="showUpModal()" >
+<div class='navBtn' onclick="showUpModal('{{path}}')" >
     <img class=navBtn_img src="{% static 'images/upload.png' %}">
     <div class='navBtn_text'>
         <span>Upload file</span>

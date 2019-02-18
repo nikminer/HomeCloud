@@ -18,6 +18,22 @@ def convertBytes(byte):
 def getCPUpercent(request):
     return HttpResponse(psutil.cpu_percent(interval=1))
 
+class DiskSize:
+    used=0
+    free=0
+    total=0
+    def __init__(self,free,used,total):
+            self.free=free
+            self.used=used
+            self.total=total
+
+def getDiskspaceInGB():
+    return DiskSize(round(shutil.disk_usage("/").free/1073741824,3),round(shutil.disk_usage("/").used/1073741824,3),round(shutil.disk_usage("/").total/1073741824,3))
+
+def getDiskspace():
+    return DiskSize(shutil.disk_usage("/").free,shutil.disk_usage("/").used,shutil.disk_usage("/").total)
+
+
 def index(request):
     iflist={}
     for i in psutil.net_if_addrs():
@@ -30,9 +46,7 @@ def index(request):
         "Node":platform.node(),
         "CPUname":platform.processor(),
         "CPUcount":multiprocessing.cpu_count(),
-        "freespace":round(shutil.disk_usage("/").free/1073741824,3),
-        "usedspace":round(shutil.disk_usage("/").used/1073741824,3),
-        "totalspace":round(shutil.disk_usage("/").total/1073741824,3),
+        "diskspace":getDiskspaceInGB(),
         "VMfreespace":round(psutil.virtual_memory().free/1073741824,3),
         "VMusedspace":round(psutil.virtual_memory().used/1073741824,3),
         "VMtotalspace":round(psutil.virtual_memory().total/1073741824,3),

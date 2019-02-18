@@ -1,5 +1,6 @@
 from django.shortcuts import redirect,render
 from .directory import isAccess,getPathHierrarhy
+from HomeCloud.views import getDiskspace
 
 import shutil
 import os
@@ -62,6 +63,7 @@ def explorer(request, path):
     return render(request, "File/explorer.html", 
     {
         "dirs": DirList,
+        "disk":getDiskspace,
         "files":FileList,
         "path":path,
         "host":"http://"+request.get_host(),

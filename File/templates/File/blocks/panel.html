@@ -1,0 +1,56 @@
+{%load staticfiles%}
+<style>
+    panel{
+        font-family:Dejavu Sans;
+        grid-area: panel;
+        font-size: 19px;
+        background-color: #63cdda;
+        min-height: 70vh;        
+    }
+    #panelcnt{
+        padding-top: 20px;
+        background-color: #63cdda;
+        display: flex;
+        flex-direction: column;
+    }
+    #panelcnt a{
+        text-decoration: none;
+        color: black;
+        padding: 5px 20px;
+        transition: all 0.5s ease;
+    }
+    #panelcnt a:hover{
+        background-color: white;
+    }
+    #freesize{
+        width: 90%;
+        height: 20px;
+        margin-top: 5px;
+    }
+</style>
+
+<panel>
+    <div id=panelcnt>
+        {% if dirs%}
+            <b style="padding-left:20px;">Groups:</b>
+       
+            <a href="#Folders">
+                <img style="width:17px;" src="{% static 'images/folder.png' %}"> Folders ({{dirs|length}})
+            </a>
+        {% endif %}
+        {% for i1 in files.groups%}
+            {% if i1.list %}
+                <a href="#{{i1.name}}">
+                    <img style="width:17px;" src='{% static i1.icon %}'> {{i1.name}} ({{i1.list|length}})
+                </a>
+            {% endif %}
+        {% endfor %}
+        <div style="margin-top: 20%;display: flex; font-size: 15px; flex-direction: column;align-items: center ">
+            <span style="font-weight:bold">Свободно:</span> 
+            <span>{{disk.free|filesizeformat}} из {{disk.total|filesizeformat}}</span>
+            <progress id=freesize min=0 max="{{disk.total}}" value="{{disk.used}}"></progress>
+         </div>
+    </div>
+    
+    
+</panel>

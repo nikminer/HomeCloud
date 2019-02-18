@@ -105,9 +105,11 @@
         else
             btnUpload.disabled=true;
     }
-    function showUpModal(){
+    function showUpModal(path){
+            console.log(path)
             FileModal.style.zIndex=200;
-            FileModal.style.opacity=0.8; 
+            FileModal.style.opacity=0.8;
+            Uploadpath.value=path; 
         }
         function closeUpModal(){
             FileModal.style.opacity=0;
@@ -120,7 +122,7 @@
         <span class=Header id=UpPath>Uploading files</span>
         <span class=close onclick="closeUpModal()">X</span>
         {% csrf_token %}
-        <input type="hidden" value="{{path}}" name=path>
+        <input type="hidden" value="{{path}}" id=Uploadpath name=path>
         <label class="fileinput" ><span id=fileNameBtn>Select file</span>{{ forms }}</label>
         <input id=btnUpload disabled style="grid-area:panel" type="submit" value="Upload">
     </form>
