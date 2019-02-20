@@ -15,9 +15,9 @@ def upload_file(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            handle_uploaded_file(request.FILES['File'],request.POST['path'],request)
+            for f in form.files.getlist('File'):
+                handle_uploaded_file(f,request.POST['path'],request)
             return redirect("http://"+request.get_host()+"/file/explorer"+request.POST['path'])
-            
     explorer(request,request.POST['path'])
 
 

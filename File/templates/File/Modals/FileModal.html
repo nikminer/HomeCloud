@@ -1,5 +1,6 @@
 <style>
     #FileModal{
+        min-height: 100%;
         position: fixed;
         top:0;
         bottom: 0;
@@ -10,7 +11,7 @@
         z-index: -100;
     }
     .windowUp{
-        display: grid;
+        display: none;
         grid-template-columns: auto auto 40px;
         grid-template-rows: 50px auto 60px;
         grid-template-areas: 
@@ -87,26 +88,83 @@
     #btnUpload:disabled{
         display: none;
     }
+    #dropzone{
+        display: none;
+        width: 94%;
+        height: 94%;
+        margin: 2%;
+        border: white dashed  2px;
+        text-align: center;
+        line-height: 80vh;
+    }
+    #dropzonelabel{
+        font-size: 25px;
+        color: white;
+        display: inline-block;
+        vertical-align: middle;
+    }
 </style>
 
     
 
+<form draggable="true" id=FileModal action="{% url 'upload' %}" enctype="multipart/form-data" method="POST" >
+    <div id=FileWindow class=windowUp>
+        <span class=Header id=UpPath>Uploading files</span>
+        <span class=close onclick="closeUpModal()">X</span>
+        {% csrf_token %}
+        <input type="hidden" value="{{path}}" id=Uploadpath name=path>
+        <label class="fileinput" ><span id=fileNameBtn>Select file</span>{{ forms }}</label>
+        <input id=btnUpload disabled style="grid-area:panel" type="submit" value="Upload">
+    </div>
+    <div id=dropzone>
+        <span id=dropzonelabel>Перетащите файлы сюда</span>
+    </div>
+</form>
+
 <script>
-    function getFileName () {
-        if (id_File.files.length==1)
-            fileNameBtn.innerText=id_File.files[0].name;
-        else if (id_File.files.length==0)
-            fileNameBtn.innerText="Select file";
-        else
-            fileNameBtn.innerText="Selected "+id_File.files.length+" files";
-            
-        if (id_File.files.length >0)
-            btnUpload.disabled=false;
-        else
-            btnUpload.disabled=true;
-    }
-    function showUpModal(path){
-            console.log(path)
+        var dropzone = document.getElementById("dropzone");
+    
+        function getFileName () {
+            if (id_File.files.length==1)
+                fileNameBtn.innerText="Selected: "+id_File.files[0].name;
+            else if (id_File.files.length==0)
+                fileNameBtn.innerText="Select file";
+            else
+                fileNameBtn.innerText="Selected "+id_File.files.length+" files";
+                
+            if (id_File.files.length >0)
+                btnUpload.disabled=false;
+            else
+                btnUpload.disabled=true;
+
+        }
+        document.ondragover=function(e){
+            closeUpModal()
+            e.preventDefault();
+            dropzone.style.display="block";
+            FileModal.style.zIndex=200;
+            FileModal.style.opacity=0.8;
+        }
+        dropzone.ondragover=function(e){
+            e.preventDefault();
+            dropzone.style.borderColor="lightgray";
+            dropzonelabel.innerText="Drop your files here";
+            dropzonelabel.style.color="lightgray";
+        }
+        dropzone.ondragleave=function(e){
+            e.preventDefault();
+            dropzone.style.borderColor="white";
+            dropzonelabel.innerText="Drag your files here";
+            dropzonelabel.style.color="white";
+        }
+        dropzone.ondrop=function(event){
+            event.preventDefault();
+            id_File.files=event.dataTransfer.files;
+            dropzone.style.display="none";
+            showUpModal('{{path}}');
+        }
+        function showUpModal(path){
+            FileWindow.style.display="grid";
             FileModal.style.zIndex=200;
             FileModal.style.opacity=0.8;
             Uploadpath.value=path; 
@@ -114,16 +172,7 @@
         function closeUpModal(){
             FileModal.style.opacity=0;
             FileModal.style.zIndex=-100;
+            FileWindow.style.display="none";
         }
-</script>
-
-<div id=FileModal>
-    <form class=windowUp action="{% url 'upload' %}" enctype="multipart/form-data" method="POST">
-        <span class=Header id=UpPath>Uploading files</span>
-        <span class=close onclick="closeUpModal()">X</span>
-        {% csrf_token %}
-        <input type="hidden" value="{{path}}" id=Uploadpath name=path>
-        <label class="fileinput" ><span id=fileNameBtn>Select file</span>{{ forms }}</label>
-        <input id=btnUpload disabled style="grid-area:panel" type="submit" value="Upload">
-    </form>
-</div>
+    </script>
+    
