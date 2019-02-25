@@ -191,7 +191,11 @@
                     {% for i in i1.list %}
                         <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)>
                             <a href='{{host}}/file/view{{path}}/{{i.name}}' class=name>
-                                <img src="{% static i1.icon %}" style="width:24px;" >
+                                {% if i.code   %}
+                                    <img src="{{i.code}}" style="width: 30px;" >
+                                {% else %}
+                                    <img src="{% static i1.icon %}" style="width:24px;" >
+                                {% endif %}
                                 {{i.name}}
                             </a> 
                             <span class=size>{{i.size|filesizeformat}}</span>

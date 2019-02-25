@@ -1,14 +1,14 @@
 from django.shortcuts import redirect,render
 from .directory import isAccess,getPathHierrarhy
 from HomeCloud.views import getDiskspace
-
+from ..forms import UploadFileForm
+from .uploads import handle_uploaded_file
+from .Preview import GetCode
 import shutil
 import os
 import json
 import datetime
 
-from ..forms import UploadFileForm
-from .uploads import handle_uploaded_file
 
 
 def upload_file(request):
@@ -30,13 +30,14 @@ def back(request,path):
     else:
         return redirect("http://"+request.get_host()+"/file/explorer"+os.path.split(path)[0])
 
+
+
 def explorer(request, path):
 
     DirList=[]
     FileList=Files()
     GroupQueue={}
     QueueIndex=0
-
     
     path= os.path.splitdrive(os.path.expanduser(path).replace('\\','/'))[1]
     for i in conf:
@@ -56,7 +57,10 @@ def explorer(request, path):
         elif os.path.isfile(os.path.abspath(path+"/"+i)) and os.access(os.path.abspath(path+"/"+i),os.R_OK):
             i1=FileList.formats.get(i.split(".")[-1].upper())
             if i1:
-                FileList.groups[GroupQueue[i1]].list.append(fileobj(i,os.path.getsize(path+"/"+i),os.path.getctime(path+"/"+i)))
+                if (i1=="Pictures"):
+                    FileList.groups[GroupQueue[i1]].list.append(Image(i,os.path.getsize(path+"/"+i),os.path.getctime(path+"/"+i),GetCode(path+"/"+i)))
+                else:
+                    FileList.groups[GroupQueue[i1]].list.append(fileobj(i,os.path.getsize(path+"/"+i),os.path.getctime(path+"/"+i)))
             else:
                 FileList.groups[GroupQueue["Other"]].list.append(fileobj(i,os.path.getsize(path+"/"+i),os.path.getctime(path+"/"+i)))
     
@@ -102,3 +106,10 @@ class fileobj(object):
         self.name=name
         self.size=size
         self.date= datetime.date.fromtimestamp(date)
+
+class Image(fileobj):
+    code=""
+    def __init__(self,name,size,date,code):
+        super().__init__(name,size,date)
+        self.code=code
+        
