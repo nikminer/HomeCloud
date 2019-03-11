@@ -1,81 +1,39 @@
-<style>
-        #TextInputModal{
-            position: fixed;
-            top:0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: black;
-            opacity: 0;
-            z-index: -100;
-        }
-        .MKwindow{
-            display: grid;
-            grid-template-columns: auto auto 40px;
-            grid-template-rows: 50px auto;
-            grid-template-areas: 
-                "Header Header close"
-                "form form .";
-            background-color:white;
-            opacity: 1;
-            min-width: 100px;
-            min-height: 100px;
-            margin: 10% 20%;
-            border-radius: 3px;
-        }
-        .header{
-            padding: 10px;
-            background-color: #63cdda;
-            grid-area: Header;
-            font-size: 25px;
-            color: #000;
-            border-bottom: lightgrey 0.5px solid;
-        }
-        .close{
-            grid-area: close;
-            margin:auto;
-            padding: 10px;
-            font-size: 25px;
-            transition: all 200ms ease;
-        }
-        .close:hover{
-            background-color: #e15f41;
-            border-radius: 3px;
-            cursor: pointer;
-        }        
-        .MKForm{
-            grid-area: form;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        .MKForm input{
-            font-size: 17px;
-            margin-left: 10px;
-            padding: 5px;
-            padding-left:15px;
-            padding-right: 15px;
-        }
-        #MKsubmit{
-            border-radius: 3px;
-            background-color: #fff;
-            border: none;
-            transition: all 200ms ease;
-        }
-        #MKsubmit:hover{
-            cursor: pointer;
-            background-color: #63cdda;
-        }
-        </style>
+{%load staticfiles%}
+
+<link href="{% static 'Modals/TextInputModal.css' %}" rel="stylesheet" type="text/css"/>
+
         <script>
             function showTextModal(){
                 TextInputModal.style.zIndex=200;
                 TextInputModal.style.opacity=0.8;
                 MKPath.value="New Folder"; 
+                checkdir();
             }
             function closeTextModal(){
                 TextInputModal.style.opacity=0;
                 TextInputModal.style.zIndex=-100;
                 MKPath.value="";
+            }
+            function checkdir(){
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET','{{host}}/file/exdir{{path}}/'+MKPath.value,true);
+                xhr.send();
+                xhr.onreadystatechange=function(){
+                    if(xhr.status==200){
+                        if (xhr.response=="True")
+                        {
+                            MKsubmit.style.display="None";
+                            MKmess.innerText="Директория уже существует";
+                            MKPath.style.borderColor="red";
+                        }
+                        if (xhr.response=="False"){
+                            MKsubmit.style.display="";
+                            MKPath.style.borderColor="green"
+                            MKmess.innerText="";
+                        }
+                            
+                    }
+                }
             }
             function mkdir(){
                 window.location.replace('{{host}}/file/mkdir{{path}}/'+MKPath.value);
@@ -87,8 +45,9 @@
                 <span class=Header>Creating Directory</span>
                 <span class=close onclick="closeTextModal()">X</span>
                 <form class=MKForm>
-                    <input style="width: 80%;" name=path id=MKPath type="text">
-                    <input id=MKsubmit type="button" onclick="mkdir()" value="Create">
+                    <input style="width: 80%;" onchange="checkdir()" name=path id=MKPath type="text">
+                    <input id=MKsubmit type="button" onclick="mkdir()" value="Create"></br>
+                    <label id=MKmess style="color:red;margin-left: 10px;"></label>
                 </form>
             </div>
         </div>

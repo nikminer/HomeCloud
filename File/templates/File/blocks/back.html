@@ -1,25 +1,7 @@
 {%load staticfiles%}
 
-<style>
-    .Back{
-        text-decoration: none;
-        color: black;
-        padding: 5px;
-        transition: all 0.7s ease;
-        display: flex;
-        align-items: center;
-        height: 30px;
-        max-height: 30px;
-        border-left: 1px solid gray;
-        border-right: 1px solid gray;
-    }
-    
-    .SpanBack{
-        margin-left: 10px;
-        font-size: 20px;
-    }
+<link href="{% static 'blocks/back.css' %}" rel="stylesheet" type="text/css"/>
 
-</style>
 {% if filename%}
     <style>
         .Back:hover{  

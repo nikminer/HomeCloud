@@ -1,0 +1,92 @@
+.content{
+    grid-area: content;
+    margin-left: 5px;
+}
+.row img{
+    height: 24px;
+}
+.row{
+    min-height: 24px;
+    width: 80%;
+    max-width: 80%;
+    display: grid;
+    grid-template-columns: 75% 15% 10%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "Name size panel"
+    "Name time panel";
+    color: #000;
+    border-bottom: lightgrey 0.5px solid;
+    font-family:Dejavu Sans;    
+    padding-top:5px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    transition: all 0.5s ease;
+}  
+.row:hover{
+    background-color: #63cdda;
+}
+.name{
+    grid-area: Name;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.name img{
+    margin-right: 10px;
+}
+.size{
+    grid-area: size;
+    font-size: 14px;
+}
+.time{
+    grid-area: time;
+    font-size: 14px;
+}
+.panel{
+    grid-area: panel;
+    display:inline;
+    opacity: 0;
+}
+.panel img{
+    margin-right: 5px;
+    transition: all 0.7s ease;
+}
+.panel img:hover{
+    border-radius: 5px;
+    background-color: white;
+}
+.row a{
+    word-break:break-all;
+    width: 80%;
+    height: 120%;
+    text-decoration: none;
+    color:inherit;
+    cursor: pointer;
+}
+.groupe{
+    width: auto;
+    margin-right: 1%;
+    border-top: lightgrey 2px solid;
+    border-bottom: lightgrey 1px solid;
+    border-radius: 10px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 2%;
+}
+.groupe summary{
+    border-bottom: lightgrey 1px solid;
+    border-radius: 10px;
+    padding: 5px;
+    font-weight: bold;
+    transition: all 1s ease;
+    cursor: pointer;
+}
+.groupe summary:hover{
+    background-color: #63cdda;
+}
+.ingroupe{
+    margin-left: 2%;
+    width: 95%;
+    max-width: 95%;
+}

@@ -1,0 +1,27 @@
+panel{
+    font-family:Dejavu Sans;
+    grid-area: panel;
+    font-size: 19px;
+    background-color: #63cdda;
+    min-height: 70vh;        
+}
+#panelcnt{
+    padding-top: 20px;
+    background-color: #63cdda;
+    display: flex;
+    flex-direction: column;
+}
+#panelcnt a{
+    text-decoration: none;
+    color: black;
+    padding: 5px 20px;
+    transition: all 0.5s ease;
+}
+#panelcnt a:hover{
+    background-color: white;
+}
+#freesize{
+    width: 90%;
+    height: 20px;
+    margin-top: 5px;
+}

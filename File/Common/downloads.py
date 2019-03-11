@@ -1,6 +1,7 @@
 import os
 import zipfile
 from django.http import StreamingHttpResponse
+from .directory import isAccess
 
 def downloadFile(request, path):
     
@@ -27,7 +28,10 @@ def downloadFolder(request,path):
             if(file != pathes[1]+".zip"):
                 absfn=os.path.join(root, file)
                 zfn = absfn[len(path)+len(os.sep):]
-                zipf.write(absfn,zfn)
+                try:
+                    zipf.write(absfn,zfn)
+                except PermissionError:
+                    pass
     zipf.close()
 
     def dir_iterator(file_name, chunk_size=512):

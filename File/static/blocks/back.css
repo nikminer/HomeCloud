@@ -1,0 +1,17 @@
+.Back{
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+    transition: all 0.7s ease;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    max-height: 30px;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+}
+
+.SpanBack{
+    margin-left: 10px;
+    font-size: 20px;
+}

@@ -3,29 +3,7 @@
 {%load staticfiles%}
 
 <link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
-
-<style>
-    .content{
-        grid-area:content;
-        margin:5px;
-        margin-left: 10px;
-    }
-    body{
-        margin: 0;
-        display: grid;
-        grid-template-columns: 100%;
-        grid-template-areas: 
-            "headeres"
-            "back"
-            "content";
-        font-family: Dejavu Sans; 
-    }
-    .preview{
-        word-wrap: break-word;
-        overflow-wrap: break-word; 
-    }
-
-</style>
+<link href="{% static 'TextPreview.css' %}" rel="stylesheet" type="text/css"/>
 
 {% include "./blocks/header.html" %}
 

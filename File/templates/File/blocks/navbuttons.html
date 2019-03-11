@@ -1,50 +1,7 @@
 {%load staticfiles%}
 
-<style>
-    .navBtn {
-        display: flex;
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        padding: 5px;
-        margin: 5px;
+<link href="{% static 'blocks/navbuttons.css' %}" rel="stylesheet" type="text/css"/>
 
-        color: black;
-        transition-property: width;
-        transition-duration: .2s,.2s;
-        background-color: #63cdda;
-        border-right: gray 1px solid;
-    }
-    .navBtn:hover {
-        width: 200px;
-        max-width: 200px;
-        transition-property: width;
-        transition-duration: 0.2s;
-        background-color: white;
-    }
-
-    .navBtn:hover > .navBtn_text {
-        opacity: 1;
-        transition-property: opacity;
-        transition-duration: 0.3s;
-        transition-delay: 0.2s;
-    }
-
-
-    .navBtn_text {
-        padding-left: 7px;
-        padding-right: 3px;
-        margin-top: 2px;
-        opacity: 0;
-    }
-    .navBtn_text span {
-        color: black;
-        font-size: 20px;
-    }
-    .navBtn_img{
-        height: 25px
-    }
-</style>
 
 <div class='navBtn' onclick="window.location.replace('{{host}}/file/explorer~')">
     <img class=navBtn_img src="{% static 'images/favicon.ico' %}">

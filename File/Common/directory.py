@@ -1,4 +1,5 @@
 import os
+from django.http import HttpResponse
 
 def isAccess(path):
     try:
@@ -6,6 +7,9 @@ def isAccess(path):
         return True
     except PermissionError:
         return False
+
+def isExist(request,path):
+    return HttpResponse(os.path.exists(os.path.abspath(path)))
 
 def getPathHierrarhy(fullPath):
     pathes=[]
