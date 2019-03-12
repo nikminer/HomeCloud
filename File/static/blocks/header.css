@@ -14,6 +14,7 @@ header{
     padding: 10px;
     font-size: 150%;
     border-bottom: 1px solid lightgray;
+    word-break: break-all;
 }
 .path span{
     font-size: 50%;

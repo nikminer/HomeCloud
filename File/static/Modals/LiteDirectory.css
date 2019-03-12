@@ -1,0 +1,52 @@
+#LiteDir{
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.0;
+    z-index: -200;
+}
+#LiteDir .Litewindow{
+    display: grid;
+    grid-template-columns:auto 50px 40px;
+    grid-template-rows: 50px auto;
+    grid-template-areas: 
+        "Header GetPath close"
+        "path path path";
+    background-color:white;
+    opacity: 1;
+    min-width: 60%;
+    min-height: 300px;
+    margin: 10% 20%;
+    border-radius: 3px;
+    
+}
+#LiteDir .header{
+    white-space: nowrap;
+    padding: 10px;
+    background-color: #63cdda;
+    grid-area: Header;
+    font-size: 25px;
+    color: white;
+    border-bottom: lightgrey 0.5px solid;
+    overflow-y: hidden;
+    overflow-x: auto;
+    
+}
+#LiteDir .header::-webkit-scrollbar {
+    height: 5px;         
+    width: 5px;
+    border: solid 2px #63cdda;               
+}
+#LiteDir .header::-webkit-scrollbar-thumb {  
+    background-color:white; 
+}
+#LiteDirs{
+    grid-area: path;
+    padding: 10px;
+    padding-top: 20px;
+    overflow-y: auto;
+    max-height: 500px;  
+}
