@@ -2,8 +2,10 @@
 
 <link href="{% static 'Modals/LiteDirectory.css' %}" rel="stylesheet" type="text/css"/>
     <script>
-        
-        function showLiteDirModal(){
+        var a,b;
+        function showLiteDirModal(outputPathNode,callbackMeth){
+            a=outputPathNode;
+            b=callbackMeth;
             LiteDir.style.zIndex=200;
             LiteDir.style.opacity=0.8;
             LiteDirPath.innerText="{{path}}";
@@ -23,28 +25,32 @@
             xhr.send();
             xhr.onreadystatechange=function(){
                 if(xhr.status==200 && xhr.readyState==4){
-                    var HTML="<ul>";
+                    var HTML="";
                     if(LiteDirPath.innerText.length!=0)
-                        HTML+="<li onclick=\"back()\">Back</li>"
+                        HTML+="<div class=Literow onclick=\"back()\"> <img src=\"{% static 'images/back.png' %}\" style=\"width:20px;\" ><span> Back</span></div>"
                     var resp=JSON.parse(xhr.responseText)
                     for (let i in resp)
-                        HTML+="<li onclick='changedir(\""+resp[i]+"\")'>"+resp[i]+"</li>";
-                    HTML+="</ul>";
+                        HTML+="<div class=Literow onclick='changedir(\""+resp[i]+"\")'><img src=\"{% static 'images/folder.png' %}\" style=\"width:20px;\" ><span> "+resp[i]+"</span></div>";
                     LiteDirs.innerHTML=HTML;
                 }
             }
         }
-        function closeLiteDirModal(){
+        function Selectdir(){
+            a.value=LiteDirPath.innerText;
+            closeModal();
+        }
+        function closeModal(){
             LiteDir.style.opacity=0;
             LiteDir.style.zIndex=-100;
+            b()
         }
     </script>
     
     <div id=LiteDir>
         <div class=Litewindow>
             <span id=LiteDirPath class=Header></span>
-            
-            <span class=close onclick="closeLiteDirModal()">X</span>
+            <button id=LiteConfBtn onclick="Selectdir()">Confirm</button>
+            <span class=close onclick="closeModal()">X</span>
             <div id=LiteDirs></div>
             
         </div>

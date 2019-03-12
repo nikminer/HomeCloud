@@ -7,7 +7,8 @@
         <span class=Header id=UpPath>Uploading files</span>
         <span class=close onclick="closeUpModal()">X</span>
         {% csrf_token %}
-        <input type="hidden" value="{{path}}" id=Uploadpath name=path>
+        <input type="text" readonly value="{{path}}" id=Uploadpath name=path>
+        <span onclick="showLiteDirModal(Uploadpath,showUpModal),closeUpModal()" class=selctbtn>Change</span     >
         <label class="fileinput" ><span id=fileNameBtn>Select file</span>{{ forms }}</label>
         <input id=btnUpload disabled style="grid-area:panel" type="submit" value="Upload">
     </div>
@@ -37,7 +38,7 @@
             closeUpModal()
             e.preventDefault();
             dropzone.style.display="block";
-            FileModal.style.zIndex=200;
+            FileModal.style.zIndex=250;
             FileModal.style.opacity=0.8;
         }
         dropzone.ondragover=function(e){
@@ -58,11 +59,16 @@
             dropzone.style.display="none";
             showUpModal('{{path}}');
         }
-        function showUpModal(path){
+        function showUpModalP(path){
             FileWindow.style.display="grid";
             FileModal.style.zIndex=200;
             FileModal.style.opacity=0.8;
             Uploadpath.value=path; 
+        }
+        function showUpModal(){
+            FileWindow.style.display="grid";
+            FileModal.style.zIndex=200;
+            FileModal.style.opacity=0.8;
         }
         function closeUpModal(){
             FileModal.style.opacity=0;

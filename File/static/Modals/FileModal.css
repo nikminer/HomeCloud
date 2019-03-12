@@ -11,10 +11,12 @@
 }
 .windowUp{
     display: none;
-    grid-template-columns: auto auto 40px;
-    grid-template-rows: 50px auto 60px;
+    grid-template-columns: auto 90px 40px;
+    grid-template-rows: 50px 50px auto 60px;
+    grid-row-gap: 2px;
     grid-template-areas: 
         "Header Header close"
+        "path selectbtn ."
         "file file file"
         "panel panel panel";
     background-color:white;
@@ -101,4 +103,21 @@
     color: white;
     display: inline-block;
     vertical-align: middle;
+}
+
+#Uploadpath{
+    grid-area: path;
+    margin-left: 5px;
+}
+
+.selctbtn{
+    grid-area: selectbtn;
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+}
+
+.selctbtn:hover{
+    transition: all 200ms ease;
+    background-color: #3dc1d3; 
 }

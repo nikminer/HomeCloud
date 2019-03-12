@@ -59,7 +59,7 @@
                     <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"}}</span>
                     <div class="panel">
                         <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfolder{{path}}/{{i.name}}')" title="Download" style="width:24px ;cursor: pointer">
-                        <img src="{% static 'images/Upload.png' %}" onclick="showUpModal('{{path}}/{{i.name}}')" title="Upload" style="width:24px;height:23px;cursor: pointer">
+                        <img src="{% static 'images/Upload.png' %}" onclick="showUpModalP('{{path}}/{{i.name}}')" title="Upload" style="width:24px;height:23px;cursor: pointer">
                         <!--<img src="{% static 'images/move.png' %}" onclick="moveDirectory('{{path}}','{{i.name}}')" title="Movе folder" style="width:24px;cursor: pointer">-->
                         <img src="{% static 'images/delete.png' %}" onclick="confirmDeleteDir('{{path}}/{{i.name}}')" title="Delete" style="width:24px;cursor: pointer">
                     </div>
