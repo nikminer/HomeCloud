@@ -15,7 +15,7 @@ urlpatterns = [
     path('deldir<path:path>', deletedir),
     path('mkdir<path:path>', createdir),
     path('exdir<path:path>', isExist),
-    path('movedir<path:path>+<path:path1>', movedir),
+    path('movedir', movedir),
     path('downloadfile<path:path>', downloadFile),
     path('delfile<path:path>',deletefile),
     path('downloadfolder<path:path>', downloadFolder),

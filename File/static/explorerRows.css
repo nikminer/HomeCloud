@@ -10,7 +10,7 @@
     width: 80%;
     max-width: 80%;
     display: grid;
-    grid-template-columns: 75% 15% 10%;
+    grid-template-columns: 70% 15% 15%;
     grid-template-rows: auto;
     grid-template-areas: 
     "Name size panel"

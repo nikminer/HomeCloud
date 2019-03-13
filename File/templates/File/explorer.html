@@ -25,10 +25,7 @@
     }
     window.onload  = setFixed;
     window.onscroll = setFixed;
-    function moveDirectory(src,name){
-        var input=prompt('Distanation file to',src);
-        input?window.location.replace('{{host}}/file/movedir'+src+'+'+input+"?name="+name):null;   
-    }
+    
     function hide(handler){
         handler.children[3].style.transition="all 1s ease"
         handler.children[3].style.opacity=0        
@@ -60,7 +57,7 @@
                     <div class="panel">
                         <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfolder{{path}}/{{i.name}}')" title="Download" style="width:24px ;cursor: pointer">
                         <img src="{% static 'images/Upload.png' %}" onclick="showUpModalP('{{path}}/{{i.name}}')" title="Upload" style="width:24px;height:23px;cursor: pointer">
-                        <!--<img src="{% static 'images/move.png' %}" onclick="moveDirectory('{{path}}','{{i.name}}')" title="Movе folder" style="width:24px;cursor: pointer">-->
+                        <img src="{% static 'images/move.png' %}" onclick="showMoveModalP('{{path}}','{{i.name}}')" title="Movе folder" style="width:24px;cursor: pointer">
                         <img src="{% static 'images/delete.png' %}" onclick="confirmDeleteDir('{{path}}/{{i.name}}')" title="Delete" style="width:24px;cursor: pointer">
                     </div>
                 </div>
@@ -101,5 +98,6 @@
 {% include "./Modals/DeleteModal.html" %}
 {% include "./Modals/TextInputModal.html" %}
 {% include "./Modals/FileModal.html" %}
+{% include "./Modals/MoveModal.html" %}
 
 {% include "Lite/LiteDirectory.html"%}

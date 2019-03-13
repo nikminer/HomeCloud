@@ -10,9 +10,9 @@ def createdir(request,path):
     os.mkdir(path)
     return redirect("http://"+request.get_host()+"/file/back"+path) 
 
-def movedir(request,path,path1):
-    os.replace(path+"/"+request.GET.get('name'),path1+"/"+request.GET.get('name'))
-    return redirect("http://"+request.get_host()+"/file/explorer"+path1) 
+def movedir(request):
+    shutil.move(request.POST.get('originalpath'),request.POST.get('destionalpath'))
+    return redirect("http://"+request.get_host()+"/file/explorer"+request.POST.get('destionalpath')) 
 
 def deletefile(request,path):
     os.remove(path)
