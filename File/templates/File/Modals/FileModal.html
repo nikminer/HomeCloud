@@ -37,9 +37,12 @@
         document.ondragover=function(e){
             closeUpModal()
             e.preventDefault();
-            dropzone.style.display="block";
-            FileModal.style.zIndex=250;
-            FileModal.style.opacity=0.8;
+            if (e.dataTransfer.files.length!=0){
+                dropzone.style.display="block";
+                FileModal.style.zIndex=250;
+                FileModal.style.opacity=0.8;
+            }
+            
         }
         dropzone.ondragover=function(e){
             e.preventDefault();
