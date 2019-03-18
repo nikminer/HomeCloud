@@ -1,0 +1,7 @@
+<form method="post" action="/auth/">
+    {% csrf_token %}
+    <input type=text placeholder="login" name="login">
+    <input type="password" placeholder="password" name="pass">
+    <input type="submit" value="Войти">
+    <input type="hidden" name="next" value="{{ next|escape }}" />
+</form>

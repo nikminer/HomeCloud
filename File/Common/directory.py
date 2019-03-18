@@ -1,5 +1,6 @@
 import os
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 def isAccess(path):
     try:
@@ -7,7 +8,7 @@ def isAccess(path):
         return True
     except PermissionError:
         return False
-
+@login_required
 def isExist(request,path):
     return HttpResponse(os.path.exists(os.path.abspath(path)))
 

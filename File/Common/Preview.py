@@ -7,6 +7,7 @@ import json
 from PIL import Image
 import io
 
+from django.contrib.auth.decorators import login_required
 
 conf=json.loads(open("static/config/Groups.json","r").read())
 images=[]
@@ -17,7 +18,7 @@ for i in conf:
         images.extend(conf[i]['formats'])
     if conf[i]['type']=="text":
         texts.extend(conf[i]['formats'])
-
+@login_required
 def ViewSwitcher(request,path):
     if os.path.basename(path).split(".")[-1].upper() in images:
         return PreviewImage(request,path)
@@ -33,7 +34,7 @@ def ViewSwitcher(request,path):
             "host":"http://"+request.get_host(),
             "pathes":getPathHierrarhyFile(path)
         })
-
+@login_required
 def PreviewText(request, path):
     text = open(path,"r",encoding='utf-8').read()
 
@@ -47,7 +48,7 @@ def PreviewText(request, path):
         "host":"http://"+request.get_host(),
         "pathes":getPathHierrarhyFile(path)
     })
-
+@login_required
 def PreviewImage(request, path):
     image = open(path,"rb").read()
     base=str(base64.encodestring(image),"utf-8")

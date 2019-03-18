@@ -1,7 +1,21 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 import psutil,os,platform
 import shutil
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+
+def getlogin(request):
+    return render(request,'HomeCloud/auth.html',{"next":request.GET['next']})
+
+def login(request):
+    user = auth.authenticate(username=request.POST['login'], password=request.POST['pass'])
+    if user is not None and user.is_active:
+        auth.login(request, user)
+        return HttpResponseRedirect(request.POST['next'])
+    else:
+        return HttpResponseRedirect("/accounts/login")
+
 
 
 def convertBytes(byte):
@@ -14,7 +28,7 @@ def convertBytes(byte):
     elif byte>1099511627776:
         return str(round(byte/1099511627776))+" PB"
     return str(byte) + " Bytes"
-
+@login_required
 def getCPUpercent(request):
     return HttpResponse(psutil.cpu_percent(interval=1))
 
@@ -33,7 +47,7 @@ def getDiskspaceInGB():
 def getDiskspace():
     return DiskSize(shutil.disk_usage("/").free,shutil.disk_usage("/").used,shutil.disk_usage("/").total)
 
-
+@login_required
 def index(request):
     iflist={}
     for i in psutil.net_if_addrs():

@@ -10,7 +10,8 @@ import json
 import datetime
 
 
-
+from django.contrib.auth.decorators import login_required
+@login_required
 def upload_file(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
@@ -23,7 +24,7 @@ def upload_file(request):
 
 
 conf=json.loads(open("static/config/Groups.json","r").read())
-
+@login_required
 def back(request,path):
     if path=="/":
         redirect("http://"+request.get_host())
@@ -31,7 +32,7 @@ def back(request,path):
         return redirect("http://"+request.get_host()+"/file/explorer"+os.path.split(path)[0])
 
 
-
+@login_required
 def explorer(request, path):
 
     DirList=[]

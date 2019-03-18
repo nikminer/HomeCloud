@@ -2,7 +2,8 @@ import os
 import zipfile
 from django.http import StreamingHttpResponse
 from .directory import isAccess
-
+from django.contrib.auth.decorators import login_required
+@login_required
 def downloadFile(request, path):
     
     def file_iterator(file_name, chunk_size=512):
@@ -18,7 +19,7 @@ def downloadFile(request, path):
     response['Content-Type'] = 'application/octet-stream'
     response['Content-Disposition'] = 'attachment;filename="{0}"'.format(os.path.split(path)[1])
     return response
-
+@login_required
 def downloadFolder(request,path):
     pathes=os.path.split(path)
 
@@ -33,7 +34,7 @@ def downloadFolder(request,path):
                 except PermissionError:
                     pass
     zipf.close()
-
+    @login_required
     def dir_iterator(file_name, chunk_size=512):
         with open(file_name,'rb') as f:
             while True:
