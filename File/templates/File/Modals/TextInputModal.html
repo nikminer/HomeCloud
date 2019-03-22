@@ -37,7 +37,6 @@
                 xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.send("path="+encodeURIComponent("{{path}}/"+MKPath.value));
-                console.dir(xhr)
                 xhr.onreadystatechange=function(){
                     if(xhr.status==200){
                         if (xhr.response=="True")
@@ -64,7 +63,7 @@
             <div class=MKwindow>
                 <span class=Header>Creating Directory</span>
                 <span class=close onclick="closeTextModal()">X</span>
-                <form class=MKForm method="POST" action="{{host}}/file/mkdir">
+                <form class=MKForm method="POST" action="{{host}}/file/mkdir" onkeypress="if(event.keyCode == 13) return false;">
                     <input style="width: 80%;" onchange="checkdir()" name=path id=MKPath type="text">
                     {% csrf_token %}    
                     <input id=MKsubmit type="submit" value="Create"></br>

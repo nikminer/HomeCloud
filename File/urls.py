@@ -25,5 +25,7 @@ urlpatterns = [
     #Preview
     path('view<path:path>', ViewSwitcher),
     #lite
-    re_path(r'^lite/',include('File.Lite.urls'))
+    re_path(r'^lite/',include('File.Lite.urls')),
+    #public
+    re_path(r'^public/',include('File.Public.urls'))
 ]

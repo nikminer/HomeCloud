@@ -2,7 +2,7 @@
 
 <link href="{% static 'Modals/FileModal.css' %}" rel="stylesheet" type="text/css"/>
 
-<form draggable="true" id=FileModal action="{% url 'upload' %}" enctype="multipart/form-data" method="POST" >
+<form draggable="true" id=FileModal action="{% url 'upload' %}" enctype="multipart/form-data" method="POST" onkeypress="if(event.keyCode == 13) return false;" >
     <div id=FileWindow class=windowUp>
         <span class=Header id=UpPath>Uploading files</span>
         <span class=close onclick="closeUpModal()">X</span>

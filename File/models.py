@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+class Publicfile(models.Model):
+    pseudoname=models.CharField(max_length=255,unique=True,primary_key=True)
+    Sharinguser=models.CharField(max_length=255,default='')
+    path=models.FilePathField(max_length=1000)
+    isvisible=models.CharField(max_length=3,default="off")

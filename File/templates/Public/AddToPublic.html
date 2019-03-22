@@ -1,0 +1,102 @@
+<title>Sharing {{filename}}</title>
+
+{%load staticfiles%}
+
+<link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
+
+
+{% include "./blocks/header.html" %}
+
+
+<style>
+body{
+    margin: 0;
+    font-family: DejaVu Sans;
+}
+form{
+    padding: 5%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+form input{
+    font-family: DejaVu Sans;
+    padding: 5px;
+    margin: 10px 0;
+}
+#mess{
+    font-weight: bold;
+    color: green;
+}
+#submit{
+    border: 0;
+    background-color: #63cdda;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+</style>
+
+
+
+<body>
+    <form method="POST" id=form action="/file/public/shere" onkeypress="if(event.keyCode == 13) return false;">
+        <input type="text" name=path value="{{path}}" readonly>
+        <span>Shered Link: {{host}}/file/public/<input name=name type="text" id=pseudoname value="SharedFile" onchange="checkname()"></span>
+        <span id=mess>Pseudoname is avilable!</span>
+        <div>
+            <input type="checkbox" id=isVisible name=isVisible checked><label for=isVisible> Is Visible</label>
+        </div>
+        <input id=submit type="submit"  value="Shere File">
+        {% csrf_token %}
+    </form>
+
+</body>
+
+
+<script>
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+function checkname(){
+    var xhr = new XMLHttpRequest();
+               
+    xhr.open('POST','/file/public/existpseudo',true);
+    xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send("name="+encodeURIComponent(pseudoname.value));
+    xhr.onreadystatechange=function(){
+        if(xhr.status==200){
+            if (xhr.response=="False")
+            {
+                submit.style.display="None";
+                mess.innerText="Pseudoname is not avilable!";
+                pseudoname.style.borderColor="red";
+                mess.style.color="red"
+            }
+            if (xhr.response=="True"){
+                submit.style.display="";
+                pseudoname.style.borderColor="green"
+                mess.innerText="Pseudoname is avilable!";
+                mess.style.color="green"
+            }                   
+        }
+    }
+}
+checkname()
+</script>

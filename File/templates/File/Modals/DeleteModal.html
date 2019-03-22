@@ -31,7 +31,7 @@
             <span class=Header>You sure delete?</span>
             <span id=DelPath></span>
             <span class=close onclick="closeDelModal()">X</span>
-            <form id=ModalPanel method="POST">
+            <form id=ModalPanel method="POST" onkeypress="if(event.keyCode == 13) return false;">
                 {% csrf_token %}
                 <input type="hidden" name="delpath" id=sendDelPath>
                 <input type="submit" class="btn btnyes" value="Yes">
