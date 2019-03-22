@@ -5,3 +5,4 @@ class Publicfile(models.Model):
     Sharinguser=models.CharField(max_length=255,default='')
     path=models.FilePathField(max_length=1000)
     isvisible=models.CharField(max_length=3,default="off")
+    isdownloaded=models.CharField(max_length=3,default="on")
