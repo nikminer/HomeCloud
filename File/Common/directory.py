@@ -9,8 +9,8 @@ def isAccess(path):
     except PermissionError:
         return False
 @login_required
-def isExist(request,path):
-    return HttpResponse(os.path.exists(os.path.abspath(path)))
+def isExist(request):
+    return HttpResponse(os.path.exists(os.path.abspath(request.POST['path'])))
 
 def getPathHierrarhy(fullPath):
     pathes=[]

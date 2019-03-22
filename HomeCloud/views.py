@@ -5,6 +5,7 @@ import shutil
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
+
 def getlogin(request):
     return render(request,'HomeCloud/auth.html',{"next":request.GET['next']})
 
@@ -14,9 +15,12 @@ def login(request):
         auth.login(request, user)
         return HttpResponseRedirect(request.POST['next'])
     else:
-        return HttpResponseRedirect("/accounts/login")
+        return HttpResponseRedirect("/accounts/login?next="+request.POST['next'])
 
-
+@login_required
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect("/accounts/login/?next=/")
 
 def convertBytes(byte):
     if byte>1024 and byte<1048575:
@@ -71,7 +75,7 @@ def index(request):
         "byterecv":convertBytes(psutil.net_io_counters().bytes_recv),
         "packsent":psutil.net_io_counters().packets_sent,
         "packrecv":psutil.net_io_counters().packets_recv,
-        "iflist":iflist
+        "iflist":iflist,
     }
     if round(shutil.disk_usage('.').free/1073741824,3)<10:
         DataList['Sysproblem']="Free disk space less 10 GB"

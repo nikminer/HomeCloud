@@ -3,34 +3,14 @@
 <link href="{% static 'Modals/DeleteModal.css' %}" rel="stylesheet" type="text/css"/>
     <script>
         function confirmDeleteFile(path,grope){
-            var yes = document.createElement('span');
-            yes.className="btn btnyes";
-            
-            yes.onclick=function(){window.location.replace('{{host}}/file/delfile'+path)}
-            yes.innerText="Yes";
-            ModalPanel.appendChild(yes);
-            
-            var no = document.createElement('span');
-            no.className="btn btnno";
-            no.onclick=closeModal;
-            no.innerText="No";
-            ModalPanel.appendChild(no);
+            ModalPanel.action="{{host}}/file/delfile"
+            sendDelPath.value=path;
             
             showModal(grope+": "+path);
         }
         function confirmDeleteDir(path){
-            var yes = document.createElement('span');
-            yes.className="btn btnyes";
-            yes.onclick=function(){window.location.replace('{{host}}/file/deldir'+path)}
-            yes.innerText="Yes";
-            ModalPanel.appendChild(yes);
-            
-            var no = document.createElement('span');
-            no.className="btn btnno";
-            no.onclick=closeModal;
-            no.innerText="No";
-            ModalPanel.appendChild(no);
-            
+            ModalPanel.action="{{host}}/file/deldir"
+            sendDelPath.value=path;
             showModal("Folder: "+path);
         }
         function showModal(Message){
@@ -38,7 +18,7 @@
             DelModal.style.opacity=0.8;
             DelPath.innerHTML=Message; 
         }
-        function closeModal(){
+        function closeDelModal(){
             delpath="";
             DelModal.style.opacity=0;
             DelModal.style.zIndex=-100;
@@ -50,8 +30,12 @@
         <div class=window>
             <span class=Header>You sure delete?</span>
             <span id=DelPath></span>
-            <span class=close onclick="closeModal()">X</span>
-            <div id=ModalPanel>
-            </div>
+            <span class=close onclick="closeDelModal()">X</span>
+            <form id=ModalPanel method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="delpath" id=sendDelPath>
+                <input type="submit" class="btn btnyes" value="Yes">
+                <span class="btn btnno" onClick=closeDelModal>No</span>
+            </form>
         </div>
     </div>

@@ -34,7 +34,6 @@ def downloadFolder(request,path):
                 except PermissionError:
                     pass
     zipf.close()
-    @login_required
     def dir_iterator(file_name, chunk_size=512):
         with open(file_name,'rb') as f:
             while True:

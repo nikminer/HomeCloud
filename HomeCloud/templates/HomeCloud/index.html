@@ -8,11 +8,10 @@
 
 
 <style>
-
-
         #page{
             grid-area: contentfield;
             font-family: Dejavu Sans; 
+            padding-left: 20px;
         }
         #content{
             display: grid;
@@ -69,12 +68,13 @@
             min-height:100%;
             display: grid;
             grid-template-columns: 70px auto;
-            grid-template-rows:100px auto ;
+            grid-template-rows:100px auto;
             grid-template-areas: 
                 
                 "navigate logoline "
-                "navigate contentfield ";
-            grid-column-gap: 10px;
+                "navigate contentfield "
+                "navigate footer";
+            
             align-content: stretch; 
             justify-items: stretch;
         
@@ -101,62 +101,14 @@
             grid-area: Smemory;
         }
         
-        .logo{
-            grid-area: logoline;
-            color: black;
-            text-align: left;
-            font-family: Dejavu Sans; 
-            font-size: 150%;
-        }
-        .logo h1{
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-        .logo h4{
-            font-size: 60%;
-            margin: 0;
-            margin-left: 2px;
-            margin-top: -5px;
-            
-            color: #777777
-        }
+        
         </style>
 
 
 
 <body>
-    <div class="logo">
-        <h1 style="font-weight: bold!important;">HomeCloud</h1>
-        <h4>Free Cloud in your home</h4>
-    </div>
-        <nav>
-            <span style="font-size:80%;font-weight: bold;">APPS</span>
-            <li><a style="text-decoration:none" href="./file/explorer~"><img src="https://maxcdn.icons8.com/Share/icon/p1em/Very_Basic/folder1600.png"><br><span >File</span></a></li>
-            <style>
-                nav{
-                    grid-area: navigate;
-                    background-color: #63cdda;
-                    text-align: center;
-                    color:white;
-                    font-family:Dejavu Sans; 
-                    border-right: 1px #777;
-                }
-                nav li{
-                    
-                    margin-top: 10px;
-                    list-style: none;
-                    transition: all 1s ease;
-                    animation-direction: alternate;
-                }
-                nav li:hover{
-                    background-color: #3dc1d3;
-                    cursor: pointer;
-                }
-                nav li img{
-                    width: 50px;
-                }
-            </style>
-        </nav>
+    {% include "./blocks/logo.html" %}
+    {% include "./blocks/navigation.html" %}
         <div id=page>
             <div id=content>
                 {% if Sysproblem %}
@@ -198,6 +150,7 @@
                 <div id=SMemory></div>
             </div>
         </div>
+        {% include "./blocks/footer.html" %}
 </body>
 
 <script>

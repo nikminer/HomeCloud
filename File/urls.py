@@ -9,17 +9,21 @@ from .Common.directory import isExist
 
 
 urlpatterns = [
+    #movment
     path('back<path:path>',back),
     path('explorer<path:path>', explorer),
-    path('view<path:path>', ViewSwitcher),
-    path('deldir<path:path>', deletedir),
-    path('mkdir<path:path>', createdir),
-    path('exdir<path:path>', isExist),
-    path('movedir', movedir),
-    path('downloadfile<path:path>', downloadFile),
-    path('delfile<path:path>',deletefile),
-    path('downloadfolder<path:path>', downloadFolder),
     path('uploadfile', upload_file,name="upload"),
-
+    #actions
+    path('deldir', deletedir),
+    path('mkdir', createdir),
+    path('exdir', isExist),
+    path('movedir', movedir),
+    path('delfile',deletefile),
+    #downloading
+    path('downloadfile<path:path>', downloadFile),
+    path('downloadfolder<path:path>', downloadFolder),
+    #Preview
+    path('view<path:path>', ViewSwitcher),
+    #lite
     re_path(r'^lite/',include('File.Lite.urls'))
 ]

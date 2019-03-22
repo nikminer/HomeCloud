@@ -5,8 +5,9 @@ import json
 from File.Common.directory import isAccess
 
 
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def explorerDir(request, path):
     path= os.path.splitdrive(os.path.expanduser(path).replace('\\','/'))[1]
     dirs=[]

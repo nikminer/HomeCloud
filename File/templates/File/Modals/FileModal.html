@@ -37,12 +37,9 @@
         document.ondragover=function(e){
             closeUpModal()
             e.preventDefault();
-            if (e.dataTransfer.files.length!=0){
-                dropzone.style.display="block";
-                FileModal.style.zIndex=250;
-                FileModal.style.opacity=0.8;
-            }
-            
+            dropzone.style.display="block";
+            FileModal.style.zIndex=250;
+            FileModal.style.opacity=0.8;
         }
         dropzone.ondragover=function(e){
             e.preventDefault();
@@ -58,6 +55,7 @@
         }
         dropzone.ondrop=function(event){
             event.preventDefault();
+            
             id_File.files=event.dataTransfer.files;
             dropzone.style.display="none";
             showUpModal('{{path}}');

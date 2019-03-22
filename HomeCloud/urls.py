@@ -9,8 +9,9 @@ urlpatterns = [
     #homecloud
     path('',views.index),
     path('cpuusage',views.getCPUpercent),
-    path('accounts/login',views.getlogin),
+    path('accounts/login/',views.getlogin),
     path('auth/',views.login),
+    path('logout/',views.logout),
     path('admin/', admin.site.urls),
     
     re_path(r'^file/',include('File.urls'))

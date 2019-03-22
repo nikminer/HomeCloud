@@ -1,6 +1,7 @@
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-@login_required
+
+
 def handle_uploaded_file(f,path,request):
     with open(path+'/'+str(f), 'wb+') as destination:
         for chunk in f.chunks():

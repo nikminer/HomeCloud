@@ -1,0 +1,53 @@
+<nav>
+    <div>
+        <span style="font-size:80%;font-weight: bold;text-decoration: underline white">APPS</span>
+        <li>
+            <a style="text-decoration:none" href="./file/explorer~">
+                <img src="https://maxcdn.icons8.com/Share/icon/p1em/Very_Basic/folder1600.png"><br>
+                <span >File</span>
+            </a>
+        </li>        
+    </div>
+    <li>
+        <a style="text-decoration:none" href="./logout/">
+            <img src=http://cdn.onlinewebfonts.com/svg/img_564295.png style="width: 50px;padding-top:10px;padding-right: 7px;padding-left: 7px;"><br>
+            <span >Exit</span>
+        </a>
+    </li>
+</nav>
+
+<style>
+    nav{
+        width: 70px;
+        grid-area: navigate;
+        position: fixed;
+        bottom:0;
+        left:0;
+        top:0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: #63cdda;
+        text-align: center;
+        color:white;
+        font-family:Dejavu Sans; 
+        border-right: 1px #777;
+    }
+    nav li{
+        margin-top: 10px;
+        padding-right: 7px;
+        padding-left: 7px;
+        list-style: none;
+        transition: all 0.5s ease;
+    }
+    nav li:hover{
+        background-color: #36bacce5;
+        cursor: pointer;
+    }
+    nav li img{
+        width: 50px;
+    }
+    nav div{
+        overflow-y: auto;
+    }
+</style>
