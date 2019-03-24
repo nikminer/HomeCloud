@@ -52,7 +52,7 @@ form input{
             <span>Shered Link: {{host}}/file/public/<input name=name type="text" id=pseudoname value="SharedFile" onchange="checkname()"></span>
             <span id=mess>Pseudoname is avilable!</span>
             <div>
-                <input type="checkbox" id=isVisible name=isVisible checked onchange="isVisible.value=isVisible.checked"><label for=isVisible> Is Visible</label>
+                <input type="checkbox" name=isVisible id=isVisible  checked><label for=isVisible> Is Visible</label>
             </div>
             <input id=submit type="submit"  value="Share File">
             {% csrf_token %}

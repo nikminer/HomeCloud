@@ -55,7 +55,7 @@ body{
                     <img src="{% static 'images/file.png' %}" style="height: 24px;margin-right: 5px;"> {{item.pn}}
                 </div>
                 <span style="grid-area:size">
-                    10KB
+                    {{item.size|filesizeformat}}
                 </span>
                  <span style="grid-area:user">
                     {{item.user}}
