@@ -1,4 +1,4 @@
-<title>Sharing {{filename}}</title>
+<title>Sharing</title>
 
 {%load staticfiles%}
 
@@ -13,9 +13,9 @@ body{
     margin: 0;
     font-family: DejaVu Sans;
 }
+
 form{
-    padding: 5%;
-    margin: auto;
+    height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -31,10 +31,13 @@ form input{
 }
 #submit{
     border: 0;
-    background-color: #63cdda;
     padding: 10px;
     cursor: pointer;
     font-weight: bold;
+    transition: all 0.5s ease;
+}
+#submit:hover{
+    background-color: #63cdda;
 }
 
 </style>
@@ -42,17 +45,19 @@ form input{
 
 
 <body>
-    <form method="POST" id=form action="/file/public/shere" onkeypress="if(event.keyCode == 13) return false;">
-        <input type="text" name=path value="{{path}}" readonly>
-        <span>Shered Link: {{host}}/file/public/<input name=name type="text" id=pseudoname value="SharedFile" onchange="checkname()"></span>
-        <span id=mess>Pseudoname is avilable!</span>
-        <div>
-            <input type="checkbox" id=isVisible name=isVisible checked><label for=isVisible> Is Visible</label>
-        </div>
-        <input id=submit type="submit"  value="Shere File">
-        {% csrf_token %}
-    </form>
-
+    <div style="margin:auto;width:900px;margin-top: 60px;">
+        <h2>Sharing file</h2>
+        <form method="POST" id=form action="/file/public/share/addfile" onkeypress="if(event.keyCode == 13) return false;">
+            <input type="text" name=path value="{{path}}" readonly>
+            <span>Shered Link: {{host}}/file/public/<input name=name type="text" id=pseudoname value="SharedFile" onchange="checkname()"></span>
+            <span id=mess>Pseudoname is avilable!</span>
+            <div>
+                <input type="checkbox" id=isVisible name=isVisible checked onchange="isVisible.value=isVisible.checked"><label for=isVisible> Is Visible</label>
+            </div>
+            <input id=submit type="submit"  value="Share File">
+            {% csrf_token %}
+        </form>
+    </div>
 </body>
 
 

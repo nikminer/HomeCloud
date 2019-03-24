@@ -1,4 +1,4 @@
-<title>Public files on server {{filename}}</title>
+<title>Public files on server</title>
 
 {%load staticfiles%}
 
@@ -12,6 +12,55 @@
 <style>
 body{
     margin: 0;
+    font-family: DejaVu Sans;
 }
+.rows{
+    margin: 0 20px;
+    display:flex;
+    flex-direction: column;
+}
+.rows a{
+    display: grid;
+    
+    grid-template-areas: "File size user";
+    grid-template-columns: 75% 10% 15%;
 
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    padding-top:5px;
+    padding-bottom: 10px;
+    border-bottom: lightgrey 0.5px solid;
+    transition: all 0.5s ease;
+}
+.rows a:hover{
+    background-color: #63cdda;
+}
+.rows a span{
+    color:black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 30px;
+    font-size: 14px
+}
 </style>
+
+<body>
+    <div class="rows">
+        <h2>Public files on server</h2>
+        {% for item in list %}
+            <a href="/file/public/{{item.pn}}">
+                <div style="display:flex;align-items: center;grid-area:File">
+                    <img src="{% static 'images/file.png' %}" style="height: 24px;margin-right: 5px;"> {{item.pn}}
+                </div>
+                <span style="grid-area:size">
+                    10KB
+                </span>
+                 <span style="grid-area:user">
+                    {{item.user}}
+                 </span>
+            </a>
+        {% endfor %}
+    </div>
+</body>
