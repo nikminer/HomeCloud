@@ -9,12 +9,12 @@ def action(request):
 
 @login_required
 def Shering(request,path):
-
-    return render(request, "Public/AddToPublic.html", 
-    {
-        'path':path,
-        "host":request.get_host(),
-    })
+        print ()
+        return render(request, "Public/AddToPublic.html", 
+        {
+                'path':path,
+                "host":request.scheme + "://" + request.get_host(),
+        })
 
 def exist(request):
         return HttpResponse(not Publicfile.objects.filter(pseudoname=request.POST['name']).count()>0)

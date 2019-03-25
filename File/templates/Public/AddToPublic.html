@@ -22,7 +22,7 @@ form{
 }
 form input{
     font-family: DejaVu Sans;
-    padding: 5px;
+    padding: 10px;
     margin: 10px 0;
 }
 #mess{
@@ -39,6 +39,29 @@ form input{
 #submit:hover{
     background-color: #63cdda;
 }
+.selctbtn{
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+}
+
+.selctbtn:hover{
+    transition: all 200ms ease;
+    background-color: #3dc1d3; 
+}
+.close{
+    grid-area: close;
+    margin:auto;
+    padding: 10px;
+    margin: 1px;
+    font-size: 25px;
+    transition: all 200ms ease;
+}
+.close:hover{
+    background-color: #e15f41;
+    border-radius: 3px;
+    cursor: pointer;
+}        
 
 </style>
 
@@ -48,7 +71,11 @@ form input{
     <div style="margin:auto;width:900px;margin-top: 60px;">
         <h2>Sharing file</h2>
         <form method="POST" id=form action="/file/public/share/addfile" onkeypress="if(event.keyCode == 13) return false;">
-            <input type="text" name=path value="{{path}}" readonly>
+            <div>
+                <input style="width:750px" type="text" id=filePAth name=path value="{{path}}" readonly>
+                <span  onclick="showLiteDirModalPO(filePAth)" id=Change1 class=selctbtn >Change</span>
+            </div>
+            
             <span>Shered Link: {{host}}/file/public/<input name=name type="text" id=pseudoname value="SharedFile" onchange="checkname()"></span>
             <span id=mess>Pseudoname is avilable!</span>
             <div>
@@ -105,3 +132,5 @@ function checkname(){
 }
 checkname()
 </script>
+
+{% include "Lite/LiteFiles.html"%}

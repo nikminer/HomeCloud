@@ -1,12 +1,19 @@
+{%load staticfiles%}
 <nav>
     <div>
         <span style="font-size:80%;font-weight: bold;text-decoration: underline white">APPS</span>
         <li>
-            <a style="text-decoration:none" href="./file/explorer~">
-                <img src="https://maxcdn.icons8.com/Share/icon/p1em/Very_Basic/folder1600.png"><br>
+            <a style="text-decoration:none" href="/file/explorer~">
+                <img src="{% static 'images/folder.png' %}"><br>
                 <span >File</span>
             </a>
         </li>        
+        <li>
+            <a style="text-decoration:none" href="/file/public">
+                <img src="{% static 'images/shere.png' %}"><br>
+                <span >Public</span>
+            </a>
+        </li>
     </div>
     <li>
         <a style="text-decoration:none" href="./logout/">

@@ -25,6 +25,7 @@
 .Literow{
     cursor: pointer;
     margin: 2px;
+    padding: 2px;
     word-break: break-all;
 }
 .Literow:hover{

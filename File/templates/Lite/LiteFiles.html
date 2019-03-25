@@ -1,0 +1,79 @@
+{%load staticfiles%}
+
+<link href="{% static 'Modals/LiteDirectory.css' %}" rel="stylesheet" type="text/css"/>
+    <script>
+        var pathtodir,callback;
+        function showLiteDirModal(outputPathNode,callbackMeth){
+            pathtodir=outputPathNode;
+            callback=callbackMeth;
+            LiteDir.style.zIndex=200;
+            LiteDir.style.opacity=0.8;
+            LiteDirPath.innerText=pathParser(pathtodir.value);
+            getDirs()
+        }
+        function showLiteDirModalPO(outputPathNode){
+            pathtodir=outputPathNode;
+            LiteDir.style.zIndex=200;
+            LiteDir.style.opacity=0.8;
+            LiteDirPath.innerText=pathParser(pathtodir.value);
+            getDirs()
+        }
+        function changedir(dir){
+            LiteDirPath.innerText+="/"+dir;
+            getDirs();
+        }
+        function back(){
+            LiteDirPath.innerText=LiteDirPath.innerText.substring(0,LiteDirPath.innerText.lastIndexOf("/"));
+            getDirs();
+        }
+
+        function pathParser(path){
+            blocks=path.split("/");
+            return path.replace("/"+blocks[blocks.length-1],"")
+        }
+
+        function getDirs(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET','{{host}}/file/lite/explorerdir'+LiteDirPath.innerText,true);
+            xhr.send();
+            xhr.onreadystatechange=function(){
+                if(xhr.status==200 && xhr.readyState==4){
+                    if(LiteDirPath.innerText.length!=0)
+                        LiteDirs.innerHTML="<div class=Literow onclick=\"back()\"> <img src=\"{% static 'images/back.png' %}\" style=\"width:20px;\" ><span> Back</span></div>"
+                    var resp=JSON.parse(xhr.responseText)
+                    for (let i in resp)
+                        LiteDirs.innerHTML+="<div class=Literow onclick='changedir(\""+resp[i]+"\")'><img src=\"{% static 'images/folder.png' %}\" style=\"width:20px;\" ><span> "+resp[i]+"</span></div>";
+                    getFiles()
+                }
+            }
+        }
+        function getFiles(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET','{{host}}/file/lite/explorerfiles'+LiteDirPath.innerText,true);
+            xhr.send();
+            xhr.onreadystatechange=function(){
+                if(xhr.status==200 && xhr.readyState==4){
+                    var resp=JSON.parse(xhr.responseText)
+                    for (let i in resp)
+                        LiteDirs.innerHTML+="<div class=Literow onclick='selectfile(\""+resp[i]+"\")'><img src=\"{% static 'images/file.png' %}\" style=\"width:20px;\" ><span> "+resp[i]+"</span></div>";
+                }
+            }
+        }
+        function selectfile(file){
+            pathtodir.value=LiteDirPath.innerText+"/"+file;
+            closeModal();
+        }
+        function closeModal(){
+            LiteDir.style.opacity=0;
+            LiteDir.style.zIndex=-100;
+            if (callback!=undefined)callback()
+        }
+    </script>
+    
+    <div id=LiteDir>
+        <div class=Litewindow>
+            <span id=LiteDirPath class=Header></span>
+            <span class=close onclick="closeModal()">X</span>
+            <div id=LiteDirs></div>
+        </div>
+    </div>
