@@ -1,0 +1,33 @@
+nav{
+    width: 70px;
+    grid-area: navigate;
+    position: fixed;
+    bottom:0;
+    left:0;
+    top:0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #63cdda;
+    text-align: center;
+    color:white;
+    font-family:Dejavu Sans; 
+    border-right: 1px #777;
+}
+nav li{
+    margin-top: 10px;
+    padding-right: 7px;
+    padding-left: 7px;
+    list-style: none;
+    transition: all 0.5s ease;
+}
+nav li:hover{
+    background-color: #36bacce5;
+    cursor: pointer;
+}
+nav li img{
+    width: 50px;
+}
+nav div{
+    overflow-y: auto;
+}

@@ -1,110 +1,9 @@
 {%load staticfiles%}
 <script src='{% static "canvasjs.min.js" %}'></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="{% static 'styles/index.css' %}" rel="stylesheet" type="text/css">
 <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 <title>HomeCloud</title>
-
-
-
-
-<style>
-        #page{
-            grid-area: contentfield;
-            font-family: Dejavu Sans; 
-            padding-left: 20px;
-        }
-        #content{
-            display: grid;
-            grid-template-columns:  50% auto;
-            grid-template-rows:5% auto auto  ;
-            grid-template-areas: 
-                "title title"
-                "osname chart"
-                "hostname chart"
-                "cpuname chart"
-                "cpucount chart"
-                "cpupercent chart"
-                ". ."
-                "title2 title2"
-                "Netinfo1 Netinfo2"
-                "Netinfo3 Netinfo4"
-                "IFList IFList"
-                "title1 title1"
-                "Vmemory Smemory"
-                ". ."
-                ;
-            grid-column-gap: 10px;
-            grid-row-gap: 10px;
-        }
-        .title{
-            background-color: #778beb;
-            border-radius: 10px;
-            padding: 10px;
-            font-family: Dejavu Sans; 
-            font-weight: bold;
-            font-size: 130%;
-            color: white;
-            margin-right: 5px;
-            margin-bottom: 10px;
-        }
-        ul {
-            padding: 0;
-            margin-left: 0;
-        }
-        ul details{
-            margin: 5px;
-        }
-        ul details summary{
-            font-size: 17px;
-            cursor: pointer;
-        }
-        ul span{
-            font-size: 20px;
-            font-weight: bold;
-        }
-        
-        body{
-            margin: 0;
-            min-height:100%;
-            display: grid;
-            grid-template-columns: 70px auto;
-            grid-template-rows:100px auto;
-            grid-template-areas: 
-                
-                "navigate logoline "
-                "navigate contentfield "
-                "navigate footer";
-            
-            align-content: stretch; 
-            justify-items: stretch;
-        
-        }
-        #chart{
-            font-family: Dejavu Sans; 
-            background-color: white;
-            width: 400px;
-            height: 250px;
-            grid-area: chart;
-        }
-        #VMemory{
-            font-family: Dejavu Sans; 
-            background-color: white;
-            width: 400px;
-            height: 300px;
-            grid-area: Vmemory;
-        }
-        #SMemory{
-            font-family: Dejavu Sans; 
-            background-color: white;
-            width: 400px;
-            height: 300px;
-            grid-area: Smemory;
-        }
-        
-        
-        </style>
-
-
 
 <body>
     {% include "./blocks/logo.html" %}
@@ -204,27 +103,4 @@
     }
 </script>
 
-<script>
-    var cpu=document.getElementById("cpuusage");
-    requestCPU()
-    //setInterval(function(){requestCPU()},5000);
-
-    function requestCPU(){
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET','./cpuusage',true);
-        xhr.send();
-        xhr.onreadystatechange=function(){
-            if(xhr.status==200){
-                cpu.style.width=xhr.response+"%";   
-                cpu.innerText=xhr.response+"%"
-                if(xhr.response>75)
-                    cpu.style.backgroundColor="#e77f67";
-                else
-                    cpu.style.backgroundColor="#63cdda";
-            }else{
-                
-                console.log(xhr.statusText  );
-            }
-        }
-    }
-</script>
+<script src="{% static 'scripts/updatedata.js' %}"></script>
