@@ -16,12 +16,39 @@ def Shering(request,path):
                 "host":request.scheme + "://" + request.get_host(),
         })
 
+@login_required
+def SwithVisFile(request):
+        userfile=Publicfile.objects.filter(Sharinguser=request.user).get(pseudoname=request.POST['ModalData'])
+        userfile.isvisible=not userfile.isvisible== 'True'
+        userfile.save()
+        return HttpResponseRedirect("/file/public/share/getFiles")
+
+@login_required
+def DelPubFile(request):
+        Publicfile.objects.filter(Sharinguser=request.user).get(pseudoname=request.POST['ModalData']).delete()
+        return HttpResponseRedirect("/file/public/share/getFiles")
+
+@login_required
+def GetUserFile(request):
+        Uflies=[]
+        for i in Publicfile.objects.filter(Sharinguser=request.user):
+                try:
+                        size=os.path.getsize(i.path)
+                except FileNotFoundError:
+                        size=0
+
+                Uflies.append(UserFile(pn=i.pk,size=size,path=i.path,visible=i.isvisible))
+
+        return render(request, "Public/UserFileList.html", 
+        {
+                "host":request.scheme + "://" +request.get_host(),
+                "list":Uflies
+        })
+
 def exist(request):
         return HttpResponse(not Publicfile.objects.filter(pseudoname=request.POST['name']).count()>0)
 @login_required
 def AddFile(request):
-        print(request.POST)
-        print('isVisible' in request.POST.keys())
         Publicfile.objects.create(pseudoname=request.POST['name'],path=request.POST['path'],Sharinguser=request.user.username,isvisible='isVisible' in request.POST.keys()).save()
         return HttpResponseRedirect("/file/public/")
 
@@ -50,7 +77,7 @@ def explorePublic(request):
 
         return render(request, "Public/PublicList.html", 
         {
-                "host":request.get_host(),
+                "host":request.scheme + "://" +request.get_host(),
                 "list":Pflies
         })
 
@@ -62,3 +89,14 @@ class Public:
                 self.pn=pn
                 self.size=size
                 self.user=user
+class UserFile:
+        pn=""
+        size=0
+        visible=True
+        path=""
+        def __init__(self, pn, size,path, visible):
+                self.pn=pn
+                self.size=size
+                self.path=path
+                self.visible=visible
+        

@@ -18,7 +18,7 @@ def upload_file(request):
         if form.is_valid():
             for f in form.files.getlist('File'):
                 handle_uploaded_file(f,request.POST['path'],request)
-            return redirect("http://"+request.get_host()+"/file/explorer"+request.POST['path'])
+            return redirect(request.scheme + "://" +request.get_host()+"/file/explorer"+request.POST['path'])
     explorer(request,request.POST['path'])
 
 
@@ -27,9 +27,9 @@ conf=json.loads(open("static/config/Groups.json","r").read())
 @login_required
 def back(request,path):
     if path=="/":
-        redirect("http://"+request.get_host())
+        redirect(request.scheme + "://" +request.get_host())
     else:
-        return redirect("http://"+request.get_host()+"/file/explorer"+os.path.split(path)[0])
+        return redirect(request.scheme + "://" +request.get_host()+"/file/explorer"+os.path.split(path)[0])
 
 
 @login_required
@@ -64,14 +64,14 @@ def explorer(request, path):
                     FileList.groups[GroupQueue[i1]].list.append(fileobj(i,os.path.getsize(path+"/"+i),os.path.getctime(path+"/"+i)))
             else:
                 FileList.groups[GroupQueue["Other"]].list.append(fileobj(i,os.path.getsize(path+"/"+i),os.path.getctime(path+"/"+i)))
-    
+        
     return render(request, "File/explorer.html", 
     {
         "dirs": DirList,
         "disk":getDiskspace,
         "files":FileList,
         "path":path,
-        "host":"http://"+request.get_host(),
+        "host":request.scheme + "://" +request.get_host(),
         "pathes":getPathHierrarhy(path),
         "forms":UploadFileForm()
     })

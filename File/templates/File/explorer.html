@@ -71,13 +71,13 @@
                     <summary>{{i1.name}} ({{i1.list|length}}  <img src={% static i1.icon %} style="width:20px;" >)</summary>
                     {% for i in i1.list %}
                         <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)>
-                            <a target="blank" href='{{host}}/file/view{{path}}/{{i.name}}' class=name>
+                            <a target="blank" href='{{host}}/file/view{{path|escape}}/{{i.name|urlencode}}' class=name>
                                 {% if i.code   %}
                                     <img src="{{i.code}}" style="width: 30px;" >
                                 {% else %}
                                     <img src="{% static i1.icon %}" style="width:24px;" >
                                 {% endif %}
-                                {{i.name}}
+                                {{i.name| safe }}
                             </a> 
                             <span class=size>{{i.size|filesizeformat}}</span>
                             <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"}}</span>

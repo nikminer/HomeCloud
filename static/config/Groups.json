@@ -9,7 +9,7 @@
         "icon":"images/archive.png",
         "type":"file"
     },
-    "Documents":{
+    "Docs":{
         "formats":["DOC","DOCX","ODS","ODT","PDF","XLS"],
         "icon":"images/doc.jpg",
         "type":"file"

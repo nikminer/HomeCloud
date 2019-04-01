@@ -6,6 +6,7 @@ from .directory import getPathHierrarhyFile
 import json
 from PIL import Image
 import io
+import codecs
 
 from django.contrib.auth.decorators import login_required
 
@@ -31,12 +32,12 @@ def ViewSwitcher(request,path):
             "path":os.path.split(path)[0],
             "time":time.ctime(os.path.getctime(path)),
             "size":os.path.getsize(path),
-            "host":"http://"+request.get_host(),
+            "host":request.scheme + "://" +request.get_host(),
             "pathes":getPathHierrarhyFile(path)
         })
 @login_required
 def PreviewText(request, path):
-    text = open(path,"r",encoding='utf-8').read()
+    text= codecs.open(path, 'r', encoding='utf-8',errors='ignore').read()
 
     return render(request, "File/TextFilePreview.html", 
     {       
@@ -45,7 +46,7 @@ def PreviewText(request, path):
         "time":time.ctime(os.path.getctime(path)),
         "size":os.path.getsize(path),
         "text":text,
-        "host":"http://"+request.get_host(),
+        "host":request.scheme + "://" +request.get_host(),
         "pathes":getPathHierrarhyFile(path)
     })
 @login_required
@@ -60,7 +61,7 @@ def PreviewImage(request, path):
         "time":time.ctime(os.path.getctime(path)),
         "size":os.path.getsize(path),
         "hash":base,
-        "host":"http://"+request.get_host(),
+        "host":request.scheme + "://" +request.get_host(),
         "pathes":getPathHierrarhyFile(path)
     })
 

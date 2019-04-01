@@ -7,8 +7,6 @@
 {% include "./blocks/header.html" %}
 
 
-
-
 <style>
 body{
     margin: 0;
@@ -19,31 +17,39 @@ body{
     display:flex;
     flex-direction: column;
 }
-.rows>a{
+.file{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: stretch;
+}
+.file>a{
     display: grid;
-    
-    grid-template-areas: "File size user";
-    grid-template-columns: 75% 10% 15%;
+    grid-template-areas: "File size"
+    "path size";
+    grid-template-columns: auto 10%;
 
     text-decoration: none;
     color: black;
     font-size: 18px;
     padding-top:5px;
     padding-bottom: 10px;
+    width:100%;
     border-bottom: lightgrey 0.5px solid;
     transition: all 0.5s ease;
 }
-.rows>a:hover{
+.file>a:hover{
     background-color: #63cdda;
 }
-.rows>a>span{
+.file>a>span{
     color:black;
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 5px 0;
     padding-right: 30px;
-    font-size: 14px
+    font-size: 14px;
 }
 .rows h2{
     margin-bottom: 0;
@@ -63,6 +69,24 @@ body{
     background-color: #63cdda;
     cursor: pointer;
 }
+.FileBtn{
+    height: auto;
+    background-color: white;
+    border: none;
+    transition: all 0.5s ease;
+    border-left: lightgrey 0.5px solid;
+    padding: 5px 10px;
+    font-size: 17px;
+    width:90px;
+}
+.FileBtn:hover{
+    background-color: #63cdda;
+    cursor: pointer;
+    padding: 5px 20px;    
+}
+.DelBtn:hover{
+    background-color:#e15f41;
+}
 </style>
 
 <body>
@@ -72,22 +96,33 @@ body{
                 <h2>Public files on server</h2>
                 <span>Click to download</span>
             </div>
-            <a class="ToMyFiles" href={% url 'userpublic'  %}>My public files</a>
+            <a class="ToMyFiles" href= {% url 'serverpublic'  %} >Server public files</a>
         </div>
         
         
         {% for item in list %}
+        <div class="file">
             <a href={% url 'downloadPub' name=item.pn|escape %}>
                 <div style="display:flex;align-items: center;grid-area:File">
                     <img src="{% static 'images/file.png' %}" style="height: 24px;margin-right: 5px;"> {{item.pn|escape}}
                 </div>
+                <span style="grid-area:path">{{item.path|escape}}</span>
                 <span style="grid-area:size">
                     {{item.size|filesizeformat|escape}}
                 </span>
-                <span style="grid-area:user">
-                    {{item.user|escape}}
-                </span>
             </a>
+            <button class="FileBtn" onclick="ConfirmModal('{{item.pn|escape}}','{{host}}{% url 'SwthVisFile'  %}' ,'{% if item.visible|escape == "True" %}You want to Hide the file{% else %}You want a Visible this file{% endif %}?')" >
+                {% if item.visible|escape == "True" %}
+                    Visible
+                {% else %}
+                    Hidden
+                {% endif %}
+            </button>
+            <button class="FileBtn">Change</button>
+            <button class="FileBtn DelBtn" onclick="ConfirmModal('{{item.pn|escape}}','{{host}}{% url 'delpubfile' %}' ,'You sure delete file?')" >Delete</button>
+        </div>
         {% endfor %}
     </div>
 </body>
+
+{% include "./Modals/ConfirmModal.html" %}
