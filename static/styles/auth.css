@@ -1,0 +1,24 @@
+body{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-row-gap: 5%;
+    grid-template-rows:100px auto ;
+    grid-template-areas: "logoline bigspan "
+    "form form";
+}
+form{
+    margin: auto;
+    max-width:450px;
+    min-width:450px;
+    min-height: 250px;
+    max-height: 250px;
+    grid-area: form;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+form input{
+    font-family: Dejavu Sans;
+    padding: 10px;
+    border-radius: 5px;
+}
