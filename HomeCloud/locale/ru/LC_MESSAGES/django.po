@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-11 17:08+0300\n"
+"POT-Creation-Date: 2019-04-11 18:46+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,15 +101,18 @@ msgstr "Маска: "
 msgid "Main disk"
 msgstr "Основной диск"
 
-#: .\templates\HomeCloud\index.html:49
+#: .\templates\HomeCloud\index.html:49 .\templates\HomeCloud\index.html:60
+#: .\templates\HomeCloud\index.html:71
 msgid "Total: "
 msgstr "Всего: "
 
-#: .\templates\HomeCloud\index.html:50
+#: .\templates\HomeCloud\index.html:50 .\templates\HomeCloud\index.html:61
+#: .\templates\HomeCloud\index.html:72
 msgid "Used: "
 msgstr "Используется: "
 
-#: .\templates\HomeCloud\index.html:51
+#: .\templates\HomeCloud\index.html:51 .\templates\HomeCloud\index.html:62
+#: .\templates\HomeCloud\index.html:73
 msgid "Free: "
 msgstr "Свободно: "
 
@@ -117,6 +120,22 @@ msgstr "Свободно: "
 msgid "Main disk Usage: "
 msgstr "Загруженость основного диска: "
 
-#: .\views.py:83
+#: .\templates\HomeCloud\index.html:59
+msgid "Virtual Memory"
+msgstr "Виртуальная память"
+
+#: .\templates\HomeCloud\index.html:64
+msgid "Virtual Memory Usage: "
+msgstr "Использование виртуальной памяти: "
+
+#: .\templates\HomeCloud\index.html:70
+msgid "Swap Memory"
+msgstr "Память подкачки"
+
+#: .\templates\HomeCloud\index.html:75
+msgid "Swap Memory Usage: "
+msgstr "Использование памяти подкачки: "
+
+#: .\views.py:79
 msgid "Free disk space less 10 GB"
 msgstr "Свободного пространство на диске меньше 10Гб"

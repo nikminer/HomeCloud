@@ -38,7 +38,7 @@
                     <details>
                             <summary>{{i.0}}</summary>
                             {% for i1 in i.1%}
-                                <p>{% trans "Address: " %}<b>{{i1.address}}</b> {% trans "Netmask: " %}<b>{{i1.netmask}}</b> Broadcast:<b>{{i1.broadcast}}</b></p>
+                                <p style="padding: 6px;">{% trans "Address: " %}<b>{{i1.address}}</b> {% trans "Netmask: " %}<b>{{i1.netmask}}</b> Broadcast:<b>{{i1.broadcast}}</b></p>
                             {%endfor%}
                     </details>
                     
@@ -55,64 +55,31 @@
                         <div class="w3-container w3 w3-center" style="width:{{diskspace.percent}}%;background-color:#63cdda; color: white">{{diskspace.percent}}%</div>
                     </div>
                 </span>
-                <div id=VMemory></div>
-                <div id=SMemory></div>
+                <div id=VMemory>
+                    <center><b>{% trans "Virtual Memory"%}</b></center>
+                    <span>{% trans "Total: "%} <b>{{VMspace.total|filesizeformat}}</b></span>
+                    <span>{% trans "Used: " %} <b>{{VMspace.used|filesizeformat}}</b></span>
+                    <span>{% trans "Free: " %}<b>{{VMspace.free|filesizeformat}}</b></span>
+                    <span style="width: 90%;">
+                    {% trans "Virtual Memory Usage: " %}
+                    <div class="w3-light-grey">
+                        <div class="w3-container w3 w3-center" id=virtusage style="width:{{VMspace.percent}}%;background-color:#63cdda; color: white">{{VMspace.percent}}%</div>
+                    </div>
+                </div>
+                <div id=SMemory>
+                    <center><b>{% trans "Swap Memory"%}</b></center>
+                    <span>{% trans "Total: "%} <b>{{SMspace.total|filesizeformat}}</b></span>
+                    <span>{% trans "Used: " %} <b>{{SMspace.used|filesizeformat}}</b></span>
+                    <span>{% trans "Free: " %}<b>{{SMspace.free|filesizeformat}}</b></span>
+                    <span style="width: 90%;">
+                    {% trans "Swap Memory Usage: " %}
+                    <div class="w3-light-grey">
+                        <div class="w3-container w3 w3-center" id=swapusage style="width:{{SMspace.percent}}%;background-color:#63cdda; color: white">{{SMspace.percent}}%</div>
+                    </div>
+                </div>
             </div>
         </div>
         {% include "./blocks/footer.html" %}
 </body>
-
-
-<script>
-    /*
-    window.onload=function(){
-        var chart=new Chart("chart",{
-            animationEnabled:true,
-            title:{text:"Main Disk Usage ({{diskspace.total}} GB)",fontFamily:"arial"},
-            data:[{
-                type:"pie",
-                startAngle:45,
-                yValueFormatString: "##0.000\" GB\"",
-                indexLabel:"{label} {y}",
-                dataPoints:[
-                    {y:'{{diskspace.free}}',label:"Свободно", color:"#63cdda"},
-                    {y:'{{diskspace.used}}',label:"Занято", color:"#e15f41"}
-                ]
-            }]
-        });
-        chart.render();
-
-        var Vemory=new Chart("VMemory",{
-            animationEnabled:true,
-            title:{text:"Virtual Memory ({{VMtotalspace}} GB)",fontFamily:"arial"},
-            data:[{
-                type:"pie",
-                startAngle:45,
-                yValueFormatString: "##0.000\" GB\"",
-                indexLabel:"{label} {y}",
-                dataPoints:[
-                    {y:'{{VMfreespace}}',label:"Free", color:"#63cdda",},
-                    {y:'{{VMusedspace}}',label:"Used", color:"#e15f41"}
-                ]
-            }]
-        });
-        Vemory.render();
-        var Semory=new Chart("SMemory",{
-            animationEnabled:true,
-            title:{text:"Swap Memory ({{SMtotalspace}} GB)",fontFamily:"arial"},
-            data:[{
-                type:"pie",
-                startAngle:45,
-                yValueFormatString: "##0.000\" GB\"",
-                indexLabel:"{label} {y}",
-                dataPoints:[
-                    {y:'{{SMfreespace}}',label:"Свободно", color:"#63cdda"},
-                    {y:'{{SMusedspace}}',label:"Занято", color:"#e15f41"}
-                ]
-            }]
-        });
-        Semory.render();
-    }*/
-</script>
 
 <script src="{% static 'scripts/updatedata.js' %}"></script>

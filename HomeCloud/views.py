@@ -38,6 +38,12 @@ def convertBytes(byte):
 @login_required
 def getCPUpercent(request):
     return HttpResponse(psutil.cpu_percent(interval=1))
+@login_required
+def getVirtualmemory(request):
+    return HttpResponse(DiskSize(psutil.virtual_memory().free,psutil.virtual_memory().used,psutil.virtual_memory().total).percent)
+@login_required
+def getSwapmemory(request):
+    return HttpResponse(DiskSize(psutil.swap_memory().free,psutil.swap_memory().used,psutil.swap_memory().total).percent)
 
 class DiskSize:
     used=0
@@ -52,6 +58,10 @@ class DiskSize:
 
 def getDiskspace():
     return DiskSize(shutil.disk_usage("/").free,shutil.disk_usage("/").used,shutil.disk_usage("/").total)
+def Virtualmemory():
+    return DiskSize(psutil.virtual_memory().free,psutil.virtual_memory().used,psutil.virtual_memory().total)
+def Swapmemory():
+    return DiskSize(psutil.swap_memory().free,psutil.swap_memory().used,psutil.swap_memory().total)
 
 @login_required
 def index(request):
@@ -67,12 +77,8 @@ def index(request):
         "CPUname":platform.processor(),
         "CPUcount":multiprocessing.cpu_count(),
         "diskspace":getDiskspace(),
-        "VMfreespace":round(psutil.virtual_memory().free/1073741824,3),
-        "VMusedspace":round(psutil.virtual_memory().used/1073741824,3),
-        "VMtotalspace":round(psutil.virtual_memory().total/1073741824,3),
-        "SMfreespace":round(psutil.swap_memory().free/1073741824,3),
-        "SMusedspace":round(psutil.swap_memory().used/1073741824,3),
-        "SMtotalspace":round(psutil.swap_memory().total/1073741824,3),
+        "VMspace":Virtualmemory(),
+        "SMspace":Swapmemory(),
         "bytesent":psutil.net_io_counters().bytes_sent,
         "byterecv":psutil.net_io_counters().bytes_recv,
         "packsent":psutil.net_io_counters().packets_sent,

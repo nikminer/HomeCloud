@@ -6,7 +6,7 @@
 #content{
     display: grid;
     grid-template-columns:  50% auto;
-    grid-template-rows:5% auto auto  ;
+    grid-template-rows:55px auto auto  ;
     grid-template-areas: 
         "title title"
         "osname DiskSpan"
@@ -40,11 +40,19 @@
 ul {
     padding: 0;
     margin-left: 0;
+    transition: all 0.7s ease;
+}
+ul details:hover{
+    background-color: #63cdda;
+    color: white;
 }
 ul details{
     margin: 5px;
+    padding: 2px;
+    border-radius: 2px;
 }
 ul details summary{
+    padding: 2px;
     font-size: 17px;
     cursor: pointer;
 }
@@ -69,24 +77,23 @@ body{
     justify-items: stretch;
 
 }
-#chart{
-    font-family: Dejavu Sans; 
-    background-color: white;
-    width: 400px;
-    height: 250px;
-    grid-area: chart;
-}
 #VMemory{
     font-family: Dejavu Sans; 
     background-color: white;
     width: 400px;
-    height: 300px;
+    height: 200px;
     grid-area: Vmemory;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 #SMemory{
     font-family: Dejavu Sans; 
     background-color: white;
     width: 400px;
-    height: 300px;
+    height: 200px;
     grid-area: Smemory;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

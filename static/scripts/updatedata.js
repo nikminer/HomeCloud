@@ -1,6 +1,8 @@
-var cpu=document.getElementById("cpuusage");
+
     requestCPU()
-    setInterval(function(){requestCPU()},5000);
+    requestSwap()
+    requestVirt()
+    setInterval(function(){requestCPU(); requestVirt();requestSwap()},5000);
 
     function requestCPU(){
         var xhr = new XMLHttpRequest();
@@ -8,15 +10,44 @@ var cpu=document.getElementById("cpuusage");
         xhr.send();
         xhr.onreadystatechange=function(){
             if(xhr.status==200){
-                cpu.style.width=xhr.response+"%";   
-                cpu.innerText=xhr.response+"%"
+                cpuusage.style.width=xhr.response+"%";   
+                cpuusage.innerText=xhr.response+"%"
                 if(xhr.response>75)
-                    cpu.style.backgroundColor="#e77f67";
+                    cpuusage.style.backgroundColor="#e77f67";
                 else
-                    cpu.style.backgroundColor="#63cdda";
-            }else{
-                
-                console.log(xhr.statusText  );
+                    cpuusage.style.backgroundColor="#63cdda";
+            }
+        }
+    }
+
+    function requestVirt(){
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET','./virtualusage',true);
+        xhr.send();
+        xhr.onreadystatechange=function(){
+            if(xhr.status==200){
+                virtusage.style.width=xhr.response+"%";   
+                virtusage.innerText=xhr.response+"%"
+                if(xhr.response>75)
+                    virtusage.style.backgroundColor="#e77f67";
+                else
+                    virtusage.style.backgroundColor="#63cdda";
+            }
+        }
+    }
+
+    function requestSwap(){
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET','./swapusage',true);
+        xhr.send();
+        xhr.onreadystatechange=function(){
+            if(xhr.status==200){
+                swapusage.style.width=xhr.response+"%";   
+                swapusage.innerText=xhr.response+"%"
+                if(xhr.response>75)
+                    swapusage.style.backgroundColor="#e77f67";
+                else
+                    swapusage.style.backgroundColor="#63cdda";
             }
         }
     }

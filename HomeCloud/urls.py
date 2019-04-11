@@ -10,6 +10,8 @@ urlpatterns = [
     path('',views.index),
     path('i18n/',  include('django.conf.urls.i18n')),
     path('cpuusage',views.getCPUpercent),
+    path('swapusage',views.getSwapmemory),
+    path('virtualusage',views.getVirtualmemory),
     path('accounts/login/',views.getlogin),
     path('auth/',views.login),
     path('logout/',views.logout),
