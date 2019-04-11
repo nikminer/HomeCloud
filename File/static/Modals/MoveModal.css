@@ -46,12 +46,15 @@
     display: grid;
     grid-area: form;
     grid-template-rows: 50px 50px 50px;
-    grid-template-columns: auto 90px 50px;
+    grid-template-columns: auto 120px 90px;
     grid-template-areas: 
         "path1 selectbtn1 ."
         "path2 selectbtn2 ."
         "mvsubm mvsubm mvsubm";
     margin-top: 20px;
+}
+.MVForm>span{
+    text-align: center;
 }
 .MVForm input{
     font-size: 17px;

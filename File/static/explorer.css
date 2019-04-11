@@ -6,7 +6,8 @@ body{
     grid-template-areas: 
         "headeres headeres"
         "nav nav"
-        "content panel";
+        "content panel"
+        "footer panel";
     font-family: Dejavu Sans; 
 }
 .nav{

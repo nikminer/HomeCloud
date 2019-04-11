@@ -1,5 +1,5 @@
 {%load staticfiles%}
-
+{% load i18n %}
 <style>
 header{
     grid-area: headeres;
@@ -44,7 +44,7 @@ header h2 {
     <div class="logo">
         <a href="/">
             <h1 style="font-weight: bold!important;">HomeCloud</h1>
-            <h4>Free Cloud in your home</h4>
+            <h4>{% trans 'Free Cloud in your home' %}</h4>
         </a>
     </div>
     <h2>Public</h2>

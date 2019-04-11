@@ -13,8 +13,8 @@
     border-right: gray 1px solid;
 }
 .navBtn:hover {
-    width: 200px;
-    max-width: 200px;
+    width: 220px;
+    max-width: 220px;
     transition-property: width;
     transition-duration: 0.2s;
     background-color: white;

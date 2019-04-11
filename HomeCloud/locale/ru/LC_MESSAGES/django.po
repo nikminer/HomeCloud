@@ -22,7 +22,7 @@ msgstr ""
 
 #: .\templates\HomeCloud\blocks\footer.html:7
 msgid "Developed by "
-msgstr "Разработанно "
+msgstr "Разработал "
 
 #: .\templates\HomeCloud\blocks\footer.html:7
 msgid " in 2019"

@@ -1,4 +1,5 @@
 {%load staticfiles%}
+{% load i18n %}
 <title>HomeCloud File</title>
 <link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
 <link href="{% static 'explorer.css' %}" rel="stylesheet" type="text/css"/>
@@ -55,10 +56,10 @@
                     <span class=size></span>
                     <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"}}</span>
                     <div class="panel">
-                        <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfolder{{path}}/{{i.name}}')" title="Download" style="width:24px ;cursor: pointer">
-                        <img src="{% static 'images/Upload.png' %}" onclick="showUpModalP('{{path}}/{{i.name}}')" title="Upload" style="width:24px;height:23px;cursor: pointer">
-                        <img src="{% static 'images/move.png' %}" onclick="showMoveModalP('{{path}}','{{i.name}}')" title="Movе folder" style="width:24px;cursor: pointer">
-                        <img src="{% static 'images/delete.png' %}" onclick="confirmDeleteDir('{{path}}/{{i.name}}')" title="Delete" style="width:24px;cursor: pointer">
+                        <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfolder{{path}}/{{i.name}}')" title="{% trans 'Download' %}" style="width:24px ;cursor: pointer">
+                        <img src="{% static 'images/Upload.png' %}" onclick="showUpModalP('{{path}}/{{i.name}}')" title="{% trans 'Upload' %}" style="width:24px;height:23px;cursor: pointer">
+                        <img src="{% static 'images/move.png' %}" onclick="showMoveModalP('{{path}}','{{i.name}}')" title="{% trans 'Movе folder' %}" style="width:24px;cursor: pointer">
+                        <img src="{% static 'images/delete.png' %}" onclick="confirmDeleteDir('{{path}}/{{i.name}}')" title="{% trans 'Delete' %}" style="width:24px;cursor: pointer">
                     </div>
                 </div>
             {% endfor%}
@@ -82,10 +83,10 @@
                             <span class=size>{{i.size|filesizeformat}}</span>
                             <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"}}</span>
                             <div class="panel">
-                                <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfile{{path}}/{{i.name}}')" title="Download" style="width:24px;cursor: pointer">
-                                <img src="{% static 'images/shere.png' %}" onclick="window.location.replace('{{host}}/file/public/sharing{{path}}/{{i.name}}')" title="Share file" style="width:24px;cursor: pointer">
+                                <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfile{{path}}/{{i.name}}')" title="{% trans 'Download' %}" style="width:24px;cursor: pointer">
+                                <img src="{% static 'images/shere.png' %}" onclick="window.location.replace('{{host}}/file/public/sharing{{path}}/{{i.name}}')" title="{% trans 'Share' %}" style="width:24px;cursor: pointer">
                                 <!--<img src="{% static 'images/copy.png' %}" title="Copy" style="width:24px;cursor: pointer">-->
-                                <img src="{% static 'images/delete.png' %}" title="Delete" onclick="confirmDeleteFile('{{path}}/{{i.name}}','{{i1.name}}')" style="width:24px;cursor: pointer">
+                                <img src="{% static 'images/delete.png' %}" title="{% trans 'Delete' %}" onclick="confirmDeleteFile('{{path}}/{{i.name}}','{{i1.name}}')" style="width:24px;cursor: pointer">
                             </div>
                         </div>
                     {% endfor%}

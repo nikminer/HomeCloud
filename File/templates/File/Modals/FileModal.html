@@ -1,19 +1,20 @@
 {%load staticfiles%}
+{% load i18n %}
 
 <link href="{% static 'Modals/FileModal.css' %}" rel="stylesheet" type="text/css"/>
 
 <form draggable="true" id=FileModal action="{% url 'upload' %}" enctype="multipart/form-data" method="POST" onkeypress="if(event.keyCode == 13) return false;" >
     <div id=FileWindow class=windowUp>
-        <span class=Header id=UpPath>Uploading files</span>
+        <span class=Header id=UpPath>{% trans "Uploading files" %}</span>
         <span class=close onclick="closeUpModal()">X</span>
         {% csrf_token %}
         <input type="text" readonly value="{{path}}" id=Uploadpath name=path>
-        <span onclick="showLiteDirModal(Uploadpath,showUpModal),closeUpModal()" class=selctbtn>Change</span     >
-        <label class="fileinput" ><span id=fileNameBtn>Select file</span>{{ forms }}</label>
-        <input id=btnUpload disabled style="grid-area:panel" type="submit" value="Upload">
+        <span onclick="showLiteDirModal(Uploadpath,showUpModal),closeUpModal()" class=selctbtn>{% trans "Change" %}</span     >
+        <label class="fileinput" ><span id=fileNameBtn>{% trans "Select file" %}</span>{{ forms }}</label>
+        <input id=btnUpload disabled style="grid-area:panel" type="submit" value="{% trans 'Upload' %}">
     </div>
     <div id=dropzone>
-        <span id=dropzonelabel>Drag your files here</span>
+        <span id=dropzonelabel>{% trans 'Drag your files here' %}</span>
     </div>
 </form>
 

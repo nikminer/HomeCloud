@@ -14,7 +14,9 @@ footer{
 footer>div{
     grid-area: span;
 }
-
+footer>div>span>a{
+    color: white;
+}
 footer>form{
     grid-area: language;
     display: flex;

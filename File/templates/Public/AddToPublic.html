@@ -1,7 +1,6 @@
-<title>Sharing</title>
-
 {%load staticfiles%}
-
+{% load i18n %}
+<title>{% trans 'Sharing' %}</title>
 <link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
 
 
@@ -69,19 +68,19 @@ form input{
 
 <body>
     <div style="margin:auto;width:900px;margin-top: 60px;">
-        <h2>Sharing file</h2>
+        <h2>{% trans 'Sharing file' %}</h2>
         <form method="POST" id=form action="/file/public/share/addfile" onkeypress="if(event.keyCode == 13) return false;">
             <div>
                 <input style="width:750px" type="text" id=filePAth name=path value="{{path}}" readonly>
-                <span  onclick="showLiteDirModalPO(filePAth)" id=Change1 class=selctbtn >Change</span>
+                <span  onclick="showLiteDirModalPO(filePAth)" id=Change1 class=selctbtn >{% trans 'Change' %}</span>
             </div>
             
-            <span>Shered Link: {{host}}/file/public/<input name=name type="text" id=pseudoname value="SharedFile" onchange="checkname()"></span>
-            <span id=mess>Pseudoname is avilable!</span>
+            <span>{% trans 'Shered Link' %}: {{host}}/file/public/<input name=name type="text" id=pseudoname value="SharedFile" onchange="checkname()"></span>
+            <span id=mess>{% trans 'Pseudoname is avilable' %}!</span>
             <div>
-                <input type="checkbox" name=isVisible id=isVisible  checked><label for=isVisible> Is Visible</label>
+                <input type="checkbox" name=isVisible id=isVisible  checked><label for=isVisible> {% trans 'Is Visible' %}</label>
             </div>
-            <input id=submit type="submit"  value="Share File">
+            <input id=submit type="submit"  value="{% trans 'Share File' %}">
             {% csrf_token %}
         </form>
     </div>
@@ -117,14 +116,14 @@ function checkname(){
             if (xhr.response=="False")
             {
                 submit.style.display="None";
-                mess.innerText="Pseudoname is not avilable!";
+                mess.innerText="{% trans 'Pseudoname is not avilable' %}!";
                 pseudoname.style.borderColor="red";
                 mess.style.color="red"
             }
             if (xhr.response=="True"){
                 submit.style.display="";
                 pseudoname.style.borderColor="green"
-                mess.innerText="Pseudoname is avilable!";
+                mess.innerText="{% trans 'Pseudoname is not avilable' %}!";
                 mess.style.color="green"
             }                   
         }

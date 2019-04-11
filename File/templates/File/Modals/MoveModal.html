@@ -1,4 +1,5 @@
 {%load staticfiles%}
+{% load i18n %}
 <link href="{% static 'Modals/MoveModal.css' %}" rel="stylesheet" type="text/css"/>
 
 <script>
@@ -20,15 +21,15 @@
         
         <div id=MovetModal>
             <div class=MVwindow>
-                <span class=Header>Moving Directory</span>
+                <span class=Header>{% trans "Moving Directory" %}</span>
                 <span class=close onclick="closeMoveModal()">X</span>
                 <form action="{{host}}/file/movedir" method="POST" class=MVForm onkeypress="if(event.keyCode == 13) return false;">
                     {% csrf_token %}
                     <input style="width: 80%;margin-left: 10px;" name=originalpath id=Mvpath1 value="{{path}}" readonly type="text">
-                    <span onclick="showLiteDirModal(Mvpath1,showMoveModal),closeMoveModal()" id=Change1 class=selctbtn >Change</span>
+                    <span onclick="showLiteDirModal(Mvpath1,showMoveModal),closeMoveModal()" id=Change1 class=selctbtn >{% trans "Change" %}</span>
                     <input style="width: 80%;margin-left: 10px;" name=destionalpath id=Mvpath2 value="{{path}}" readonly type="text">
-                    <span onclick="showLiteDirModal(Mvpath2,showMoveModal),closeMoveModal()" id=Change2 class=selctbtn >Change</span>
-                    <input id=MVsubmit type="submit" value="Move">
+                    <span onclick="showLiteDirModal(Mvpath2,showMoveModal),closeMoveModal()" id=Change2 class=selctbtn >{% trans "Change" %}</span>
+                    <input id=MVsubmit type="submit" value="{% trans 'Move' %}">
                 </form>
             </div>
         </div>

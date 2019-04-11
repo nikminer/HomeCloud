@@ -124,6 +124,7 @@ USE_TZ = True
 LOCALE_PATHS = (
     'locale',
     os.path.join('HomeCloud/', 'locale'),
+    os.path.join('File/', 'locale'),
 )
 
 # Static files (CSS, JavaScript, Images)

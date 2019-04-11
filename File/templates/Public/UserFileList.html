@@ -1,7 +1,8 @@
-<title>Public files on server</title>
+
 
 {%load staticfiles%}
-
+{% load i18n %}
+<title>{% trans 'Public files on server' %}</title>
 <link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
 
 {% include "./blocks/header.html" %}
@@ -93,10 +94,10 @@ body{
     <div class="rows">
         <div style="margin-bottom: 20px;display: flex;flex-direction: row;align-items: center;justify-content: space-between">
             <div>
-                <h2>Public files on server</h2>
-                <span>Click to download</span>
+                <h2>{% trans 'Public files on server' %}</h2>
+                <span>{% trans 'Click to download' %}</span>
             </div>
-            <a class="ToMyFiles" href= {% url 'serverpublic'  %} >Server public files</a>
+            <a class="ToMyFiles" href= {% url 'serverpublic'  %} >{% trans 'Server public files' %}</a>
         </div>
         
         
@@ -111,15 +112,15 @@ body{
                     {{item.size|filesizeformat|escape}}
                 </span>
             </a>
-            <button class="FileBtn" onclick="ConfirmModal('{{item.pn|escape}}','{{host}}{% url 'SwthVisFile'  %}' ,'{% if item.visible|escape == "True" %}You want to Hide the file{% else %}You want a Visible this file{% endif %}?')" >
+            <button class="FileBtn" onclick="ConfirmModal('{{item.pn|escape}}','{{host}}{% url 'SwthVisFile'  %}' ,'{% if item.visible|escape == "True" %}{% trans "You want to Hide the file" %}{% else %}{% trans "You want a Visible this file" %}{% endif %}?')" >
                 {% if item.visible|escape == "True" %}
-                    Visible
+                    {% trans 'Visible' %}
                 {% else %}
-                    Hidden
+                    {% trans 'Hidden' %} 
                 {% endif %}
             </button>
-            <button class="FileBtn">Change</button>
-            <button class="FileBtn DelBtn" onclick="ConfirmModal('{{item.pn|escape}}','{{host}}{% url 'delpubfile' %}' ,'You sure delete file?')" >Delete</button>
+            <!--<button class="FileBtn">{% trans 'Change' %}</button>-->
+            <button class="FileBtn DelBtn" onclick="ConfirmModal('{{item.pn|escape}}','{{host}}{% url 'delpubfile' %}' ,'{% trans "You sure delete file" %}?')" >{% trans 'Delete' %}</button>
         </div>
         {% endfor %}
     </div>

@@ -1,4 +1,4 @@
-{%load staticfiles%}
+{%load staticfiles%}{% load i18n %}
 
 <link href="{% static 'blocks/panel.css' %}" rel="stylesheet" type="text/css"/>
 
@@ -6,7 +6,7 @@
 <panel>
     <div id=panelcnt>
         {% if dirs%}
-            <b style="padding-left:20px;">Groups:</b>
+            <b style="padding-left:20px;">{% trans "Groups:" %}</b>
        
             <a href="#Folders">
                 <img style="width:17px;" src="{% static 'images/folder.png' %}"> Folders ({{dirs|length}})
@@ -20,8 +20,8 @@
             {% endif %}
         {% endfor %}
         <div style="margin-top: 20%;display: flex; font-size: 15px; flex-direction: column;align-items: center ">
-            <span style="font-weight:bold">Свободно:</span> 
-            <span>{{disk.free|filesizeformat}} из {{disk.total|filesizeformat}}</span>
+            <span style="font-weight:bold">{% trans "Disk usage:" %}</span> 
+            <span>{{disk.free|filesizeformat}} {% trans "of" %} {{disk.total|filesizeformat}}</span>
             <progress id=freesize min=0 max="{{disk.total}}" value="{{disk.used}}"></progress>
          </div>
     </div>
