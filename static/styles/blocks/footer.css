@@ -8,4 +8,41 @@ footer{
     padding-top: 10px;
     padding-left: 20px;
     font-family: Arial, Helvetica, sans-serif;
+    display: grid;
+    grid-template-areas: "span language";
+}
+footer>div{
+    grid-area: span;
+}
+
+footer>form{
+    grid-area: language;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: stretch;
+}
+
+footer>form>input[type="submit"]{
+    cursor: pointer;
+    margin-left: 10px;
+    background-color: white;
+    color: black;
+    border: 2px solid #63cdda;
+    font-weight: bold;
+    border-radius: 2px;
+}
+
+footer>form>input[type="submit"]:hover{
+    background-color: lightgray;
+}
+
+footer>form>select{
+    width:auto;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: white;
+    color: black;
+    border: 2px solid #63cdda;
+    border-radius: 2px;
 }

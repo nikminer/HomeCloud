@@ -9,11 +9,11 @@
     grid-template-rows:5% auto auto  ;
     grid-template-areas: 
         "title title"
-        "osname chart"
-        "hostname chart"
-        "cpuname chart"
-        "cpucount chart"
-        "cpupercent chart"
+        "osname DiskSpan"
+        "hostname DiskTotal"
+        "cpuname DiskUsed"
+        "cpucount DiskFree"
+        "cpupercent DiskBar"
         ". ."
         "title2 title2"
         "Netinfo1 Netinfo2"
