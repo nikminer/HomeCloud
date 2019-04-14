@@ -1,19 +1,20 @@
 {%load staticfiles%}
+{% load i18n %}
 
 <link href="{% static 'blocks/header.css' %}" rel="stylesheet" type="text/css"/>
 
 <header>
     <div class="logo">
-        <a href={{host}}>
+        <a href={{host|escape}}>
             <h1 style="font-weight: bold!important;">HomeCloud</h1>
-            <h4>Free Cloud in your home</h4>
+            <h4>{% trans "Free Cloud in your home" %}</h4>
         </a>
     </div>
     <div class="path">
-        <span>CURRENT PATH:</span></br>
-        <a href="{{host}}/file/explorer/" style="font-size:150%">/</a>
-        {% for i in pathes %}
-           <a href="{{host}}/file/explorer/{{i.hierrarhy}}">{{i.dir}}/</a>
+        <span>{% trans "CURRENT PATH:" %}</span></br>
+        <a href="{{host|escape}}/file/explorer/" style="font-size:150%">/</a>
+        {% for i|escape in pathes|escape %}
+           <a href="{{host|escape}}/file/explorer/{{i.hierrarhy|escape}}">{{i.dir|escape}}/</a>
         {% endfor %}
     </div>
 </header>

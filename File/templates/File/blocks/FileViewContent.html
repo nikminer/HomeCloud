@@ -1,18 +1,19 @@
 {%load staticfiles%}
+{% load i18n %}
 
 <link href="{% static 'blocks/FileViewContent.css' %}" rel="stylesheet" type="text/css"/>
 
 <div class="listinfo">
     <span>
-        <b>Filename:</b><span id=file>{{filename}}</span>
-        <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(file)" title="Copy To Clipboard" style="width:20px;cursor: pointer">
+        <b>{% trans "File name:" %}</b><span id=file>{{filename|escape}}</span>
+        <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(file)" title="{% trans 'Copy To Clipboard' %}" style="width:20px;cursor: pointer">
     </span>
     <span>
-        <b>Path to file:</b><span id=path>{{path}}</span>
-        <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(path)" title="Copy To Clipboard" style="width:20px;cursor: pointer">
+        <b>{% trans "Path to file:" %}</b><span id=path>{{path|escape}}</span>
+        <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(path)" title="{% trans 'Copy To Clipboard' %}" style="width:20px;cursor: pointer">
     </span>
-    <span><b>Created:</b> {{time}}</span>
-    <span><b>Size:</b> {{size|filesizeformat}}</span>
+    <span><b>{% trans "Created:" %}</b> {{time|escape}}</span>
+    <span><b>{% trans "Size:" %}</b> {{size|filesizeformat|escape}}</span>
 </div>
 
 <script>
@@ -24,7 +25,7 @@
         document.execCommand('copy')
         document.body.removeChild(copytext)
         var temp=obj.innerText;
-        obj.innerText="Сopied";
+        obj.innerText="{% trans 'Сopied' %}";
         setTimeout(function(){obj.innerText=temp},700)
     }
 </script>

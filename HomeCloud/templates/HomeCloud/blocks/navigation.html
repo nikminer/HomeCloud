@@ -1,4 +1,6 @@
 {%load staticfiles%}
+{% load i18n %}
+
 <link rel="stylesheet" href="{% static 'styles/blocks/navigation.css' %}" rel="stylesheet" type="text/css">
 <nav>
     <div>
@@ -6,7 +8,7 @@
         <li>
             <a style="text-decoration:none" href="/file/explorer~">
                 <img src="{% static 'images/folder.png' %}"><br>
-                <span >File</span>
+                <span>File</span>
             </a>
         </li>        
         <li>
@@ -19,7 +21,7 @@
     <li>
         <a style="text-decoration:none" href="./logout/">
             <img src=http://cdn.onlinewebfonts.com/svg/img_564295.png style="width: 50px;padding-top:10px;padding-right: 7px;padding-left: 7px;"><br>
-            <span >Exit</span>
+            <span>{% trans "Exit" context "Logout"%}</span>
         </a>
     </li>
 </nav>

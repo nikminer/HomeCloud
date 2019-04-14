@@ -1,4 +1,4 @@
-<title>{{filename}}</title>
+<title>{{filename|escape}}</title>
 
 {%load staticfiles%}
 
@@ -11,7 +11,7 @@
 <div class="content">
     {% include "./blocks/FileViewContent.html" %}
     <center>
-        <h2>{{filename}}</h2>
+        <h2>{{filename|escape}}</h2>
     </center>
-    <pre class=preview>{{text}}</pre>
+    <pre class=preview>{{text|escape}}</pre>
 </div>  

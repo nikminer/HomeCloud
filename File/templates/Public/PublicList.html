@@ -1,13 +1,9 @@
-<title>Public files on server</title>
-
+{% load i18n %}
 {%load staticfiles%}
-
+<title>{% trans 'Public files on server' %}</title>
 <link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
 
 {% include "./blocks/header.html" %}
-
-
-
 
 <style>
 body{
@@ -69,14 +65,14 @@ body{
     <div class="rows">
         <div style="margin-bottom: 20px;display: flex;flex-direction: row;align-items: center;justify-content: space-between">
             <div>
-                <h2>Public files on server</h2>
-                <span>Click to download</span>
+                <h2>{% trans 'Public files on server' %}</h2>
+                <span>{% trans 'Click to download' %}</span>
             </div>
-            <a class="ToMyFiles" href={% url 'userpublic'  %}>My public files</a>
+            <a class="ToMyFiles" href={% url 'userpublic'  %}>{% trans 'My public files' %}</a>
         </div>
         
         
-        {% for item in list %}
+        {% for item|escape in list|escape %}
             <a href={% url 'downloadPub' name=item.pn|escape %}>
                 <div style="display:flex;align-items: center;grid-area:File">
                     <img src="{% static 'images/file.png' %}" style="height: 24px;margin-right: 5px;"> {{item.pn|escape}}

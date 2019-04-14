@@ -1,4 +1,5 @@
 {%load staticfiles%}
+{% load i18n %}
 
 <link href="{% static 'Modals/TextInputModal.css' %}" rel="stylesheet" type="text/css"/>
 
@@ -22,7 +23,7 @@
             function showTextModal(){
                 TextInputModal.style.zIndex=200;
                 TextInputModal.style.opacity=0.8;
-                MKPath.value="New Folder"; 
+                MKPath.value="{% trans 'New Folder' %}"; 
                 checkdir();
             }
             function closeTextModal(){
@@ -33,16 +34,16 @@
             function checkdir(){
                 var xhr = new XMLHttpRequest();
                
-                xhr.open('POST','{{host}}/file/exdir',true);
+                xhr.open('POST','{{host|escape}}/file/exdir',true);
                 xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.send("path="+encodeURIComponent("{{path}}/"+MKPath.value));
+                xhr.send("path="+encodeURIComponent("{{path|escape}}/"+MKPath.value));
                 xhr.onreadystatechange=function(){
                     if(xhr.status==200){
                         if (xhr.response=="True")
                         {
                             MKsubmit.style.display="None";
-                            MKmess.innerText="Директория уже существует";
+                            MKmess.innerText="{% trans 'Directory is exist' %}";
                             MKPath.style.borderColor="red";
                         }
                         if (xhr.response=="False"){
@@ -55,20 +56,20 @@
                 }
             }
             function mkdir(){
-                window.location.replace('{{host}}/file/mkdir'+MKPath.value);
+                window.location.replace('{{host|escape}}/file/mkdir'+MKPath.value);
             }
         </script>
         
         <div id=TextInputModal>
             <div class=MKwindow>
-                <span class=Header>Creating Directory</span>
+                <span class=Header>{% trans "Creating Directory" %}</span>
                 <span class=close onclick="closeTextModal()">X</span>
                 <form class=MKForm method="POST" action="{{host}}/file/mkdir" onkeypress="if(event.keyCode == 13) return false;">
                     <input style="width: 80%;" onchange="checkdir()" name=path id=MKPath type="text">
                     {% csrf_token %}    
-                    <input id=MKsubmit type="submit" value="Create"></br>
+                    <input id=MKsubmit type="submit" value="{% trans 'Create' %}"></br>
                     <label id=MKmess style="color:red;margin-left: 10px;"></label>
-                    <input name=dirpath type="hidden" value="{{path}}/">
+                    <input name=dirpath type="hidden" value="{{path|escape}}/">
                 </form>
             </div>
         </div>

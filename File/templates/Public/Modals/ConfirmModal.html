@@ -1,3 +1,4 @@
+{% load i18n %}
 <style>
 #ConfModal{
     position: fixed;
@@ -79,7 +80,7 @@
         pathToFile="";
         callbackFunc="";
         headerSpan="";
-        function ConfirmModal(data,url,header="You sure?"){
+        function ConfirmModal(data,url,header="{% trans 'You sure?' %}"){
             pathToFile=data;
             callbackFunc=url;
             sendModal.value=header;
@@ -111,8 +112,8 @@
             <form id=ModalPanel method="POST" onkeypress="if(event.keyCode == 13) return false;">
                 {% csrf_token %}
                 <input type="hidden" name="ModalData" id=sendModal>
-                <input type="submit" class="btn btnyes" value="Yes">
-                <span class="btn btnno" onClick=closeConfModal>No</span>
+                <input type="submit" class="btn btnyes" value="{% trans 'Yes' %}">
+                <span class="btn btnno" onClick=closeConfModal>{% trans 'No' %}</span>
             </form>
         </div>
     </div>

@@ -1,4 +1,5 @@
 {%load staticfiles%}
+{% load i18n %}
 
 <link href="{% static 'Modals/LiteDirectory.css' %}" rel="stylesheet" type="text/css"/>
     <script>
@@ -8,7 +9,7 @@
             callback=callbackMeth;
             LiteDir.style.zIndex=200;
             LiteDir.style.opacity=0.8;
-            LiteDirPath.innerText="{{path}}";
+            LiteDirPath.innerText="{{path|escape}}";
             getDirs()
         }
         function changedir(dir){
@@ -21,13 +22,13 @@
         }
         function getDirs(){
             var xhr = new XMLHttpRequest();
-            xhr.open('GET','{{host}}/file/lite/explorerdir'+LiteDirPath.innerText,true);
+            xhr.open('GET','{{host|escape}}/file/lite/explorerdir'+LiteDirPath.innerText,true);
             xhr.send();
             xhr.onreadystatechange=function(){
                 if(xhr.status==200 && xhr.readyState==4){
                     var HTML="";
                     if(LiteDirPath.innerText.length!=0)
-                        HTML+="<div class=Literow onclick=\"back()\"> <img src=\"{% static 'images/back.png' %}\" style=\"width:20px;\" ><span> Back</span></div>"
+                        HTML+="<div class=Literow onclick=\"back()\"> <img src=\"{% static 'images/back.png' %}\" style=\"width:20px;\" ><span>{% trans 'Back' %}</span></div>"
                     var resp=JSON.parse(xhr.responseText)
                     for (let i in resp)
                         HTML+="<div class=Literow onclick='changedir(\""+resp[i]+"\")'><img src=\"{% static 'images/folder.png' %}\" style=\"width:20px;\" ><span> "+resp[i]+"</span></div>";
@@ -49,7 +50,7 @@
     <div id=LiteDir>
         <div class=Litewindow>
             <span id=LiteDirPath class=Header></span>
-            <button id=LiteConfBtn onclick="Selectdir()">Confirm</button>
+            <button id=LiteConfBtn onclick="Selectdir()">{% trans 'Confirm' %}</button>
             <span class=close onclick="closeModal()">X</span>
             <div id=LiteDirs></div>
             

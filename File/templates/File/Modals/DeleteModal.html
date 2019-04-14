@@ -1,15 +1,16 @@
 {%load staticfiles%}
+{% load i18n %}
 
 <link href="{% static 'Modals/DeleteModal.css' %}" rel="stylesheet" type="text/css"/>
     <script>
         function confirmDeleteFile(path,grope){
-            ModalPanel.action="{{host}}/file/delfile"
+            ModalPanel.action="{{host|escape}}/file/delfile"
             sendDelPath.value=path;
             
             showModal(grope+": "+path);
         }
         function confirmDeleteDir(path){
-            ModalPanel.action="{{host}}/file/deldir"
+            ModalPanel.action="{{host|escape}}/file/deldir"
             sendDelPath.value=path;
             showModal("Folder: "+path);
         }
@@ -27,14 +28,14 @@
     
     <div id=DelModal>
         <div class=window>
-            <span class=Header>You sure delete?</span>
+            <span class=Header>{% trans "You sure delete?" %}</span>
             <span id=DelPath></span>
             <span class=close onclick="closeDelModal()">X</span>
             <form id=ModalPanel method="POST" onkeypress="if(event.keyCode == 13) return false;">
                 {% csrf_token %}
                 <input type="hidden" name="delpath" id=sendDelPath>
-                <input type="submit" class="btn btnyes" value="Yes">
-                <span class="btn btnno" onClick=closeDelModal>No</span>
+                <input type="submit" class="btn btnyes" value="{% trans 'Yes' %}">
+                <span class="btn btnno" onclick="closeDelModal()">{% trans "No" %}</span>
             </form>
         </div>
     </div>

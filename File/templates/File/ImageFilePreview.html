@@ -1,4 +1,4 @@
-<title>{{filename}}</title>
+<title>{{filename|escape}}</title>
 
 {%load staticfiles%}
 
@@ -13,6 +13,6 @@
 <div class="content">
     {% include "./blocks/FileViewContent.html" %}
     <center>
-        <img class="preview" src='data:image/png;base64,{{hash}}'>
+        <img class="preview" src='data:image/png;base64,{{hash|escape}}'>
     </center>
 </div>  
