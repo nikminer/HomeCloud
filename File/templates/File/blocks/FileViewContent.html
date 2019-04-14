@@ -5,15 +5,15 @@
 
 <div class="listinfo">
     <span>
-        <b>{% trans "File name:" %}</b><span id=file>{{filename}}</span>
+        <b>{% trans "File name:" %}</b><span id=file>{{filename|escape}}</span>
         <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(file)" title="{% trans 'Copy To Clipboard' %}" style="width:20px;cursor: pointer">
     </span>
     <span>
-        <b>{% trans "Path to file:" %}</b><span id=path>{{path}}</span>
+        <b>{% trans "Path to file:" %}</b><span id=path>{{path|escape}}</span>
         <img src=https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-048_file_cloud-512.png onclick="copyToClipboard(path)" title="{% trans 'Copy To Clipboard' %}" style="width:20px;cursor: pointer">
     </span>
-    <span><b>{% trans "Created:" %}</b> {{time}}</span>
-    <span><b>{% trans "Size:" %}</b> {{size|filesizeformat}}</span>
+    <span><b>{% trans "Created:" %}</b> {{time|escape}}</span>
+    <span><b>{% trans "Size:" %}</b> {{size|filesizeformat|escape}}</span>
 </div>
 
 <script>

@@ -3,13 +3,13 @@
 
 <link href="{% static 'blocks/back.css' %}" rel="stylesheet" type="text/css"/>
 
-{% if filename%}
+{% if filename|escape%}
     <style>
         .Back:hover{  
             background-color: #63cdda
         }
     </style>
-    <a class=Back href="{{host}}/file/explorer{{path}}">
+    <a class=Back href="{{host|escape}}/file/explorer{{path|escape}}">
         <img src="{% static 'images/back.png' %}" style="width:25px;" ><span class=SpanBack>{% trans "Back" %}</span>
     </a>
 {% else %}
@@ -18,7 +18,7 @@
             background-color: #fff
         }
     </style>
-    <a class=Back href="{{host}}/file/back{{path}}">
+    <a class=Back href="{{host|escape}}/file/back{{path|escape}}">
         <img src="{% static 'images/back.png' %}" style="width:25px;" ><span class=SpanBack>{% trans "Back" %}</span>
     </a>
 {% endif%}

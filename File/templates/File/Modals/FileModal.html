@@ -8,9 +8,9 @@
         <span class=Header id=UpPath>{% trans "Uploading files" %}</span>
         <span class=close onclick="closeUpModal()">X</span>
         {% csrf_token %}
-        <input type="text" readonly value="{{path}}" id=Uploadpath name=path>
+        <input type="text" readonly value="{{path|escape}}" id=Uploadpath name=path>
         <span onclick="showLiteDirModal(Uploadpath,showUpModal),closeUpModal()" class=selctbtn>{% trans "Change" %}</span     >
-        <label class="fileinput" ><span id=fileNameBtn>{% trans "Select file" %}</span>{{ forms }}</label>
+        <label class="fileinput" ><span id=fileNameBtn>{% trans "Select file" %}</span>{{ forms|escape }}</label>
         <input id=btnUpload disabled style="grid-area:panel" type="submit" value="{% trans 'Upload' %}">
     </div>
     <div id=dropzone>
@@ -59,7 +59,7 @@
             
             id_File.files=event.dataTransfer.files;
             dropzone.style.display="none";
-            showUpModal('{{path}}');
+            showUpModal('{{path|escape}}');
         }
         function showUpModalP(path){
             FileWindow.style.display="grid";

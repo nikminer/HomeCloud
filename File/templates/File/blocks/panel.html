@@ -5,24 +5,24 @@
 
 <panel>
     <div id=panelcnt>
-        {% if dirs%}
+        {% if dirs|escape%}
             <b style="padding-left:20px;">{% trans "Groups:" %}</b>
        
             <a href="#Folders">
-                <img style="width:17px;" src="{% static 'images/folder.png' %}"> Folders ({{dirs|length}})
+                <img style="width:17px;" src="{% static 'images/folder.png' %}"> Folders ({{dirs|length|escape}})
             </a>
         {% endif %}
-        {% for i1 in files.groups%}
-            {% if i1.list %}
-                <a href="#{{i1.name}}">
-                    <img style="width:17px;" src='{% static i1.icon %}'> {{i1.name}} ({{i1.list|length}})
+        {% for i1|escape in files.groups|escape%}
+            {% if i1.list|escape %}
+                <a href="#{{i1.name|escape}}">
+                    <img style="width:17px;" src='{% static i1.icon %}'> {{i1.name|escape}} ({{i1.list|length|escape}})
                 </a>
             {% endif %}
         {% endfor %}
         <div style="margin-top: 20%;display: flex; font-size: 15px; flex-direction: column;align-items: center ">
             <span style="font-weight:bold">{% trans "Disk usage:" %}</span> 
-            <span>{{disk.free|filesizeformat}} {% trans "of" %} {{disk.total|filesizeformat}}</span>
-            <progress id=freesize min=0 max="{{disk.total}}" value="{{disk.used}}"></progress>
+            <span>{{disk.free|filesizeformat|escape}} {% trans "of" %} {{disk.total|filesizeformat|escape}}</span>
+            <progress id=freesize min=0 max="{{disk.total|escape}}" value="{{disk.used|escape}}"></progress>
          </div>
     </div>
     

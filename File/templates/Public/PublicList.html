@@ -72,7 +72,7 @@ body{
         </div>
         
         
-        {% for item in list %}
+        {% for item|escape in list|escape %}
             <a href={% url 'downloadPub' name=item.pn|escape %}>
                 <div style="display:flex;align-items: center;grid-area:File">
                     <img src="{% static 'images/file.png' %}" style="height: 24px;margin-right: 5px;"> {{item.pn|escape}}

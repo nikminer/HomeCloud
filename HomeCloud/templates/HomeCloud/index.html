@@ -11,15 +11,15 @@
     {% include "./blocks/navigation.html" %}
         <div id=page>
             <div id=content>
-                {% if Sysproblem %}
-                    <span style="grid-area: title; background-color: #e15f41!important"class="title">{% trans 'System information' %}( {{Sysproblem}} )</span>
+                {% if Sysproblem|escape %}
+                    <span style="grid-area: title; background-color: #e15f41!important"class="title">{% trans 'System information' %}( {{Sysproblem|escape}} )</span>
                 {%else%}
                     <span style="grid-area: title; background-color: #778beb" class="title">{% trans 'System information' %}</span>
                 {%endif%} 
-                <span style="grid-area: osname;">{% trans "Operation System: "%} <b>{{osname}}</b></span>
-                <span style="grid-area: hostname;">{% trans "Hostname: " %} <b>{{Node}}</b></span>
-                <span style="grid-area: cpuname;">{% trans "CPU name: " %}<b>{{CPUname}}</b></span>
-                <span style="grid-area: cpucount;">{% trans "CPU count: " %}<b> {{CPUcount}} core</b></span>
+                <span style="grid-area: osname;">{% trans "Operation System: "%} <b>{{osname|escape }}</b></span>
+                <span style="grid-area: hostname;">{% trans "Hostname: " %} <b>{{Node|escape}}</b></span>
+                <span style="grid-area: cpuname;">{% trans "CPU name: " %}<b>{{CPUname|escape}}</b></span>
+                <span style="grid-area: cpucount;">{% trans "CPU count: " %}<b> {{CPUcount|escape}} core</b></span>
                 <span style="grid-area: cpupercent;">{% trans "CPU Usage: " %}
                     <div class="w3-light-grey">
                         <div class="w3-container w3 w3-center" id=cpuusage style="width:0%;background-color:#63cdda; color: white">00%</div>
@@ -27,10 +27,10 @@
                 </span>
                 <span style="grid-area: title1;" class="title">{% trans "Memory information" %}</span>
                 <span style="grid-area: title2;" class="title">{% trans "Network information" %}</span>
-                <span style="grid-area: Netinfo1;"> {% trans "Data sent: "%}<b> {{bytesent|filesizeformat}}</b></span>
-                <span style="grid-area: Netinfo2;"> {% trans "Data receive: "%}<b> {{byterecv|filesizeformat}}</b></span>
-                <span style="grid-area: Netinfo3;"> {% trans "Packets sent: "%}<b> {{packsent}}</b></span>
-                <span style="grid-area: Netinfo4;"> {% trans "Packets receive: "%}<b> {{packrecv}}</b></span>
+                <span style="grid-area: Netinfo1;"> {% trans "Data sent: "%}<b> {{bytesent|filesizeformat|escape}}</b></span>
+                <span style="grid-area: Netinfo2;"> {% trans "Data receive: "%}<b> {{byterecv|filesizeformat|escape}}</b></span>
+                <span style="grid-area: Netinfo3;"> {% trans "Packets sent: "%}<b> {{packsent|escape}}</b></span>
+                <span style="grid-area: Netinfo4;"> {% trans "Packets receive: "%}<b> {{packrecv|escape}}</b></span>
                 {% if iflist%}
                 <ul style="grid-area: IFList; list-style:none">
                     <span>{% trans "Network interface: "%}</span>
@@ -46,35 +46,35 @@
                 </ul>
                 {%endif%}
                 <span style="grid-area: DiskSpan"><b>{% trans "Main disk"%}</b></span>
-                <span style="grid-area: DiskTotal">{% trans "Total: "%} <b>{{diskspace.total|filesizeformat}}</b></span>
-                <span style="grid-area: DiskUsed">{% trans "Used: " %} <b>{{diskspace.used|filesizeformat}}</b></span>
-                <span style="grid-area: DiskFree">{% trans "Free: " %}<b>{{diskspace.free|filesizeformat}}</b></span>
+                <span style="grid-area: DiskTotal">{% trans "Total: "%} <b>{{diskspace.total|filesizeformat|escape}}</b></span>
+                <span style="grid-area: DiskUsed">{% trans "Used: " %} <b>{{diskspace.used|filesizeformat|escape}}</b></span>
+                <span style="grid-area: DiskFree">{% trans "Free: " %}<b>{{diskspace.free|filesizeformat|escape}}</b></span>
                 <span style="grid-area: DiskBar;width: 90%;">
                     {% trans "Main disk Usage: " %}
                     <div class="w3-light-grey">
-                        <div class="w3-container w3 w3-center" style="width:{{diskspace.percent}}%;background-color:#63cdda; color: white">{{diskspace.percent}}%</div>
+                        <div class="w3-container w3 w3-center" style="width:{{diskspace.percent}}%;background-color:#63cdda; color: white">{{diskspace.percent|escape}}%</div>
                     </div>
                 </span>
                 <div id=VMemory>
                     <center><b>{% trans "Virtual Memory"%}</b></center>
-                    <span>{% trans "Total: "%} <b>{{VMspace.total|filesizeformat}}</b></span>
-                    <span>{% trans "Used: " %} <b>{{VMspace.used|filesizeformat}}</b></span>
-                    <span>{% trans "Free: " %}<b>{{VMspace.free|filesizeformat}}</b></span>
+                    <span>{% trans "Total: "%} <b>{{VMspace.total|filesizeformat|escape}}</b></span>
+                    <span>{% trans "Used: " %} <b>{{VMspace.used|filesizeformat|escape}}</b></span>
+                    <span>{% trans "Free: " %}<b>{{VMspace.free|filesizeformat|escape}}</b></span>
                     <span style="width: 90%;">
                     {% trans "Virtual Memory Usage: " %}
                     <div class="w3-light-grey">
-                        <div class="w3-container w3 w3-center" id=virtusage style="width:{{VMspace.percent}}%;background-color:#63cdda; color: white">{{VMspace.percent}}%</div>
+                        <div class="w3-container w3 w3-center" id=virtusage style="width:{{VMspace.percent}}%;background-color:#63cdda; color: white">{{VMspace.percent|escape}}%</div>
                     </div>
                 </div>
                 <div id=SMemory>
                     <center><b>{% trans "Swap Memory"%}</b></center>
-                    <span>{% trans "Total: "%} <b>{{SMspace.total|filesizeformat}}</b></span>
-                    <span>{% trans "Used: " %} <b>{{SMspace.used|filesizeformat}}</b></span>
-                    <span>{% trans "Free: " %}<b>{{SMspace.free|filesizeformat}}</b></span>
+                    <span>{% trans "Total: "%} <b>{{SMspace.total|filesizeformat|escape}}</b></span>
+                    <span>{% trans "Used: " %} <b>{{SMspace.used|filesizeformat|escape}}</b></span>
+                    <span>{% trans "Free: " %}<b>{{SMspace.free|filesizeformat|escape}}</b></span>
                     <span style="width: 90%;">
                     {% trans "Swap Memory Usage: " %}
                     <div class="w3-light-grey">
-                        <div class="w3-container w3 w3-center" id=swapusage style="width:{{SMspace.percent}}%;background-color:#63cdda; color: white">{{SMspace.percent}}%</div>
+                        <div class="w3-container w3 w3-center" id=swapusage style="width:{{SMspace.percent}}%;background-color:#63cdda; color: white">{{SMspace.percent|escape}}%</div>
                     </div>
                 </div>
             </div>

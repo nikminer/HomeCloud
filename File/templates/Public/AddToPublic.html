@@ -71,11 +71,11 @@ form input{
         <h2>{% trans 'Sharing file' %}</h2>
         <form method="POST" id=form action="/file/public/share/addfile" onkeypress="if(event.keyCode == 13) return false;">
             <div>
-                <input style="width:750px" type="text" id=filePAth name=path value="{{path}}" readonly>
+                <input style="width:750px" type="text" id=filePAth name=path value="{{path|escape}}" readonly>
                 <span  onclick="showLiteDirModalPO(filePAth)" id=Change1 class=selctbtn >{% trans 'Change' %}</span>
             </div>
             
-            <span>{% trans 'Shered Link' %}: {{host}}/file/public/<input name=name type="text" id=pseudoname value="SharedFile" onchange="checkname()"></span>
+            <span>{% trans 'Shered Link' %}: {{host|escape}}/file/public/<input name=name type="text" id=pseudoname value="SharedFile" onchange="checkname()"></span>
             <span id=mess>{% trans 'Pseudoname is avilable' %}!</span>
             <div>
                 <input type="checkbox" name=isVisible id=isVisible  checked><label for=isVisible> {% trans 'Is Visible' %}</label>

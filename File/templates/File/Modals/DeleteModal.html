@@ -4,13 +4,13 @@
 <link href="{% static 'Modals/DeleteModal.css' %}" rel="stylesheet" type="text/css"/>
     <script>
         function confirmDeleteFile(path,grope){
-            ModalPanel.action="{{host}}/file/delfile"
+            ModalPanel.action="{{host|escape}}/file/delfile"
             sendDelPath.value=path;
             
             showModal(grope+": "+path);
         }
         function confirmDeleteDir(path){
-            ModalPanel.action="{{host}}/file/deldir"
+            ModalPanel.action="{{host|escape}}/file/deldir"
             sendDelPath.value=path;
             showModal("Folder: "+path);
         }

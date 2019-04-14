@@ -9,7 +9,7 @@
             callback=callbackMeth;
             LiteDir.style.zIndex=200;
             LiteDir.style.opacity=0.8;
-            LiteDirPath.innerText="{{path}}";
+            LiteDirPath.innerText="{{path|escape}}";
             getDirs()
         }
         function changedir(dir){
@@ -22,7 +22,7 @@
         }
         function getDirs(){
             var xhr = new XMLHttpRequest();
-            xhr.open('GET','{{host}}/file/lite/explorerdir'+LiteDirPath.innerText,true);
+            xhr.open('GET','{{host|escape}}/file/lite/explorerdir'+LiteDirPath.innerText,true);
             xhr.send();
             xhr.onreadystatechange=function(){
                 if(xhr.status==200 && xhr.readyState==4){

@@ -34,10 +34,10 @@
             function checkdir(){
                 var xhr = new XMLHttpRequest();
                
-                xhr.open('POST','{{host}}/file/exdir',true);
+                xhr.open('POST','{{host|escape}}/file/exdir',true);
                 xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.send("path="+encodeURIComponent("{{path}}/"+MKPath.value));
+                xhr.send("path="+encodeURIComponent("{{path|escape}}/"+MKPath.value));
                 xhr.onreadystatechange=function(){
                     if(xhr.status==200){
                         if (xhr.response=="True")
@@ -56,7 +56,7 @@
                 }
             }
             function mkdir(){
-                window.location.replace('{{host}}/file/mkdir'+MKPath.value);
+                window.location.replace('{{host|escape}}/file/mkdir'+MKPath.value);
             }
         </script>
         
@@ -69,7 +69,7 @@
                     {% csrf_token %}    
                     <input id=MKsubmit type="submit" value="{% trans 'Create' %}"></br>
                     <label id=MKmess style="color:red;margin-left: 10px;"></label>
-                    <input name=dirpath type="hidden" value="{{path}}/">
+                    <input name=dirpath type="hidden" value="{{path|escape}}/">
                 </form>
             </div>
         </div>

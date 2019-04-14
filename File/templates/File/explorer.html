@@ -38,55 +38,55 @@
 </script>
 {% include "./blocks/header.html" %}
 <div class="nav" id="navbar">
-    {% if path != "" %}
+    {% if path|escape != "" %}
         {% include "./blocks/back.html" %}
     {% endif %}
     {% include "./blocks/navbuttons.html" %}
 </div>
 <div class=content>    
-    {% if dirs%}
+    {% if dirs|escape%}
         <details class=groupe open id=Folders>
-            <summary>Folders ({{dirs|length }} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</summary>
-            {% for i in dirs %}
+            <summary>Folders ({{dirs|length|escape}} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</summary>
+            {% for i|escape in dirs|escape %}
                 <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)> 
-                    <a href="{{host}}/file/explorer{{path}}/{{i.name}}" title="{{i.name}}" class=name>
+                    <a href="{{host}}/file/explorer{{path|escape}}/{{i.name|escape}}" title="{{i.name|escape}}" class=name>
                         <img src="{% static 'images/folder.png' %}" style="width:24px;" >
-                        <span>{{i.name}}</span>
+                        <span>{{i.name|escape}}</span>
                     </a>
                     <span class=size></span>
-                    <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"}}</span>
+                    <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"|escape}}</span>
                     <div class="panel">
-                        <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfolder{{path}}/{{i.name}}')" title="{% trans 'Download' %}" style="width:24px ;cursor: pointer">
-                        <img src="{% static 'images/Upload.png' %}" onclick="showUpModalP('{{path}}/{{i.name}}')" title="{% trans 'Upload' %}" style="width:24px;height:23px;cursor: pointer">
-                        <img src="{% static 'images/move.png' %}" onclick="showMoveModalP('{{path}}','{{i.name}}')" title="{% trans 'Movе folder' %}" style="width:24px;cursor: pointer">
-                        <img src="{% static 'images/delete.png' %}" onclick="confirmDeleteDir('{{path}}/{{i.name}}')" title="{% trans 'Delete' %}" style="width:24px;cursor: pointer">
+                        <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host|escape}}/file/downloadfolder{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Download' %}" style="width:24px ;cursor: pointer">
+                        <img src="{% static 'images/Upload.png' %}" onclick="showUpModalP('{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Upload' %}" style="width:24px;height:23px;cursor: pointer">
+                        <img src="{% static 'images/move.png' %}" onclick="showMoveModalP('{{path|escape}}','{{i.name|escape}}')" title="{% trans 'Movе folder' %}" style="width:24px;cursor: pointer">
+                        <img src="{% static 'images/delete.png' %}" onclick="confirmDeleteDir('{{path|escape}/{{i.name|escape}}')" title="{% trans 'Delete' %}" style="width:24px;cursor: pointer">
                     </div>
                 </div>
             {% endfor%}
         </details>
     {% endif %}
-    {% if files%}
-        {% for i1 in files.groups%}
-            {% if i1.list %}
-                <details class=groupe open id="{{i1.name}}">
-                    <summary>{{i1.name}} ({{i1.list|length}}  <img src={% static i1.icon %} style="width:20px;" >)</summary>
-                    {% for i in i1.list %}
+    {% if files|escape%}
+        {% for i1|escape in files.groups|escape%}
+            {% if i1.list|escape %}
+                <details class=groupe open id="{{i1.name|escape}}">
+                    <summary>{{i1.name|escape}} ({{i1.list|length|escape}}  <img src={% static i1.icon %} style="width:20px;" >)</summary>
+                    {% for i|escape in i1.list|escape %}
                         <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)>
-                            <a target="blank" href='{{host}}/file/view{{path|escape}}/{{i.name|urlencode}}' class=name>
-                                {% if i.code   %}
-                                    <img src="{{i.code}}" style="width: 30px;" >
+                            <a target="blank" href='{{host}}/file/view{{path|escape}}/{{i.name|urlencode|escape}}' class=name>
+                                {% if i.code|escape   %}
+                                    <img src="{{i.code|escape}}" style="width: 30px;" >
                                 {% else %}
-                                    <img src="{% static i1.icon %}" style="width:24px;" >
+                                    <img src="{% static i1.icon|escape %}" style="width:24px;" >
                                 {% endif %}
-                                {{i.name| safe }}
+                                {{i.name| safe|escape }}
                             </a> 
-                            <span class=size>{{i.size|filesizeformat}}</span>
-                            <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"}}</span>
+                            <span class=size>{{i.size|filesizeformat|escape}}</span>
+                            <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"|escape}}</span>
                             <div class="panel">
-                                <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host}}/file/downloadfile{{path}}/{{i.name}}')" title="{% trans 'Download' %}" style="width:24px;cursor: pointer">
-                                <img src="{% static 'images/shere.png' %}" onclick="window.location.replace('{{host}}/file/public/sharing{{path}}/{{i.name}}')" title="{% trans 'Share' %}" style="width:24px;cursor: pointer">
+                                <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host|escape}}/file/downloadfile{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Download' %}" style="width:24px;cursor: pointer">
+                                <img src="{% static 'images/shere.png' %}" onclick="window.location.replace('{{host|escape}}/file/public/sharing{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Share' %}" style="width:24px;cursor: pointer">
                                 <!--<img src="{% static 'images/copy.png' %}" title="Copy" style="width:24px;cursor: pointer">-->
-                                <img src="{% static 'images/delete.png' %}" title="{% trans 'Delete' %}" onclick="confirmDeleteFile('{{path}}/{{i.name}}','{{i1.name}}')" style="width:24px;cursor: pointer">
+                                <img src="{% static 'images/delete.png' %}" title="{% trans 'Delete' %}" onclick="confirmDeleteFile('{{path|escape}}/{{i.name|escape}}','{{i1.name|escape}}')" style="width:24px;cursor: pointer">
                             </div>
                         </div>
                     {% endfor%}
