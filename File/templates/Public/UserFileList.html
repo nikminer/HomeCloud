@@ -112,7 +112,7 @@ body{
                     {{item.size|filesizeformat|escape}}
                 </span>
             </a>
-            <button class="FileBtn" onclick="ConfirmModal('{{item.pn|escape}}','{{host}}{% url 'SwthVisFile'  %}' ,'{% if item.visible|escape == "True" %}{% trans "You want to Hide the file" %}{% else %}{% trans "You want a Visible this file" %}{% endif %}?')" >
+            <button class="FileBtn" onclick="ConfirmModal('{{item.pn|escape}}','{{host}}{% url 'SwthVisFile'  %}' ,'{% if item.visible == "True" %}{% trans "You want to Hide the file" %}{% else %}{% trans "You want a Visible this file" %}{% endif %}?')" >
                 {% if item.visible|escape == "True" %}
                     {% trans 'Visible' %}
                 {% else %}

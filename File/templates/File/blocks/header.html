@@ -13,7 +13,7 @@
     <div class="path">
         <span>{% trans "CURRENT PATH:" %}</span></br>
         <a href="{{host|escape}}/file/explorer/" style="font-size:150%">/</a>
-        {% for i|escape in pathes|escape %}
+        {% for i in pathes%}
            <a href="{{host|escape}}/file/explorer/{{i.hierrarhy|escape}}">{{i.dir|escape}}/</a>
         {% endfor %}
     </div>
