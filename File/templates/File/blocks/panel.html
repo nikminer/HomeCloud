@@ -5,15 +5,15 @@
 
 <panel>
     <div id=panelcnt>
-        {% if dirs|escape%}
+        {% if dirs%}
             <b style="padding-left:20px;">{% trans "Groups:" %}</b>
        
             <a href="#Folders">
                 <img style="width:17px;" src="{% static 'images/folder.png' %}"> Folders ({{dirs|length|escape}})
             </a>
         {% endif %}
-        {% for i1|escape in files.groups|escape%}
-            {% if i1.list|escape %}
+        {% for i1 in files.groups%}
+            {% if i1.list %}
                 <a href="#{{i1.name|escape}}">
                     <img style="width:17px;" src='{% static i1.icon %}'> {{i1.name|escape}} ({{i1.list|length|escape}})
                 </a>
