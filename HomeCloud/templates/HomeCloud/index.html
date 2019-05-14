@@ -52,7 +52,7 @@
                 <span style="grid-area: DiskBar;width: 90%;">
                     {% trans "Main disk Usage: " %}
                     <div class="w3-light-grey">
-                        <div class="w3-container w3 w3-center" style="width:{{diskspace.percent}}%;background-color:#63cdda; color: white">{{diskspace.percent|escape}}%</div>
+                        <div class="w3-container w3 w3-center" style="width:{{diskspace.percent|escape}}%;background-color:#63cdda; color: white">{{diskspace.percent|escape}}%</div>
                     </div>
                 </span>
                 <div id=VMemory>
@@ -63,7 +63,7 @@
                     <span style="width: 90%;">
                     {% trans "Virtual Memory Usage: " %}
                     <div class="w3-light-grey">
-                        <div class="w3-container w3 w3-center" id=virtusage style="width:{{VMspace.percent}}%;background-color:#63cdda; color: white">{{VMspace.percent|escape}}%</div>
+                        <div class="w3-container w3 w3-center" id=virtusage style="width:{{VMspace.percent|escape}}%;background-color:#63cdda; color: white">{{VMspace.percent|escape}}%</div>
                     </div>
                 </div>
                 <div id=SMemory>
@@ -74,7 +74,7 @@
                     <span style="width: 90%;">
                     {% trans "Swap Memory Usage: " %}
                     <div class="w3-light-grey">
-                        <div class="w3-container w3 w3-center" id=swapusage style="width:{{SMspace.percent}}%;background-color:#63cdda; color: white">{{SMspace.percent|escape}}%</div>
+                        <div class="w3-container w3 w3-center" id=swapusage style="width:{{SMspace.percent|escape}}%;background-color:#63cdda; color: white">{{SMspace.percent|escape}}%</div>
                     </div>
                 </div>
             </div>

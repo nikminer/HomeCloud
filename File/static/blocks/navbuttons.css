@@ -5,7 +5,7 @@
     cursor: pointer;
     padding: 5px;
     margin: 5px;
-
+    
     color: black;
     transition-property: width;
     transition-duration: .2s,.2s;

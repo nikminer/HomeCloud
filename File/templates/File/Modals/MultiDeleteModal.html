@@ -1,0 +1,37 @@
+{%load staticfiles%}
+{% load i18n %}
+
+<link href="{% static 'Modals/DeleteModal.css' %}" rel="stylesheet" type="text/css"/>
+    <script>
+        function confirmMultiDeleteFile(path,grope){
+            MultiDelModal.action="{{host|escape}}/file/delfile"
+            sendDelPath.value=path;
+            
+            showMultiModal(grope+": "+path);
+        }
+        function showMultiModal(Message){
+            MultiDelModal.style.zIndex=200;
+            MultiDelModal.style.opacity=0.8;
+            MultiDelPath.innerHTML=Message; 
+        }
+        function closeMultiDelModal(){
+            delpath="";
+            MultiDelModal.style.opacity=0;
+            MultiDelModal.style.zIndex=-100;
+        }
+    </script>
+    
+    <div id=MultiDelModal>
+        <div class=window>
+            <span class=Header>{% trans "You sure delete next elements?" %}</span>
+            <span id=MultiDelPath></span>
+            <span class=close onclick="closeMultiDelModal()">X</span>
+            <form id=ModalPanel method="POST" onkeypress="if(event.keyCode == 13) return false;">
+                {% csrf_token %}
+                <input type="hidden" name="delpath" id=sendMultiDelPath>
+                <input type="hidden" name="delpath" id=sendMultiDelElements>
+                <input type="submit" class="btn btnyes" value="{% trans 'Yes' %}">
+                <span class="btn btnno" onclick="closeMultiDelModal()">{% trans "No" %}</span>
+            </form>
+        </div>
+    </div>

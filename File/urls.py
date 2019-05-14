@@ -3,7 +3,7 @@ from django.conf.urls import include
 from . import views
 from .Common.movment import back, explorer,upload_file
 from .Common.actions import deletedir, createdir, movedir, deletefile
-from .Common.downloads import downloadFile,downloadFolder
+from .Common.downloads import downloadFile,downloadFolder,download
 from .Common.Preview import ViewSwitcher
 from .Common.directory import isExist
 
@@ -22,6 +22,7 @@ urlpatterns = [
     #downloading
     path('downloadfile<path:path>', downloadFile),
     path('downloadfolder<path:path>', downloadFolder),
+	path('download<path:path>+<str:listf>',download),
     #Preview
     path('view<path:path>', ViewSwitcher),
     #lite
