@@ -2,8 +2,8 @@
 {% load i18n %}
 <title>HomeCloud File</title>
 <link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
-<link href="{% static 'explorer.css' %}" rel="stylesheet" type="text/css"/>
-<link href="{% static 'explorerRows.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'explorer.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'explorerRows.css' %}" rel="stylesheet" type="text/css" />
 
 <script>
     function setFixed(){
@@ -45,7 +45,7 @@
 
     function hide(handler){
         handler.children[4].style.transition="all 1s ease"
-        handler.children[4].style.opacity=0        
+        handler.children[4].style.opacity=0
     }
     function show(handler){
         handler.children[4].style.transition="all 1s ease"
@@ -87,76 +87,90 @@
 {% include "./blocks/header.html" %}
 <div class="nav" id="navbar">
     {% if path|escape != "" %}
-        {% include "./blocks/back.html" %}
+    {% include "./blocks/back.html" %}
     {% endif %}
     {% include "./blocks/navbuttons.html" %}
 </div>
-<div class=content>    
+<div class=content>
     {% if dirs%}
-        <details class=groupe open id=Folders>
-            <summary>Folders ({{dirs|length|escape}} <img src="{% static 'images/folder.png' %}" style="width:20px;" >)</summary>
-            {% for i in dirs %}
-            <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)>
-                <div class="check">
-                    <input onclick="selectrow(this)" type="checkbox" id="{{i.name|escape}}" />
-                    <label for="{{i.name|escape}}"></label>
-                </div>
-                <a href="{{host}}/file/explorer{{path|escape}}/{{i.name|escape}}" title="{{i.name|escape}}" class="name">
-                    <img src="{% static 'images/folder.png' %}" style="width:24px;">
-                    <span>{{i.name|escape}}</span>
-                </a>
-                <span class=size></span>
-                <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"|escape}}</span>
-                <div class="panel">
-                    <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host|escape}}/file/downloadfolder{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Download' %}" style="width:24px ;cursor: pointer">
-                    <img src="{% static 'images/Upload.png' %}" onclick="showUpModalP('{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Upload' %}" style="width:24px;height:23px;cursor: pointer">
-                    <img src="{% static 'images/move.png' %}" onclick="showMoveModalP('{{path|escape}}','{{i.name|escape}}')" title="{% trans 'Movе folder' %}" style="width:24px;cursor: pointer">
-                    <img src="{% static 'images/delete.png' %}" onclick="confirmDeleteDir('{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Delete' %}" style="width:24px;cursor: pointer">
-                </div>
+    <details class=groupe open id=Folders>
+        <summary>Folders ({{dirs|length|escape}} <img src="{% static 'images/folder.png' %}" style="width:20px;">)</summary>
+        {% for i in dirs %}
+        <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)>
+            <div class="check">
+                <input onclick="selectrow(this)" type="checkbox" id="{{i.name|escape}}" />
+                <label for="{{i.name|escape}}"></label>
             </div>
-            {% endfor%}
-        </details>
+            <a href="{{host}}/file/explorer{{path|escape}}/{{i.name|escape}}" title="{{i.name|escape}}" class="name">
+                <img src="{% static 'images/folder.png' %}" style="width:24px;">
+                <span>{{i.name|escape}}</span>
+            </a>
+            <span class=size></span>
+            <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"|escape}}</span>
+            <div class="panel">
+                <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host|escape}}/file/downloadfolder{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Download' %}" style="width:24px ;cursor: pointer">
+                <img src="{% static 'images/Upload.png' %}" onclick="showUpModalP('{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Upload' %}" style="width:24px;height:23px;cursor: pointer">
+                <img src="{% static 'images/move.png' %}" onclick="showMoveModalP('{{path|escape}}','{{i.name|escape}}')" title="{% trans 'Movе folder' %}" style="width:24px;cursor: pointer">
+                <img src="{% static 'images/delete.png' %}" onclick="confirmDeleteDir('{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Delete' %}" style="width:24px;cursor: pointer">
+            </div>
+        </div>
+        {% endfor%}
+    </details>
     {% endif %}
     {% if files%}
-        {% for i1 in files.groups%}
-            {% if i1.list %}
-                <details class=groupe open id="{{i1.name|escape}}">
-                    <summary>{{i1.name|escape}} ({{i1.list|length|escape}}  <img src={% static i1.icon %} style="width:20px;" >)</summary>
-                    {% for i in i1.list %}
-                    <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)>
-                        <div class="check">
-                            <input onclick="selectrow(this)" type="checkbox" id="{{i.name|escape}}" />
-                            <label for="{{i.name|escape}}"></label>
-                        </div>
-                        
-                        <a target="blank" href='{{host}}/file/view{{path|escape}}/{{i.name|urlencode|escape}}' class='name'>
-                            {% if i.code   %}
-                            <img src="{{i.code|escape}}" style="width: 30px;">
-                            {% else %}
-                            <img src="{% static i1.icon|escape %}" style="width:24px;">
-                            {% endif %}
-                            {{i.name| safe|escape }}
-                        </a>
-                        <span class=size>{{i.size|filesizeformat|escape}}</span>
-                        <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"|escape}}</span>
-                        <div class="panel">
-                            <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host|escape}}/file/downloadfile{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Download' %}" style="width:24px;cursor: pointer">
-                            <img src="{% static 'images/shere.png' %}" onclick="window.location.replace('{{host|escape}}/file/public/sharing{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Share' %}" style="width:24px;cursor: pointer">
-                            <!--<img src="{% static 'images/copy.png' %}" title="Copy" style="width:24px;cursor: pointer">-->
-                            <img src="{% static 'images/delete.png' %}" title="{% trans 'Delete' %}" onclick="confirmDeleteFile('{{path|escape}}/{{i.name|escape}}','{{i1.name|escape}}')" style="width:24px;cursor: pointer">
-                        </div>
-                    </div>
-                    {% endfor%}
-                </details>
-            {% endif %}
-        {% endfor %}
+    {% for i1 in files.groups%}
+    {% if i1.list %}
+    <details class=groupe open id="{{i1.name|escape}}">
+        <summary>{{i1.name|escape}} ({{i1.list|length|escape}}  <img src={% static i1.icon %} style="width:20px;">)</summary>
+        {% for i in i1.list %}
+        <div class="row ingroupe" onmouseover=show(this) onmouseout=hide(this)>
+            <div class="check">
+                <input onclick="selectrow(this)" type="checkbox" id="{{i.name|escape}}" />
+                <label for="{{i.name|escape}}"></label>
+            </div>
+
+            <a target="blank" href='{{host}}/file/view{{path|escape}}/{{i.name|urlencode|escape}}' class='name'>
+                {% if i.code   %}
+                <img src="{{i.code|escape}}" style="width: 30px;">
+                {% else %}
+                <img src="{% static i1.icon|escape %}" style="width:24px;">
+                {% endif %}
+                {{i.name| safe|escape }}
+            </a>
+            <span class=size>{{i.size|filesizeformat|escape}}</span>
+            <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"|escape}}</span>
+            <div class="panel">
+                <img src="{% static 'images/download.png' %}" onclick="window.location.replace('{{host|escape}}/file/downloadfile{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Download' %}" style="width:24px;cursor: pointer">
+                <img src="{% static 'images/shere.png' %}" onclick="window.location.replace('{{host|escape}}/file/public/sharing{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Share' %}" style="width:24px;cursor: pointer">
+                <!--<img src="{% static 'images/copy.png' %}" title="Copy" style="width:24px;cursor: pointer">-->
+                <img src="{% static 'images/delete.png' %}" title="{% trans 'Delete' %}" onclick="confirmDeleteFile('{{path|escape}}/{{i.name|escape}}','{{i1.name|escape}}')" style="width:24px;cursor: pointer">
+            </div>
+        </div>
+        {% endfor%}
+    </details>
+    {% endif %}
+    {% endfor %}
     {% endif %}
 </div>
+<style>
+    #CHPanelClr {
+        cursor: pointer;
+        margin-right: 5px;
+        padding: 5px;
+        transition: all 500ms ease;
+    }
+    #CHPanelClr:hover{
+        background-color:white;
+        border-radius:3px;
+        padding:7px;
+        margin-right: 3px;
+    }
+</style>
 <div id="checkedPanel">
-    <span onclick="deselectrow()" style="cursor:pointer;margin-right:5px;padding:5px;">X</span>
+    <span onclick="deselectrow()" id="CHPanelClr">X</span>
     <span id="fileCount"></span>
-    <span class="btnChPnl">{% trans 'Download' %}</span>
-    <span class="btnChPnl">{% trans 'Delete' %}</span>
+    <span class="btnChPnl" onclick="Download()">{% trans 'Download' %}</span>
+    <span class="btnChPnl" onclick="confirmMDFile(CheckList)">{% trans 'Delete' %}</span>
 </div>
 {% include "./blocks/panel.html" %}
 
@@ -164,5 +178,7 @@
 {% include "./Modals/TextInputModal.html" %}
 {% include "./Modals/FileModal.html" %}
 {% include "./Modals/MoveModal.html" %}
+
+{% include "./Modals/MultiDeleteModal.html" %}
 
 {% include "Lite/LiteDirectory.html"%}

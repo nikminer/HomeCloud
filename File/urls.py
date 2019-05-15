@@ -2,7 +2,7 @@ from django.urls import path, re_path
 from django.conf.urls import include
 from . import views
 from .Common.movment import back, explorer,upload_file
-from .Common.actions import deletedir, createdir, movedir, deletefile
+from .Common.actions import deletedir, createdir, movedir, deletefile,delete
 from .Common.downloads import downloadFile,downloadFolder,download
 from .Common.Preview import ViewSwitcher
 from .Common.directory import isExist
@@ -19,6 +19,7 @@ urlpatterns = [
     path('exdir', isExist),
     path('movedir', movedir),
     path('delfile',deletefile),
+	path('delete',delete),
     #downloading
     path('downloadfile<path:path>', downloadFile),
     path('downloadfolder<path:path>', downloadFolder),

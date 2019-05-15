@@ -1,0 +1,88 @@
+#MDModal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba( 0, 0, 0, 0.8);
+    opacity: 0;
+    z-index: -100;
+}
+#MDwindow{
+    display: grid;
+    grid-template-columns: auto auto 60px;
+    grid-template-rows: 50px auto 80px;
+    grid-template-areas: 
+        "Header Header close"
+        "path path path"
+        "panel panel panel";
+    background-color:white;
+    min-width: 200px;
+    min-height: 200px;
+    margin: 10% 20%;
+    border-radius: 3px;
+}
+#MDPath {
+    grid-area: path;
+    margin: 10px;
+    padding-top: 20px;
+    overflow-y:auto;
+    max-height:200px;
+}
+#MDPath > li {
+    border-bottom: 1px solid lightgrey;
+    margin: 5px 10px;
+    padding: 5px 10px;
+    list-style-type: none;
+}
+#MDheader{
+    padding: 10px;
+    background-color: #e15f41;
+    grid-area: Header;
+    font-size: 25px;
+    color: white;
+    border-bottom: lightgrey 0.5px solid;
+}
+#MDclose{
+    grid-area: close;
+    margin: auto;
+    padding: 5px 10px;
+    font-size: 25px;
+    transition: all 300ms ease;
+}
+#MDclose:hover {
+    border: none;
+    background-color: #e15f41;
+    border-radius: 5px;
+    padding: 7px 12px;
+    cursor: pointer;
+}
+#MDPanel {
+    padding: 10px;
+    grid-area: panel;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#MDbtnyes{
+   background-color: #e15f41;
+   color: white;
+}
+#MDbtnno {
+    background-color: white;
+}
+
+.MDbtn {
+    padding: 10px 35px;
+    cursor: pointer;
+    font-size:16px;
+    transition: all 200ms ease;
+    border:none;
+}
+.MDbtn:hover{
+    background-color: #63cdda!important;
+    border-radius: 5px;
+    padding: 12px 37px;
+    color:white;
+}

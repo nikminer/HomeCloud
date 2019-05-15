@@ -1,37 +1,42 @@
 {%load staticfiles%}
 {% load i18n %}
 
-<link href="{% static 'Modals/DeleteModal.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'Modals/DeleteMultiModal.css' %}" rel="stylesheet" type="text/css"/>
     <script>
-        function confirmMultiDeleteFile(path,grope){
-            MultiDelModal.action="{{host|escape}}/file/delfile"
-            sendDelPath.value=path;
-            
-            showMultiModal(grope+": "+path);
+        function confirmMDFile(list) {
+            MDPath.innerHTML = "";
+            MDPanel.action = "{{host|escape}}/file/delete"
+            data = []
+            CheckList.forEach(function (item) {
+                data[data.length] = item.id
+                MDPath.innerHTML += "<li>" + item.id + "</li>";
+            });
+            sendMDElements.value = JSON.stringify(data);
+            showMDModal();
         }
-        function showMultiModal(Message){
-            MultiDelModal.style.zIndex=200;
-            MultiDelModal.style.opacity=0.8;
-            MultiDelPath.innerHTML=Message; 
+        function showMDModal(){
+            MDModal.style.zIndex=200;
+            MDModal.style.opacity = 1;
         }
-        function closeMultiDelModal(){
-            delpath="";
-            MultiDelModal.style.opacity=0;
-            MultiDelModal.style.zIndex=-100;
+        function closeMDModal(){
+            MDModal.style.opacity=0;
+            MDModal.style.zIndex=-100;
         }
     </script>
     
-    <div id=MultiDelModal>
-        <div class=window>
-            <span class=Header>{% trans "You sure delete next elements?" %}</span>
-            <span id=MultiDelPath></span>
-            <span class=close onclick="closeMultiDelModal()">X</span>
-            <form id=ModalPanel method="POST" onkeypress="if(event.keyCode == 13) return false;">
+    <div id=MDModal>
+        <div id=MDwindow>
+            <span id=MDheader>{% trans "You sure delete next elements?" %}</span>
+            <div id=MDPath>
+                
+            </div>
+            <span id=MDclose onclick="closeMDModal()">X</span>
+            <form id=MDPanel method="POST" onkeypress="if(event.keyCode == 13) return false;">
                 {% csrf_token %}
-                <input type="hidden" name="delpath" id=sendMultiDelPath>
-                <input type="hidden" name="delpath" id=sendMultiDelElements>
-                <input type="submit" class="btn btnyes" value="{% trans 'Yes' %}">
-                <span class="btn btnno" onclick="closeMultiDelModal()">{% trans "No" %}</span>
+                <input type="hidden" name="delpath" value="{{ path| escape }}">
+                <input type="hidden" name="list" id=sendMDElements>
+                <input type="submit" id="MDbtnyes" class="MDbtn" value="{% trans 'Yes' %}">
+                <span id="MDbtnno" class="MDbtn" onclick="closeMDModal()">{% trans "No" %}</span>
             </form>
         </div>
     </div>
