@@ -1,0 +1,219 @@
+{%load staticfiles%}
+{% load i18n %}
+<title>HomeCloud File Settings</title>
+<link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
+<link href="{% static 'settings.css' %}" rel="stylesheet" type="text/css" />
+{% include "./blocks/header.html" %}
+
+
+    
+<form id=content method="POST" enctype="multipart/form-data">
+    
+    <h3>Editing Group</h3>
+    {% csrf_token %}
+    <div>
+        <span>Name:</span>
+        <input type="text" required name="groupname" value="{{name}}">
+        <input type="hidden" name="firstname" value="{{name}}">
+        <span>Type:</span>
+        <select name="type">
+            <option
+            {% if type == "file" %}
+            selected
+            {% endif %}
+                 value="file">File</option>
+            <option {% if type == "pic" %}
+            selected
+            {% endif %} value="pic">Picture</option>
+            <option {% if type == "text" %}
+            selected
+            {% endif %} value="text">Text</option>
+        </select>
+    </div>
+    <div id="icon">
+        <span>Icon:</span>
+        <div>
+            <img id=previewicon src="{% if icon %}{% static icon %}{% else %}{% static 'images/file.png' %}{% endif %}">
+            {{forms}}
+        </div>
+            
+    </div>
+    <div>
+        <span>Formats:</span>
+        <div id= addformat>
+            <input id=formatfield type="text">
+            <span onclick="addformat()">add</span>
+        </div>
+        <div id=formatlist>
+            {% for i in formats %}
+                <div id={{i}}>
+                    {{i}}
+                    <span onclick="delformat(this)">x</span>
+                </div>
+                
+            {% endfor %}
+        </div>
+    </div>
+    <div id=panel>
+        <input id=send type="submit" value="Save" onclick="Save()">
+        <a href=".">Back</a>
+    </div>
+    <input name=formatlists id=sendlist type="hidden">
+</form>
+
+<script>
+    function handleFile(e){
+        if (!e.target.files[0].type.match('image.*')) {
+            alert("Image only please....");
+            fileicon.value=""
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = (function(theFile) {return function(ev) {previewicon.src=ev.target.result}})(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
+    }
+    fileicon.addEventListener('change', handleFile, false);
+    function addformat(){
+        if (!formatlist.children[formatfield.value.toUpperCase()] && formatfield.value.length!=0)
+            formatlist.innerHTML+='<div id='+formatfield.value.toUpperCase()+'>'+formatfield.value.toUpperCase()+'<span onclick=\"delformat(this)\">x</span></div>';
+        formatfield.value='';
+        check()
+    }
+    function delformat(elem){
+        elem.parentNode.remove()
+        check()
+    }
+    function check(){
+        send.disabled=formatlist.children.length==0;
+    }
+    function Save(){
+        formats=[]
+        for (var i= 0; i<formatlist.children.length;i++)
+            formats[i]=formatlist.children[i].id;
+        sendlist.value=JSON.stringify(formats)
+        
+        content.action="./save";
+    }
+    check()
+</script>
+
+<style>
+    #content{
+        margin:auto;
+        width:70%;
+        font-size: 18px;
+    }
+    
+    #content>div{
+        margin:5px;
+        display: flex;
+        flex-direction: column; 
+    }
+    #content>div>select{
+        margin: 10px;
+        margin-left: 20px;
+        padding: 5px;
+        width: 50%;
+    }
+    #content>div>span{
+        margin: 10px;
+        margin-left: 0px;
+        font-weight: bold;
+    }
+    #content>div>input{
+        margin-left: 20px;
+        padding: 5px;
+        width: 50%;
+    }
+    #icon>div{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-left: 20px;
+    }
+    #icon>div>img{
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+    #formatlist{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-left: 15px;
+    }
+    #formatlist>div{
+        margin: 5px;
+        padding: 5px 15px;
+        background-color: #63cdda;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+    #formatlist>div>span{
+        cursor: pointer;
+        font-weight: bold;
+    }
+    #formatlist>div>span:hover{
+        color:white;
+    }
+    #addformat{
+        margin: 5px;
+        margin-bottom: 20px;
+        padding: 5px 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    #addformat>input{
+        padding: 5px;
+        margin-right: 10px;
+        
+    }
+    #addformat>span{
+        padding: 5px 15px;
+        background-color: #63cdda;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    #addformat>span:hover{
+        color:white;
+    }
+    #panel{
+        margin-top: 40px!important;
+        padding: 5px 0;
+        border-top: lightgray solid 1px;
+        display: flex!important;
+        flex-direction: row!important;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    #panel>input{
+        padding: 10px 20px!important;
+        background-color: #63cdda;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100px!important;
+        margin: 0 5px;
+        font-size: 18px;
+        border: none;
+    }
+    #panel>input:hover{
+        color:white;
+    }
+    #panel>a{
+        padding: 10px 20px;
+        background-color: #63cdda;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+    }
+    #panel>a:hover{
+        color: white;
+    }
+</style>

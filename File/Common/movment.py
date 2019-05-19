@@ -22,8 +22,6 @@ def upload_file(request):
     explorer(request,request.POST['path'])
 
 
-
-conf=json.loads(open("static/config/Groups.json","r").read())
 @login_required
 def back(request,path):
     if path=="/":
@@ -35,6 +33,7 @@ def back(request,path):
 @login_required
 def explorer(request, path):
 
+    conf=json.loads(open("static/config/Groups.json","r").read())
     DirList=[]
     FileList=Files()
     GroupQueue={}

@@ -1,0 +1,52 @@
+﻿{%load staticfiles%}
+{% load i18n %}
+<title>HomeCloud File Settings</title>
+<link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
+<link href="{% static 'settings.css' %}" rel="stylesheet" type="text/css" />
+{% include "./blocks/header.html" %}
+
+
+<div id=content>
+    <a href="./edit">
+        <img src="{% static 'images/add.png' %}" />
+        <span>
+            Add new group
+        </span>
+    </a>
+    {% for i in config %}
+    <a href="./edit{{i.name}}">
+        <img src="{% static i.icon %}" />
+        <span>
+            {{i.name}}
+        </span>
+    </a>
+    {% endfor %}
+</div>
+
+<style>
+    #content{
+        margin:auto;
+        width:70%;
+    }
+    #content>a{
+        margin:10px 0;
+        padding:5px;
+        border-bottom:solid lightgray 1px;
+        padding-bottom:5px;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        text-decoration:none;
+        color:black;
+        transition: all 0.5s ease;
+        cursor:pointer;
+    }
+    #content>a:hover{
+        background-color: #63cdda;
+    }
+    #content>a>img{
+        width:24px;
+        height:24px;
+        margin-right:5px;
+    }
+</style>

@@ -7,21 +7,31 @@
         <span style="font-size:80%;font-weight: bold;text-decoration: underline white">APPS</span>
         <li>
             <a style="text-decoration:none" href="/file/explorer~">
-                <img src="{% static 'images/folder.png' %}"><br>
+                <img src="{% static 'images/folder.png' %}">
                 <span>File</span>
             </a>
-        </li>        
+        </li>
         <li>
             <a style="text-decoration:none" href="/file/public">
-                <img src="{% static 'images/shere.png' %}"><br>
-                <span >Public</span>
+                <img src="{% static 'images/shere.png' %}">
+                <span>Public</span>
             </a>
         </li>
     </div>
-    <li>
-        <a style="text-decoration:none" href="./logout/">
-            <img src=http://cdn.onlinewebfonts.com/svg/img_564295.png style="width: 50px;padding-top:10px;padding-right: 7px;padding-left: 7px;"><br>
-            <span>{% trans "Exit" context "Logout"%}</span>
-        </a>
-    </li>
+    <div style=" overflow-y: hidden">
+        <li class="drop">
+            <img src=https://img.icons8.com/metro/1600/settings.png>
+            <span>{% trans "Settings" context "Settings"%}</span>
+            <div id="dropright">
+                <a href="/file/settings/groups">File</a>
+                <a>Users</a>
+            </div>
+        </li>
+        <li>
+            <a style="text-decoration:none" href="./logout/">
+                <img src=http://cdn.onlinewebfonts.com/svg/img_564295.png style="width: 50px;padding-top:10px;padding-right: 7px;padding-left: 7px;"><br>
+                <span>{% trans "Exit" context "Logout"%}</span>
+            </a>
+        </li>
+    </div>
 </nav>

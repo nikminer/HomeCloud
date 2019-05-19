@@ -1,0 +1,51 @@
+{%load staticfiles%}
+{% load i18n %}
+<style>
+header{
+    grid-area: headeres;
+    display: flex;
+    flex-direction: row;
+    align-items:center; 
+    background-color: #63cdda;
+}
+.logo{
+    color: black;
+    text-align: left;
+    font-family: Dejavu Sans;
+    font-size: 140%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+.logo a{
+    text-decoration: none;
+    color: #000;
+}
+.logo h1{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.logo h4{
+    font-size: 60%;
+    margin: 0;
+    margin-left: 2px;
+    margin-top: -5px;
+    color: #777777
+}
+header h2 {
+    font-size: 200%;
+    padding: 5px;
+    font-family: Dejavu Sans;
+    color: white;
+}
+</style>
+
+<header>
+    <div class="logo">
+        <a href="/">
+            <h1 style="font-weight: bold!important;">HomeCloud</h1>
+            <h4>{% trans 'Free Cloud in your home' %}</h4>
+        </a>
+    </div>
+    <h2>Settings Groups</h2>
+</header>

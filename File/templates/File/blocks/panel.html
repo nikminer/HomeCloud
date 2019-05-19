@@ -22,7 +22,10 @@
         <div style="margin-top: 20%;display: flex; font-size: 15px; flex-direction: column;align-items: center ">
             <span style="font-weight:bold">{% trans "Disk usage:" %}</span> 
             <span>{{disk.free|filesizeformat|escape}} {% trans "of" %} {{disk.total|filesizeformat|escape}}</span>
-            <progress id=freesize min=0 max="{{disk.total|escape}}" value="{{disk.used|escape}}"></progress>
+            <div id="freesize" style="border:1px solid grey;" class="w3-light-grey">
+                <div class="w3-center" style="width:{{disk.percent|escape}}%;background-color:#63cdda; color: white">{{disk.percent|escape}}%</div>
+            </div>
+            
          </div>
     </div>
     

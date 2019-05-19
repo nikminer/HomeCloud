@@ -43,7 +43,7 @@ ul {
     transition: all 0.7s ease;
 }
 ul details:hover{
-    background-color: #63cdda;
+    background-color: #778beb;
     color: white;
 }
 ul details{
