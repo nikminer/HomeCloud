@@ -15,6 +15,7 @@
         <span>Name:</span>
         <input type="text" required name="groupname" value="{{name}}">
         <input type="hidden" name="firstname" value="{{name}}">
+        <span>Type:</span>
         <select name="type">
             <option
             {% if type == "file" %}
@@ -107,6 +108,12 @@
         margin:5px;
         display: flex;
         flex-direction: column; 
+    }
+    #content>div>select{
+        margin: 10px;
+        margin-left: 20px;
+        padding: 5px;
+        width: 50%;
     }
     #content>div>span{
         margin: 10px;
