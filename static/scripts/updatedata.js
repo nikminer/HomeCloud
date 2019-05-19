@@ -15,7 +15,7 @@
                 if(xhr.response>75)
                     cpuusage.style.backgroundColor="#e77f67";
                 else
-                    cpuusage.style.backgroundColor="#63cdda";
+                    cpuusage.style.backgroundColor ="#778beb";
             }
         }
     }
@@ -31,7 +31,7 @@
                 if(xhr.response>75)
                     virtusage.style.backgroundColor="#e77f67";
                 else
-                    virtusage.style.backgroundColor="#63cdda";
+                    virtusage.style.backgroundColor ="#778beb";
             }
         }
     }
@@ -47,7 +47,7 @@
                 if(xhr.response>75)
                     swapusage.style.backgroundColor="#e77f67";
                 else
-                    swapusage.style.backgroundColor="#63cdda";
+                    swapusage.style.backgroundColor ="#778beb";
             }
         }
     }

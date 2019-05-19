@@ -22,6 +22,15 @@ panel{
 }
 #freesize{
     width: 90%;
-    height: 20px;
     margin-top: 5px;
+}
+
+.w3-light-grey{
+    color: #000 !important;
+    background-color: #f1f1f1 !important
+}
+.w3-center {
+    text-align: center !important;
+    display:block;
+    width: 100%
 }
