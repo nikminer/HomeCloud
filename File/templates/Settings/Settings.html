@@ -7,14 +7,14 @@
 
 
 <div id=content>
-    <a>
+    <a href="./edit">
         <img src="{% static 'images/add.png' %}" />
         <span>
             Add new group
         </span>
     </a>
     {% for i in config %}
-    <a>
+    <a href="./edit{{i.name}}">
         <img src="{% static i.icon %}" />
         <span>
             {{i.name}}
