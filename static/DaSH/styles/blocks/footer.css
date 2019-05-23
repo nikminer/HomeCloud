@@ -3,13 +3,13 @@ footer{
     grid-area: footer;
     background-color: black;
     color: white;
-    font-size: 12px;
     padding:5px;
     padding-top: 10px;
     padding-left: 20px;
     font-family: Arial, Helvetica, sans-serif;
     display: grid;
     grid-template-areas: "span language";
+    font-size:0.9rem;
 }
 footer>div{
     grid-area: span;

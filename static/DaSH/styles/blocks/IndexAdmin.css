@@ -1,0 +1,35 @@
+#dash{
+    background-color:#778beb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    min-height: 350px;
+    color: white;
+}
+.dashBigSpan{
+    font-size: 35px;
+    padding: 20px;
+    font-weight: bold;
+}
+.dashSpan{
+    font-size: 20px;
+    padding: 10px;
+    padding-bottom: 20px;
+    min-height: 50px;
+}
+#dash>a{
+    padding: 20px 30px;
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    margin: 30px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    text-decoration: none;
+}
+#dash>a:hover{
+    background-color:#5b72e4;
+    color: white;
+}

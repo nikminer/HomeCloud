@@ -1,6 +1,6 @@
 {%load staticfiles%}{% load i18n %}
 
-<link href="{% static 'blocks/panel.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'File/styles/blocks/panel.css' %}" rel="stylesheet" type="text/css"/>
 
 
 <panel>
@@ -9,7 +9,7 @@
             <b style="padding-left:20px;">{% trans "Groups:" %}</b>
        
             <a href="#Folders">
-                <img style="width:17px;" src="{% static 'images/folder.png' %}"> Folders ({{dirs|length|escape}})
+                <img style="width:17px;" src="{% static 'File/images/folder.png' %}"> Folders ({{dirs|length|escape}})
             </a>
         {% endif %}
         {% for i1 in files.groups%}

@@ -1,7 +1,7 @@
 {%load staticfiles%}
 {% load i18n %}
 
-<link href="{% static 'blocks/back.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'File/styles/blocks/back.css' %}" rel="stylesheet" type="text/css"/>
 
 {% if filename%}
     <style>
@@ -10,7 +10,7 @@
         }
     </style>
     <a class=Back href="{{host|escape}}/file/explorer{{path|escape}}">
-        <img src="{% static 'images/back.png' %}" style="width:25px;" ><span class=SpanBack>{% trans "Back" %}</span>
+        <img src="{% static 'File/images/back.png' %}" style="width:25px;" ><span class=SpanBack>{% trans "Back" %}</span>
     </a>
 {% else %}
     <style>
@@ -19,6 +19,6 @@
         }
     </style>
     <a class=Back href="{{host|escape}}/file/back{{path|escape}}">
-        <img src="{% static 'images/back.png' %}" style="width:25px;" ><span class=SpanBack>{% trans "Back" %}</span>
+        <img src="{% static 'File/images/back.png' %}" style="width:25px;" ><span class=SpanBack>{% trans "Back" %}</span>
     </a>
 {% endif%}

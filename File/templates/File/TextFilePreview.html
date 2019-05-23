@@ -2,8 +2,8 @@
 
 {%load staticfiles%}
 
-<link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
-<link href="{% static 'TextPreview.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="icon" href="{% static 'File/images/icons/faviconFile.ico' %}" type="image/x-icon">
+<link href="{% static 'File/styles/TextPreview.css' %}" rel="stylesheet" type="text/css"/>
 
 {% include "./blocks/header.html" %}
 
@@ -13,5 +13,5 @@
     <center>
         <h2>{{filename|escape}}</h2>
     </center>
-    <pre class=preview>{{text|escape}}</pre>
+    <pre class=preview>{{text}}</pre>
 </div>  

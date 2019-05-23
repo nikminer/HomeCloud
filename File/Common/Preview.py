@@ -10,7 +10,7 @@ import codecs
 
 from django.contrib.auth.decorators import login_required
 
-conf=json.loads(open("static/config/Groups.json","r").read())
+conf=json.loads(open("static/File/config/Groups.json","r").read())
 images=[]
 texts= []
 

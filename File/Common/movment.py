@@ -33,7 +33,7 @@ def back(request,path):
 @login_required
 def explorer(request, path):
 
-    conf=json.loads(open("static/config/Groups.json","r").read())
+    conf=json.loads(open("static/File/config/Groups.json","r").read())
     DirList=[]
     FileList=Files()
     GroupQueue={}

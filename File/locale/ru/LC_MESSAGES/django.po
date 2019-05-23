@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-11 21:17+0300\n"
+"POT-Creation-Date: 2019-05-24 02:46+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,228 +20,302 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\templates\File\Modals\DeleteModal.html:31
+#: .\File\templates\File\Modals\DeleteModal.html:31
 msgid "You sure delete?"
 msgstr "Вы хотите удалить?"
 
-#: .\templates\File\Modals\DeleteModal.html:37
-#: .\templates\Public\Modals\ConfirmModal.html:115
+#: .\File\templates\File\Modals\DeleteModal.html:37
+#: .\File\templates\File\Modals\MultiDeleteModal.html:38
+#: .\File\templates\Public\Modals\ConfirmModal.html:115
 msgid "Yes"
 msgstr "Да"
 
-#: .\templates\File\Modals\DeleteModal.html:38
-#: .\templates\Public\Modals\ConfirmModal.html:116
+#: .\File\templates\File\Modals\DeleteModal.html:38
+#: .\File\templates\File\Modals\MultiDeleteModal.html:39
+#: .\File\templates\Public\Modals\ConfirmModal.html:116
 msgid "No"
 msgstr "Нет"
 
-#: .\templates\File\Modals\FileModal.html:8
+#: .\File\templates\File\Modals\FileModal.html:8
 msgid "Uploading files"
 msgstr "Загрузка файлов"
 
-#: .\templates\File\Modals\FileModal.html:12
-#: .\templates\File\Modals\MoveModal.html:29
-#: .\templates\File\Modals\MoveModal.html:31
-#: .\templates\Public\AddToPublic.html:75
-#: .\templates\Public\UserFileList.html:122
+#: .\File\templates\File\Modals\FileModal.html:12
+#: .\File\templates\File\Modals\MoveModal.html:29
+#: .\File\templates\File\Modals\MoveModal.html:31
+#: .\File\templates\Public\AddToPublic.html:75
+#: .\File\templates\Public\UserFileList.html:122
 msgid "Change"
 msgstr "Сменить"
 
-#: .\templates\File\Modals\FileModal.html:13
+#: .\File\templates\File\Modals\FileModal.html:13
 msgid "Select file"
 msgstr "Выбрать файл"
 
-#: .\templates\File\Modals\FileModal.html:14 .\templates\File\explorer.html:60
+#: .\File\templates\File\Modals\FileModal.html:14
+#: .\File\templates\File\explorer.html:112
 msgid "Upload"
 msgstr "Загрузить"
 
-#: .\templates\File\Modals\FileModal.html:17
+#: .\File\templates\File\Modals\FileModal.html:17
 msgid "Drag your files here"
 msgstr "Переместите ваши файлы сюда"
 
-#: .\templates\File\Modals\MoveModal.html:24
+#: .\File\templates\File\Modals\MoveModal.html:24
 msgid "Moving Directory"
 msgstr "Перемещение папки"
 
-#: .\templates\File\Modals\MoveModal.html:32
+#: .\File\templates\File\Modals\MoveModal.html:32
 msgid "Move"
 msgstr "Переместить"
 
-#: .\templates\File\Modals\TextInputModal.html:26
+#: .\File\templates\File\Modals\MultiDeleteModal.html:29
+msgid "You sure delete next elements?"
+msgstr "Вы хотите удалить следующие элементы?"
+
+#: .\File\templates\File\Modals\TextInputModal.html:26
 msgid "New Folder"
 msgstr "Новая папка"
 
-#: .\templates\File\Modals\TextInputModal.html:46
+#: .\File\templates\File\Modals\TextInputModal.html:46
 msgid "Directory is exist"
 msgstr "Папка уже существует"
 
-#: .\templates\File\Modals\TextInputModal.html:65
+#: .\File\templates\File\Modals\TextInputModal.html:65
 msgid "Creating Directory"
 msgstr "Создание папки"
 
-#: .\templates\File\Modals\TextInputModal.html:70
+#: .\File\templates\File\Modals\TextInputModal.html:70
 msgid "Create"
 msgstr "Создать"
 
-#: .\templates\File\blocks\FileViewContent.html:8
+#: .\File\templates\File\blocks\FileViewContent.html:8
 msgid "File name:"
 msgstr "Имя файла:"
 
-#: .\templates\File\blocks\FileViewContent.html:9
-#: .\templates\File\blocks\FileViewContent.html:13
+#: .\File\templates\File\blocks\FileViewContent.html:9
+#: .\File\templates\File\blocks\FileViewContent.html:13
 msgid "Copy To Clipboard"
 msgstr "Копировать в буфер"
 
-#: .\templates\File\blocks\FileViewContent.html:12
+#: .\File\templates\File\blocks\FileViewContent.html:12
 msgid "Path to file:"
 msgstr "Путь к файлу:"
 
-#: .\templates\File\blocks\FileViewContent.html:15
+#: .\File\templates\File\blocks\FileViewContent.html:15
 msgid "Created:"
 msgstr "Создан:"
 
-#: .\templates\File\blocks\FileViewContent.html:16
+#: .\File\templates\File\blocks\FileViewContent.html:16
 msgid "Size:"
 msgstr "Размер:"
 
-#: .\templates\File\blocks\FileViewContent.html:28
+#: .\File\templates\File\blocks\FileViewContent.html:28
 msgid "Сopied"
 msgstr "Скопировано"
 
-#: .\templates\File\blocks\back.html:13 .\templates\File\blocks\back.html:22
-#: .\templates\Lite\LiteDirectory.html:31 .\templates\Lite\LiteFiles.html:43
+#: .\File\templates\File\blocks\back.html:13
+#: .\File\templates\File\blocks\back.html:22
+#: .\File\templates\Lite\LiteDirectory.html:31
+#: .\File\templates\Lite\LiteFiles.html:43
+#: .\File\templates\Settings\Edit.html:57
 msgid "Back"
 msgstr "Назад"
 
-#: .\templates\File\blocks\header.html:10
-#: .\templates\Public\blocks\header.html:47
+#: .\File\templates\File\blocks\header.html:10
+#: .\File\templates\Public\blocks\header.html:47
+#: .\File\templates\Settings\blocks\header.html:47
 msgid "Free Cloud in your home"
 msgstr "Свободное облако в вашем доме"
 
-#: .\templates\File\blocks\header.html:14
+#: .\File\templates\File\blocks\header.html:14
 msgid "CURRENT PATH:"
 msgstr "ТЕКУЩИЙ ПУТЬ:"
 
-#: .\templates\File\blocks\navbuttons.html:10
+#: .\File\templates\File\blocks\navbuttons.html:10
 msgid "Home folder"
 msgstr "Домашняя папка"
 
-#: .\templates\File\blocks\navbuttons.html:17
+#: .\File\templates\File\blocks\navbuttons.html:17
 msgid "Create folder"
 msgstr "Создать папку"
 
-#: .\templates\File\blocks\navbuttons.html:23
+#: .\File\templates\File\blocks\navbuttons.html:23
 msgid "Download folder"
 msgstr "Скачать папку"
 
-#: .\templates\File\blocks\navbuttons.html:29
+#: .\File\templates\File\blocks\navbuttons.html:29
 msgid "Upload file"
 msgstr "Загрузить файл"
 
-#: .\templates\File\blocks\navbuttons.html:35
+#: .\File\templates\File\blocks\navbuttons.html:35
 msgid "Delete folder"
 msgstr "Удалить папку"
 
-#: .\templates\File\blocks\panel.html:9
+#: .\File\templates\File\blocks\panel.html:9
 msgid "Groups:"
 msgstr "Группы:"
 
-#: .\templates\File\blocks\panel.html:23
+#: .\File\templates\File\blocks\panel.html:23
 msgid "Disk usage:"
 msgstr "Использование диска:"
 
-#: .\templates\File\blocks\panel.html:24
+#: .\File\templates\File\blocks\panel.html:24
 msgid "of"
 msgstr "из"
 
-#: .\templates\File\explorer.html:59 .\templates\File\explorer.html:86
+#: .\File\templates\File\explorer.html:65
+msgid "Selected:"
+msgstr "Выбрано:"
+
+#: .\File\templates\File\explorer.html:65
+msgid "files"
+msgstr "файлов"
+
+#: .\File\templates\File\explorer.html:111
+#: .\File\templates\File\explorer.html:143
+#: .\File\templates\File\explorer.html:172
 msgid "Download"
 msgstr "Скачать"
 
-#: .\templates\File\explorer.html:61
+#: .\File\templates\File\explorer.html:113
 msgid "Movе folder"
 msgstr "Переместить папку"
 
-#: .\templates\File\explorer.html:62 .\templates\File\explorer.html:89
-#: .\templates\Public\UserFileList.html:123
+#: .\File\templates\File\explorer.html:114
+#: .\File\templates\File\explorer.html:146
+#: .\File\templates\File\explorer.html:173
+#: .\File\templates\Public\UserFileList.html:123
+#: .\File\templates\Settings\Settings.html:23
 msgid "Delete"
 msgstr "Удалить"
 
-#: .\templates\File\explorer.html:87
+#: .\File\templates\File\explorer.html:144
 msgid "Share"
 msgstr "Поделиться"
 
-#: .\templates\Lite\LiteDirectory.html:53
+#: .\File\templates\Lite\LiteDirectory.html:53
 msgid "Confirm"
 msgstr "Подтвердить"
 
-#: .\templates\Public\AddToPublic.html:3
+#: .\File\templates\Public\AddToPublic.html:3
 msgid "Sharing"
 msgstr "Файлообмен"
 
-#: .\templates\Public\AddToPublic.html:71
+#: .\File\templates\Public\AddToPublic.html:71
 msgid "Sharing file"
 msgstr "Файлообмен"
 
-#: .\templates\Public\AddToPublic.html:78
+#: .\File\templates\Public\AddToPublic.html:78
 msgid "Shered Link"
 msgstr "Ссылка для скачивания"
 
-#: .\templates\Public\AddToPublic.html:79
+#: .\File\templates\Public\AddToPublic.html:79
 msgid "Pseudoname is avilable"
 msgstr "Псевдоним занят"
 
-#: .\templates\Public\AddToPublic.html:81
+#: .\File\templates\Public\AddToPublic.html:81
 msgid "Is Visible"
 msgstr "Видимый"
 
-#: .\templates\Public\AddToPublic.html:83
+#: .\File\templates\Public\AddToPublic.html:83
 msgid "Share File"
 msgstr "Поделиться"
 
-#: .\templates\Public\AddToPublic.html:119
-#: .\templates\Public\AddToPublic.html:126
+#: .\File\templates\Public\AddToPublic.html:119
+#: .\File\templates\Public\AddToPublic.html:126
 msgid "Pseudoname is not avilable"
 msgstr "Псевдоним занят"
 
-#: .\templates\Public\Modals\ConfirmModal.html:83
+#: .\File\templates\Public\Modals\ConfirmModal.html:83
 msgid "You sure?"
 msgstr "Вы уверены?"
 
-#: .\templates\Public\PublicList.html:3 .\templates\Public\PublicList.html:68
-#: .\templates\Public\UserFileList.html:5
-#: .\templates\Public\UserFileList.html:97
+#: .\File\templates\Public\PublicList.html:3
+#: .\File\templates\Public\PublicList.html:68
+#: .\File\templates\Public\UserFileList.html:5
+#: .\File\templates\Public\UserFileList.html:97
 msgid "Public files on server"
 msgstr "Публичные файлы на сервере"
 
-#: .\templates\Public\PublicList.html:69
-#: .\templates\Public\UserFileList.html:98
+#: .\File\templates\Public\PublicList.html:69
+#: .\File\templates\Public\UserFileList.html:98
 msgid "Click to download"
 msgstr "Кликните чтобы скачать"
 
-#: .\templates\Public\PublicList.html:71
+#: .\File\templates\Public\PublicList.html:71
 msgid "My public files"
 msgstr "Мои публичные файлы"
 
-#: .\templates\Public\UserFileList.html:100
+#: .\File\templates\Public\UserFileList.html:100
 msgid "Server public files"
 msgstr "Публичные файлы сервера"
 
-#: .\templates\Public\UserFileList.html:115
+#: .\File\templates\Public\UserFileList.html:115
 msgid "You want to Hide the file"
 msgstr "Вы хотите скрыть этот файл"
 
-#: .\templates\Public\UserFileList.html:115
+#: .\File\templates\Public\UserFileList.html:115
 msgid "You want a Visible this file"
 msgstr "Вы хотите сделать этот файл видимым"
 
-#: .\templates\Public\UserFileList.html:117
+#: .\File\templates\Public\UserFileList.html:117
 msgid "Visible"
 msgstr "Видимый"
 
-#: .\templates\Public\UserFileList.html:119
+#: .\File\templates\Public\UserFileList.html:119
 msgid "Hidden"
 msgstr "Скрытый"
 
-#: .\templates\Public\UserFileList.html:123
+#: .\File\templates\Public\UserFileList.html:123
 msgid "You sure delete file"
 msgstr "Вы хотите удалить"
+
+#: .\File\templates\Settings\Edit.html:3
+#: .\File\templates\Settings\Settings.html:3
+msgid "Settings"
+msgstr "Настройки"
+
+#: .\File\templates\Settings\Edit.html:10
+msgid "Editing Group"
+msgstr "Редактирование Групп"
+
+#: .\File\templates\Settings\Edit.html:13
+msgid "Name:"
+msgstr "Имя Группы:"
+
+#: .\File\templates\Settings\Edit.html:16
+msgid "Type:"
+msgstr "Тип:"
+
+#: .\File\templates\Settings\Edit.html:22
+msgid "File"
+msgstr "Файл"
+
+#: .\File\templates\Settings\Edit.html:25
+msgid "Picture"
+msgstr "Картинка"
+
+#: .\File\templates\Settings\Edit.html:28
+msgid "Text"
+msgstr "Текст"
+
+#: .\File\templates\Settings\Edit.html:40
+msgid "Formats:"
+msgstr "Форматы фалов:"
+
+#: .\File\templates\Settings\Edit.html:43
+msgid "Add"
+msgstr "Добавить"
+
+#: .\File\templates\Settings\Edit.html:65
+msgid "Image only please...."
+msgstr "Только Изображения, пожалуйста....."
+
+#: .\File\templates\Settings\Settings.html:12
+msgid "Add new group"
+msgstr "Добавить новую группу"
+
+#: .\File\templates\Settings\blocks\header.html:50
+msgid "Settings Groups:"
+msgstr "Настройки Групп:"

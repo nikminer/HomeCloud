@@ -1,10 +1,30 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+﻿{%load staticfiles%}
+{% load i18n %}
 
-</body>
-</html>
+
+<link rel="stylesheet" href="{% static 'DaSH/styles/settings/Users.css' %}" rel="stylesheet" type="text/css">
+<link rel="icon" href="{% static 'DaSH/images/favicon.ico' %}" type="image/x-icon">
+<title>HomeCloud Users</title>
+
+{% include "../blocks/logo.html" %}
+
+
+
+<div id=content>
+    <a class="row" href="./create">
+        <img src="{% static 'DaSH/images/add.png' %}" />
+        <span>
+            Add new user
+        </span>
+    </a>
+    {% for i in users %}
+    <div>
+        <a class="row">
+            <span>
+                {{i}}
+            </span>
+        </a>
+        <a class="del" href="./del{{i}}">Delete</a>
+    </div>
+    {% endfor %}
+</div>
