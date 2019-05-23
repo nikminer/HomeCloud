@@ -1,7 +1,7 @@
 {%load staticfiles%}
 {% load i18n %}
 
-<link href="{% static 'Modals/FileModal.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'File/styles/Modals/FileModal.css' %}" rel="stylesheet" type="text/css"/>
 
 <form draggable="true" id=FileModal action="{% url 'upload' %}" enctype="multipart/form-data" method="POST" onkeypress="if(event.keyCode == 13) return false;" >
     <div id=FileWindow class=windowUp>

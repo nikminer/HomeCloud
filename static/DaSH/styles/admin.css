@@ -23,6 +23,7 @@
         "Vmemory Smemory"
         ". ."
         ;
+    font-size:1.1rem;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
 }
@@ -32,7 +33,7 @@
     padding: 10px;
     font-family: Dejavu Sans; 
     font-weight: bold;
-    font-size: 130%;
+    font-size: 1.4rem;
     color: white;
     margin-right: 5px;
     margin-bottom: 10px;
@@ -53,11 +54,11 @@ ul details{
 }
 ul details summary{
     padding: 2px;
-    font-size: 17px;
+    font-size:1.2rem;
     cursor: pointer;
 }
 ul span{
-    font-size: 20px;
+    font-size: 1.34rem;
     font-weight: bold;
 }
 

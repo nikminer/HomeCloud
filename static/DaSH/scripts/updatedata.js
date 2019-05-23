@@ -6,7 +6,7 @@
 
     function requestCPU(){
         var xhr = new XMLHttpRequest();
-        xhr.open('GET','./cpuusage',true);
+        xhr.open('GET','../cpuusage',true);
         xhr.send();
         xhr.onreadystatechange=function(){
             if(xhr.status==200){
@@ -22,7 +22,7 @@
 
     function requestVirt(){
         var xhr = new XMLHttpRequest();
-        xhr.open('GET','./virtualusage',true);
+        xhr.open('GET','../virtualusage',true);
         xhr.send();
         xhr.onreadystatechange=function(){
             if(xhr.status==200){
@@ -38,7 +38,7 @@
 
     function requestSwap(){
         var xhr = new XMLHttpRequest();
-        xhr.open('GET','./swapusage',true);
+        xhr.open('GET','../swapusage',true);
         xhr.send();
         xhr.onreadystatechange=function(){
             if(xhr.status==200){

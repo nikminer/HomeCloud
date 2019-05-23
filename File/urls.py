@@ -6,7 +6,7 @@ from .Common.actions import deletedir, createdir, movedir, deletefile,delete
 from .Common.downloads import downloadFile,downloadFolder,download
 from .Common.Preview import ViewSwitcher
 from .Common.directory import isExist
-from .Common.settings import Groups,EditGroup,Save
+from .Common.settings import Groups,EditGroup,Save,DeleteGroup
 
 urlpatterns = [
     #movment
@@ -26,6 +26,7 @@ urlpatterns = [
 	path('download<path:path>+<str:listf>',download),
 	#settings
     path('settings/groups/edit<str:group>',EditGroup),
+    path('settings/groups/del<str:group>',DeleteGroup),
     path('settings/groups/edit',EditGroup),
 	path('settings/groups/',Groups),
     path('settings/groups/save',Save),

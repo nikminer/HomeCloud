@@ -1,36 +1,36 @@
 {%load staticfiles%}
 {% load i18n %}
 
-<link href="{% static 'blocks/navbuttons.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'File/styles/blocks/navbuttons.css' %}" rel="stylesheet" type="text/css"/>
 
 
 <div class='navBtn' onclick="window.location.replace('{{host|escape}}/file/explorer~')">
-    <img class=navBtn_img src="{% static 'images/favicon.ico' %}">
+    <img class=navBtn_img src="{% static 'File/images/icons/favicon.ico' %}">
     <div class='navBtn_text'>
         <span>{% trans "Home folder" %}</span>
     </div>
 </div>
 
 <div class='navBtn' onclick="showTextModal()">
-    <img class=navBtn_img src="{% static 'images/newFolder.png' %}">
+    <img class=navBtn_img src="{% static 'File/images/newFolder.png' %}">
     <div class='navBtn_text'>
         <span>{% trans "Create folder" %}</span>
     </div>
 </div>
 <div class='navBtn' onclick="window.location.replace('{{host|escape}}/file/downloadfolder{{path|escape}}')" >
-    <img class=navBtn_img src="{% static 'images/download.png' %}">
+    <img class=navBtn_img src="{% static 'File/images/download.png' %}">
     <div class='navBtn_text'>
         <span>{% trans "Download folder" %}</span>
     </div>
 </div>
 <div class='navBtn' onclick="showUpModalP('{{path|escape}}')" >
-    <img class=navBtn_img src="{% static 'images/upload.png' %}">
+    <img class=navBtn_img src="{% static 'File/images/upload.png' %}">
     <div class='navBtn_text'>
         <span>{% trans "Upload file" %}</span>
     </div>
 </div>
 <div class='navBtn' onclick="confirmDeleteDir('{{path|escape}}')">
-    <img class=navBtn_img src="{% static 'images/delete.png' %}">
+    <img class=navBtn_img src="{% static 'File/images/delete.png' %}">
     <div class='navBtn_text'>
         <span>{% trans "Delete folder" %}</span>
     </div>

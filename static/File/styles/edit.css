@@ -1,0 +1,129 @@
+body{
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto 15%;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+        "headeres headeres"
+        "content content"
+        ;
+    font-family: Dejavu Sans; 
+}
+#content{
+    margin:auto;
+    width:70%;
+    font-size: 18px;
+}
+
+#content>div{
+    margin:5px;
+    display: flex;
+    flex-direction: column; 
+}
+#content>div>select{
+    margin: 10px;
+    margin-left: 20px;
+    padding: 5px;
+    width: 50%;
+}
+#content>div>span{
+    margin: 10px;
+    margin-left: 0px;
+    font-weight: bold;
+}
+#content>div>input{
+    margin-left: 20px;
+    padding: 5px;
+    width: 50%;
+}
+#icon>div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 20px;
+}
+#icon>div>img{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+#formatlist{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 15px;
+}
+#formatlist>div{
+    margin: 5px;
+    padding: 5px 15px;
+    background-color: #63cdda;
+    border-radius: 10px;
+    font-size: 16px;
+}
+#formatlist>div>span{
+    cursor: pointer;
+    font-weight: bold;
+}
+#formatlist>div>span:hover{
+    color:white;
+}
+#addformat{
+    margin: 5px;
+    margin-bottom: 20px;
+    padding: 5px 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+#addformat>input{
+    padding: 5px;
+    margin-right: 10px;
+    
+}
+#addformat>span{
+    padding: 5px 15px;
+    background-color: #63cdda;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#addformat>span:hover{
+    color:white;
+}
+#panel{
+    margin-top: 40px!important;
+    padding: 5px 0;
+    border-top: lightgray solid 1px;
+    display: flex!important;
+    flex-direction: row!important;
+    justify-content: flex-start;
+    align-items: center;
+}
+#panel>input{
+    padding: 10px 20px!important;
+    background-color: #63cdda;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px!important;
+    margin: 0 5px;
+    font-size: 18px;
+    border: none;
+}
+#panel>input:hover{
+    color:white;
+}
+#panel>a{
+    padding: 10px 20px;
+    background-color: #63cdda;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+#panel>a:hover{
+    color: white;
+}

@@ -3,7 +3,7 @@
 {%load staticfiles%}
 {% load i18n %}
 <title>{% trans 'Public files on server' %}</title>
-<link rel="icon" href="{% static 'images/icons/faviconFile.ico' %}" type="image/x-icon">
+<link rel="icon" href="{% static 'File/images/icons/faviconFile.ico' %}" type="image/x-icon">
 
 {% include "./blocks/header.html" %}
 
@@ -105,7 +105,7 @@ body{
         <div class="file">
             <a href={% url 'downloadPub' name=item.pn|escape %}>
                 <div style="display:flex;align-items: center;grid-area:File">
-                    <img src="{% static 'images/file.png' %}" style="height: 24px;margin-right: 5px;"> {{item.pn|escape}}
+                    <img src="{% static 'File/images/file.png' %}" style="height: 24px;margin-right: 5px;"> {{item.pn|escape}}
                 </div>
                 <span style="grid-area:path">{{item.path|escape}}</span>
                 <span style="grid-area:size">

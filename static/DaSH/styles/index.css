@@ -1,0 +1,114 @@
+#content{
+    flex-direction: column;
+    align-items: stretch;
+}
+#panelFile{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 40px;
+    min-height: 475px;
+    
+}
+#file{
+    height: 450px;
+    width: 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:#63cdda;
+}
+#public{
+    height: 450px;
+    width: 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:#63cdda;
+}
+.Filebtn{
+    padding: 20px 30px;
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    margin: 30px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    text-decoration: none;
+}
+.Filebtn:hover{
+    background-color:#32bcce;
+}
+.FileBigSpan{
+    font-size: 35px;
+    padding: 20px;
+    font-weight: bold;
+}
+.FileSpan{
+    font-size: 20px;
+    padding: 10px;
+    padding-bottom: 20px;
+    word-break:normal;
+    text-align: center;
+    height: 90px;
+}
+#diskspace{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+        body{
+            margin:0;
+            min-height: 100%;
+            display: grid;
+            grid-template-areas: "Head"
+            "body";
+            grid-template-rows: 100px auto;
+            font-family: Dejavu Sans
+        }
+        #firstline{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        #firstLine>div:last-child{
+            margin: 20px 10px;
+            padding: 10px;
+        }
+        #firstLine>div>a{
+            padding: 10px 20px;
+            margin-right: 10px;
+            text-decoration: none;
+            background-color:#778beb;
+            color: white;
+            font-size: 20px;
+            transition: all 0.5s ease;
+        }
+        #firstLine>div>a:hover{
+            background-color:#5b72e4;
+            cursor: pointer;
+        }
+        .langsel{
+            margin: 20px;
+        }
+        .langsel>select{
+            padding: 10px;
+            width: 200px;
+            cursor: pointer;
+        }
+        .langsel>input[type="submit"]{
+            padding: 10px;
+            background-color:#778beb;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+        .langsel>input[type="submit"]:hover{
+            background-color:#5b72e4;
+            cursor: pointer;
+        }

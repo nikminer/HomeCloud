@@ -1,0 +1,28 @@
+{%load staticfiles%}
+{% load i18n %}
+
+
+<link rel="stylesheet" href="{% static 'DaSH/styles/settings/create.css' %}" rel="stylesheet" type="text/css">
+<link rel="icon" href="{% static 'DaSH/images/favicon.ico' %}" type="image/x-icon">
+<title>HomeCloud Users</title>
+
+{% include "../blocks/logo.html" %}
+
+    
+<form action="./save" id=content method="POST" enctype="multipart/form-data">
+    
+    <h3>{% trans "Creating new user"%}</h3>
+    {% csrf_token %}
+    <div>
+        <span>{% trans "Name:"%}</span>
+        <input type="text" required name="username">
+        <span>{% trans "Password:"%}</span>
+        <input id=pass1 required onchange="send.disabled=pass1.value!=pass2.value" type="password" name="pass">
+        <span>{% trans "Сonfirm Password:"%}</span>
+        <input id=pass2 required onchange="send.disabled=pass1.value!=pass2.value" type="password">
+    </div>
+    <div id=panel>
+        <input id=send disabled type="submit" value="{% trans 'Save' %}" onclick="Save()">
+        <a href=".">{% trans "Back"%}</a>
+    </div>
+</form>
