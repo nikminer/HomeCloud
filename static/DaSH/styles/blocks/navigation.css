@@ -11,7 +11,7 @@ nav{
     background-color: #778beb;
     text-align: center;
     color:white;
-    font-family:Dejavu Sans; 
+    font-family: 'Ubuntu', sans-serif;
     border-right: 1px #777;
 }
 nav li{

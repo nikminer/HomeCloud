@@ -1,6 +1,6 @@
 .content{
     grid-area: content;
-    margin-left: 5px;
+    margin-right: 5px;
 }
 .row img{
     height: 24px;
@@ -17,10 +17,11 @@
     "Check Name time panel";
     color: #000;
     border-bottom: lightgrey 0.5px solid;
-    font-family:Dejavu Sans;    
+    font-family: 'Ubuntu', sans-serif; 
     padding-top:5px;
     padding-bottom: 10px;
     transition: all 0.5s ease;
+    font-size: 18px;
 }  
 .row:hover{
     background-color: #63cdda;
@@ -41,7 +42,7 @@
     color: #000;
     margin-top: 5px;
     display: inline-block;
-    font: 18px Arial;
+    font: 18px;
     text-align: center;
     width: 20px;
     height: 20px;

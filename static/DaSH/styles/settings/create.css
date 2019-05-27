@@ -1,11 +1,13 @@
 body{
-    margin: 0;
-    font-family: Dejavu Sans;
+    font-family: 'Ubuntu', sans-serif;
 }
 #content{
     margin:auto;
     margin-top: 40px;
-    width:70%;
+    width:550px;
+    background-color: #778beb;
+    padding: 20px;
+    color: white;
 }
 
 #content>div{
@@ -26,8 +28,9 @@ body{
 }
 #content>div>input{
     margin-left: 20px;
+    margin-right: 20px;
     padding: 5px;
-    width: 50%;
+
 }
 
 #panel{
@@ -40,28 +43,34 @@ body{
     align-items: center;
 }
 #panel>input{
-    padding: 10px 20px!important;
-    background-color: #778beb;
-    color: white;
-    border-radius: 5px;
+    
+    background-color: white;
+    color: black;
     cursor: pointer;
-    width: 100px!important;
-    margin: 0 5px;
+    
+    margin: 10px 5px;
     font-size: 18px;
     border: none;
+    transition: all 0.5s ease;
+}
+#panel>input[type="text"]{
+    width:90%;
 }
 #panel>input:hover{
-    color:black;
+    color:white;
+    background-color:#5b72e4;
 }
-#panel>a{
-    padding: 10px 20px;
-    background-color: #778beb;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-}
-#panel>a:hover{
+#panel>button{
+    background-color: white;
     color: black;
+    cursor: pointer;
+    
+    padding: 5px 5px;
+    font-size: 18px;
+    border: none;
+    transition: all 0.5s ease;
+}
+#panel>button:hover{
+    color: white;
+    background-color:#5b72e4;
 }

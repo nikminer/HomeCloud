@@ -3,22 +3,35 @@ body{
     grid-template-columns: auto auto;
     grid-row-gap: 5%;
     grid-template-rows:100px auto ;
-    grid-template-areas: "logoline bigspan "
+    grid-template-areas: "logoline . "
     "form form";
+    font-family: 'Ubuntu', sans-serif;
 }
 form{
     margin: auto;
-    max-width:450px;
-    min-width:450px;
-    min-height: 250px;
-    max-height: 250px;
+    max-width:475px;
+    min-width:475px;
+    min-height: 350px;
+    max-height: 350px;
     grid-area: form;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    background-color: #778beb;
+    color:white;
+    padding: 40px;
 }
 form input{
-    font-family: Dejavu Sans;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 15px;
+    font-size: 17px;
+}
+form input[type="submit"]{
+    background-color: white;
+    border: none;
+    transition: all 0.5s ease;
+}
+form input[type="submit"]:hover{
+    background-color:#5b72e4;
+    cursor: pointer;
+    color: white;
 }

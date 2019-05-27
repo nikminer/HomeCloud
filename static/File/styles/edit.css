@@ -7,7 +7,7 @@ body{
         "headeres headeres"
         "content content"
         ;
-    font-family: Dejavu Sans; 
+        font-family: 'Ubuntu', sans-serif;
 }
 #content{
     margin:auto;

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+
 #content{
     flex-direction: column;
     align-items: stretch;
@@ -67,7 +69,7 @@
             grid-template-areas: "Head"
             "body";
             grid-template-rows: 100px auto;
-            font-family: Dejavu Sans
+            font-family: 'Ubuntu', sans-serif;
         }
         #firstline{
             display: flex;

@@ -9,7 +9,8 @@ header{
     grid-column-gap: 25px;
 }
 .path{
-    font-family: Dejavu Sans;    
+    font-family: 'Ubuntu', sans-serif;
+
     grid-area:paths;
     padding: 10px;
     font-size: 150%;
@@ -35,7 +36,7 @@ header{
     grid-area:logo;
     color: black;
     text-align: left;
-    font-family: Dejavu Sans;
+    font-family: 'Ubuntu', sans-serif;
     font-size: 140%;
     padding-top: 10px;
     padding-bottom: 10px;

@@ -5,6 +5,7 @@ from ..forms import UploadIconForm
 from django.contrib.auth.decorators import login_required
 from .uploads import handle_uploaded_file_WITHNAME
 import os
+import shutil
 
 @login_required
 def Groups(request):
@@ -62,7 +63,9 @@ def Save(request):
 		if (request.POST['groupname']!=request.POST['firstname']):
 			conf.pop(request.POST['firstname'])
 	else:
-		if not icon : icon="File/images/Groups/file.png"
+		if not icon :
+			shutil.copyfile("static/File/images/Groups/file.png","static/File/images/Groups/"+request.POST['groupname']+".png")
+			icon="File/images/Groups/"+request.POST['groupname']+".png"
 
 	dic['icon']=icon
 	conf[request.POST['groupname']]=dic

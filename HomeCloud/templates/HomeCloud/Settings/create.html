@@ -23,6 +23,6 @@
     </div>
     <div id=panel>
         <input id=send disabled type="submit" value="{% trans 'Save' %}" onclick="Save()">
-        <a href=".">{% trans "Back"%}</a>
+        <button onclick="document.location.replace('{% url 'DaSH-USER-LIST' %}')">{% trans "Back"%}</button>
     </div>
 </form>

@@ -13,8 +13,8 @@
             nav.style.position="fixed";
             nav.style.top = "0";
             panel.style.position="fixed";
-            panel.style.top = "0";
-            panel.style.right="0";
+            panel.style.top = "40px";
+            panel.style.left="0";
             panel.style.bottom="0";
             panel.style.width="15%";
         }
@@ -109,7 +109,7 @@
             <span class=time>{{i.date|date:"SHORT_DATE_FORMAT"|escape}}</span>
             <div class="panel">
                 <img src="{% static 'File/images/download.png' %}" onclick="window.location.replace('{{host|escape}}/file/downloadfolder{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Download' %}" style="width:24px ;cursor: pointer">
-                <img src="{% static 'File/images/Upload.png' %}" onclick="showUpModalP('{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Upload' %}" style="width:24px;height:23px;cursor: pointer">
+                <img src="{% static 'File/images/upload.png' %}" onclick="showUpModalP('{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Upload' %}" style="width:24px;height:23px;cursor: pointer">
                 <img src="{% static 'File/images/move.png' %}" onclick="showMoveModalP('{{path|escape}}','{{i.name|escape}}')" title="{% trans 'Movе folder' %}" style="width:24px;cursor: pointer">
                 <img src="{% static 'File/images/delete.png' %}" onclick="confirmDeleteDir('{{path|escape}}/{{i.name|escape}}')" title="{% trans 'Delete' %}" style="width:24px;cursor: pointer">
             </div>

@@ -40,7 +40,7 @@
             e.preventDefault();
             dropzone.style.display="block";
             FileModal.style.zIndex=250;
-            FileModal.style.opacity=0.8;
+            FileModal.style.opacity=1;
         }
         dropzone.ondragover=function(e){
             e.preventDefault();
@@ -64,13 +64,13 @@
         function showUpModalP(path){
             FileWindow.style.display="grid";
             FileModal.style.zIndex=200;
-            FileModal.style.opacity=0.8;
+            FileModal.style.opacity=1;
             Uploadpath.value=path; 
         }
         function showUpModal(){
             FileWindow.style.display="grid";
             FileModal.style.zIndex=200;
-            FileModal.style.opacity=0.8;
+            FileModal.style.opacity=1;
         }
         function closeUpModal(){
             FileModal.style.opacity=0;

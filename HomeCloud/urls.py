@@ -6,7 +6,7 @@ import django.views.i18n
 
 urlpatterns = [
     #DaSH
-    path('',views.index),
+    path('',views.index,name="DaSH-Index"),
     path('i18n/',  include('django.conf.urls.i18n')),
     path('cpuusage',views.getCPUpercent),
     path('swapusage',views.getSwapmemory),
@@ -17,7 +17,7 @@ urlpatterns = [
     path('logout/',views.logout),
     #DaSH Admin
     path('admin/',views.admin),
-    path('admin/Users/',views.Users),
+    path('admin/Users/',views.Users, name="DaSH-USER-LIST"),
     path('admin/Users/create',views.CreateUser),
     path('admin/Users/save',views.Save),
     path('admin/Users/del<str:user>',views.DeleteUser),

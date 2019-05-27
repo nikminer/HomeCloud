@@ -46,7 +46,7 @@ def explorer(request, path):
         FileList.groups.append(Groupe(i,conf[i]['icon']))
         GroupQueue.update({i:QueueIndex})
         QueueIndex+=1
-    FileList.groups.append(Groupe("Others","images/file.png"))
+    FileList.groups.append(Groupe("Others","File/images/file.png"))
     GroupQueue.update({"Other":QueueIndex})
     
     for i in os.listdir(path):

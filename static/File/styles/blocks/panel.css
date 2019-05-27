@@ -1,9 +1,9 @@
 panel{
-    font-family:Dejavu Sans;
+    font-family: 'Ubuntu', sans-serif;
     grid-area: panel;
     font-size: 19px;
     background-color: #63cdda;
-    min-height: 70vh;        
+    min-height: 100%;        
 }
 #panelcnt{
     padding-top: 20px;
