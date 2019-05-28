@@ -34,3 +34,36 @@ panel{
     display:block;
     width: 100%
 }
+
+@media (max-width: 1024px){
+    panel{
+        display:flex;
+        flex-direction: column;
+        font-size: 140%;
+        min-height: auto;        
+    }
+    #panelcnt{
+        font-size: 110%;
+    }
+    #panelcnt a{
+        height: 70px;
+        padding: 10px 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    #panelcnt a>img{
+        width: 35px!important;
+        margin-right: 20px;
+    }
+
+
+    #panelcnt>div{
+        margin: 0!important;
+        display: none!important;
+    }
+    #freesize{
+        width: 100%;
+        margin-top: 5px;
+    }  
+}

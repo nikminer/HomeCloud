@@ -1,37 +1,60 @@
-body{
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-row-gap: 5%;
-    grid-template-rows:100px auto ;
-    grid-template-areas: "logoline . "
-    "form form";
-    font-family: 'Ubuntu', sans-serif;
-}
-form{
-    margin: auto;
-    max-width:475px;
-    min-width:475px;
-    min-height: 350px;
-    max-height: 350px;
-    grid-area: form;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    background-color: #778beb;
-    color:white;
-    padding: 40px;
-}
-form input{
-    padding: 15px;
-    font-size: 17px;
-}
-form input[type="submit"]{
-    background-color: white;
-    border: none;
-    transition: all 0.5s ease;
-}
-form input[type="submit"]:hover{
-    background-color:#5b72e4;
-    cursor: pointer;
-    color: white;
+    body{
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-row-gap: 5%;
+        grid-template-rows:100px auto ;
+        grid-template-areas: "logoline . "
+        "form form";
+        font-family: 'Ubuntu', sans-serif;
+    }
+    form{
+        margin: auto;
+        width:475px;
+        height: 350px;
+        grid-area: form;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        background-color: #778beb;
+        color:white;
+        padding: 40px;
+    }
+    form input{
+        padding: 15px;
+        font-size: 17px;
+    }
+    form input[type="submit"]{
+        background-color: white;
+        border: none;
+        transition: all 0.5s ease;
+        
+    }
+    form input[type="submit"]:hover{
+        background-color:#5b72e4;
+        cursor: pointer;
+        color: white;
+    }
+
+
+@media (max-width: 1024px){
+    body{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        align-items: center;
+        width: 90%;
+        min-height: 100%;
+        font-size: 140%;
+        padding: 2% 0;
+    }
+    form{
+        margin: 5% 0;
+        width: 100%;
+        height: 500px;
+        grid-area: form;
+    }
+    form input{
+        font-size: 110%;
+        font-weight: bold;
+    }
 }

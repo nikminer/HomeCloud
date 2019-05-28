@@ -41,3 +41,36 @@
 .navBtn_img{
     height: 25px
 }
+
+@media (max-width: 1024px){
+    .navBtn {
+        width: 100%;
+        height: 70px;
+        padding: 10px;
+        margin: 0;
+        
+        align-items: center;
+        justify-content: flex-start;
+        border-right: none;
+    }
+    .navBtn:hover {
+        width: 100%;
+        max-width: 100%;
+        transition-property: none;
+        transition-duration: none;
+    }    
+    
+    .navBtn_text {
+        padding-left: 20px;
+        padding-right: 3px;
+        margin-top: 2px;
+        opacity: 1;
+    }
+    .navBtn_text span {
+        font-size: 140%;
+    }
+    .navBtn_img{
+        height: auto;
+        width:  40px;
+    }
+}

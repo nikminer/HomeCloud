@@ -9,7 +9,7 @@
     function setFixed(){
         var nav=document.getElementById("navbar")
         var panel=document.getElementById("panelcnt")
-        if (document.body.scrollTop >= 25 || document.documentElement.scrollTop >= 25){
+        if ((document.body.scrollTop >= 25 || document.documentElement.scrollTop >= 25)  && screen.width > 1023){
             nav.style.position="fixed";
             nav.style.top = "0";
             panel.style.position="fixed";
@@ -91,6 +91,8 @@
     {% endif %}
     {% include "./blocks/navbuttons.html" %}
 </div>
+
+{% include "./blocks/panel.html" %}
 <div class=content>
     {% if dirs%}
     <details class=groupe open id=Folders>
@@ -172,7 +174,7 @@
     <span class="btnChPnl" onclick="Download()">{% trans 'Download' %}</span>
     <span class="btnChPnl" onclick="confirmMDFile(CheckList)">{% trans 'Delete' %}</span>
 </div>
-{% include "./blocks/panel.html" %}
+
 
 {% include "./Modals/DeleteModal.html" %}
 {% include "./Modals/TextInputModal.html" %}
