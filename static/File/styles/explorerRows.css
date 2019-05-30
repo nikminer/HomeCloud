@@ -167,7 +167,7 @@
 @media (max-width: 1024px){
     .content{
         margin-right: 0;
-        font-size: 140%;
+        font-size: 25px;
         margin-bottom: 100px;
     }
     .row img{
@@ -179,33 +179,39 @@
         width: 100%;
         max-width: 0;
         display: grid;
-        grid-template-columns: 60px auto  120px 150px;
+        grid-template-columns: 60px auto  20% 150px;
         grid-template-rows: 50% 50%;
         border-bottom: lightgrey 0.5px solid;
         padding-top:10px;
         padding-bottom: 10px;
-        font-size: 120%;
+        font-size: 35px;
         margin: 0;
     }  
 
+    .check > label {
+        line-height: 40px;
+        padding: 0;
+            
+    }
     .check > label:before {
-        font-size: 36px;
-        width: 30px;
-        height: 30px;
+        font-size: 45px;
+        width: 40px;
+        height: 40px;
+        margin: auto;
     }
     
     .name{
-        font-size: 90%;
+        font-size: 35px;
     }
     .name img{
         margin-right: 10px;
         width:50px;
     }
     .size{
-        font-size: 16px;
+        font-size: 15px;
     }
     .time{
-        font-size: 16px;
+        font-size: 15px;
     }
     .panel{
         opacity: 1;
@@ -240,7 +246,7 @@
         left:0;
         height: 100px;
         justify-content: center;
-        font-size: 120%;
+        font-size: 35px;
     }
 
     .btnChPnl {

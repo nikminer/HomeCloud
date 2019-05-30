@@ -13,12 +13,12 @@ header{
 
     grid-area:paths;
     padding: 10px;
-    font-size: 150%;
+    font-size: 18px;
     border-bottom: 1px solid lightgray;
     word-break: break-all;
 }
 .path span{
-    font-size: 50%;
+    font-size: 18px;
     color: #fff;
     font-weight: bold
 }
@@ -37,7 +37,7 @@ header{
     color: black;
     text-align: left;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 140%;
+    font-size: 25px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
@@ -51,7 +51,7 @@ header{
     margin-bottom: 0;
 }
 .logo h4{
-    font-size: 60%;
+    font-size: 15px;
     margin: 0;
     margin-left: 2px;
     margin-top: -5px;
@@ -80,6 +80,13 @@ header{
         margin-left: 1%;
     }
     .logo{
-        font-size: 150%;
+        font-size: 45px;
+    }
+    .logo h4{
+        font-size: 25px;
+        margin: 0;
+        margin-left: 2px;
+        margin-top: -5px;
+        color: #777777
     }
 }

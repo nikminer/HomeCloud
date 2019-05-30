@@ -43,11 +43,11 @@ panel{
     panel{
         display:flex;
         flex-direction: column;
-        font-size: 130%;
+        font-size: 25px;
         min-height: auto;        
     }
     #panelcnt{
-        font-size: 110%;
+        font-size: 25px;
     }
     #panelcnt a{
         height: 70px;

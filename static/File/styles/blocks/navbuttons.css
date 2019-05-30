@@ -63,10 +63,10 @@
         opacity: 1;
     }
     .navBtn_text span {
-        font-size: 140%;
+        font-size: 30px;
     }
     .navBtn_img{
         height: auto;
-        width:  40px;
+        width:  50px;
     }
 }
