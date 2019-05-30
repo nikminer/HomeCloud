@@ -179,7 +179,7 @@
         width: 100%;
         max-width: 0;
         display: grid;
-        grid-template-columns: 60px auto  20% 150px;
+        grid-template-columns: 60px auto  250px 150px;
         grid-template-rows: 50% 50%;
         border-bottom: lightgrey 0.5px solid;
         padding-top:10px;
