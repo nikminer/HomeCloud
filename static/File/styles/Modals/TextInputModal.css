@@ -66,3 +66,45 @@
     cursor: pointer;
     background-color: #63cdda;
 }
+
+@media (max-width: 1024px){
+
+    #TextInputModal{
+      font-size: 130%;
+    }
+    .MKwindow{
+        grid-template-columns: auto auto 100px;
+        grid-template-rows: 120px auto;
+        min-width: 80%;
+        min-height: 50%;
+        margin: 5%;
+        border-radius: 0;
+    }
+    .MKForm{
+        padding: 20px;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .MKForm input{
+        font-size: 130%;
+        padding: 20px;
+        margin: auto;
+    }
+    #MKsubmit{
+        font-size: 120%;
+        padding: 20px;
+        margin: auto;
+    }
+
+    .header{
+        padding: 5%!important;
+        font-size: 130%!important;
+    }
+    .close{
+        padding: 20px!important;
+        font-size: 130%!important;
+    }     
+
+}

@@ -87,3 +87,52 @@
 #Change2{
     grid-area: selectbtn2;
 }
+
+@media (max-width: 1024px){
+    
+    #uploadpath{
+        padding: 20px;
+        font-size: 130%;
+    }
+
+    #MovetModal{
+        font-size: 130%;
+    }
+    .MVwindow{
+        display: grid;
+        grid-template-columns: auto 100px 100px;
+        grid-template-rows: 120px auto;
+        grid-template-areas: 
+        "Header Header close"
+            "form form form";
+        min-width: 80%;
+        min-height: 70%;
+        margin: 5%;
+        border-radius: 0;
+    }
+    .header{
+        padding: 5%!important;
+        font-size: 130%!important;
+    }     
+    .close{
+        padding: 20px!important;
+        font-size: 130%!important;
+    } 
+
+    .MVForm>span{
+        font-size: 110%!important;
+    }
+    .MVForm{
+        display: grid;
+        grid-area: form;
+        grid-template-rows: auto auto 60px;
+        grid-template-columns: auto 120px 90px;
+        margin-top: 10px;
+    }
+    .MVForm input{
+        font-size: 110%!important;
+        padding: 20px;
+        margin: auto;
+    }
+
+}

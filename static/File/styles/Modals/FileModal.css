@@ -129,3 +129,67 @@
     transition: all 200ms ease;
     background-color: #3dc1d3; 
 }
+
+@media (max-width: 1024px){
+
+    #FileModal{
+        font-size: 130%;
+    }
+    .windowUp{
+        display: grid;
+        grid-template-columns: auto 100px 100px;
+        grid-template-rows: 120px 150px auto 140px;
+        grid-template-areas: 
+        "Header Header close"
+        "path selectbtn selectbtn"
+        "file file file"
+        "panel panel panel";
+        min-width: 80%;
+        min-height: 70%;
+        margin: 5%;
+        border-radius: 0;
+    }
+    
+    #uploadpath{
+        padding: 20px;
+        font-size: 130%;
+    }
+
+    .header{
+        padding: 5%!important;
+        font-size: 130%!important;
+    }
+    .close{
+        padding: 20px!important;
+        font-size: 130%!important;
+    }     
+
+
+    .selctbtn{
+        font-size: 130%;
+        padding: 20px;
+        margin: auto;
+    }
+
+
+    .fileinput{
+        margin-top: 5%;
+        font-size: 120%;
+        padding: 25px;
+    }
+
+    .fileinput span {
+        font-weight:normal;
+    }
+    
+    #btnUpload{
+        font-size: 120%;
+    }
+
+    #Uploadpath{
+        grid-area: path;
+        margin-left: 5px;
+    }
+    
+
+}

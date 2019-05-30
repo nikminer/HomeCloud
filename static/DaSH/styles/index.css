@@ -100,11 +100,13 @@ body{
     padding: 10px;
     width: 200px;
     cursor: pointer;
+    background-color: white;
 }
 .langsel>input[type="submit"]{
     padding: 10px;
     background-color:#778beb;
     color: white;
+    
     border: none;
     cursor: pointer;
     transition: all 0.5s ease;
@@ -200,8 +202,6 @@ body{
         width: 50%;
         font-size: 110%;
         border: lightgray solid 2px;
-        background-color: white;
-        color: black;
         border-right: none;
     }
 

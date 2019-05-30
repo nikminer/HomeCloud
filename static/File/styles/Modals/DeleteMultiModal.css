@@ -87,3 +87,51 @@
     padding: 12px 37px;
     color:white;
 }
+
+@media (max-width: 1024px){
+    #MDModal{
+        font-size: 130%;
+    }
+    #MDwindow{
+        display: grid;
+        grid-template-columns: auto auto 100px;
+        grid-template-rows: 120px auto 140px;
+        min-width: 80%;
+        min-height: 80%;
+        margin: 5%;
+        border-radius: 0;
+    }
+
+    #MDheader{
+        padding: 5%!important;
+        font-size: 130%!important;
+    }
+    #MDPath{
+        padding-top: 2%;
+        height: inherit;
+        max-height: none;
+    }
+    #MDPath > li{
+        font-size: 130%;
+        padding: 2%!important;
+        margin: 5%!important;
+        list-style-type: none;
+    }
+
+    #MDclose{
+        padding: 20px!important;
+        font-size: 130%!important;
+    }
+    #MDPanel{
+        padding: 10px;
+        grid-area: panel;
+        display:flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .MDbtn {
+        padding: 30px 55px!important;
+        font-size: 130%!important;
+    }
+}

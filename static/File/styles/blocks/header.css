@@ -60,7 +60,7 @@ header{
 
 @media (max-width: 1024px){
     header{
-        display: flex;
+        display: flex!important;
         flex-direction: column;
     }
     .path{

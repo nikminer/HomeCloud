@@ -68,3 +68,28 @@ nav div{
 #dropright>a:hover{
     background-color:#687ef1;
 }
+
+@media (max-width: 1024px){
+    nav{
+        width: 10%;
+        font-size: 130%;
+    }
+    nav li{
+        margin-top: 20px;
+    }
+    nav li img{
+        width: 60px;
+    }
+
+    #dropright {
+        min-width: 50px;
+        max-width:225px;
+        left: 10%;
+        bottom: 110px;
+    }
+    
+    #dropright>a{
+        font-size:130%;
+        padding:10px 10px;
+    }
+}

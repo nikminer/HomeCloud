@@ -15,12 +15,6 @@ body{
     display: flex;
     flex-direction: column; 
 }
-#content>div>select{
-    margin: 10px;
-    margin-left: 20px;
-    padding: 5px;
-    width: 50%;
-}
 #content>div>span{
     margin: 10px;
     margin-left: 0px;
@@ -73,4 +67,55 @@ body{
 #panel>button:hover{
     color: white;
     background-color:#5b72e4;
+}
+
+@media (max-width: 1024px){
+    body{
+        font-size: 130%;
+        min-height: 100%;
+        margin: 0;
+        width:100%;
+        display: flex;
+        flex-direction: column;
+    }   
+
+    #content{
+        width:100%;
+        font-size: 130%;
+    }
+    
+    #content>div{
+        margin:20px;
+        display: flex;
+        flex-direction: column;
+        font-size: 90%; 
+    }
+
+    #content>div>input{
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 10px;
+        font-size: 90%; 
+    }
+    
+    #panel{
+        margin-top: 40px!important;
+        padding: 5px 0;
+        border-top: lightgray solid 1px;
+        display: flex!important;
+        flex-direction: row!important;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    #panel>input{
+        padding: 15px 10px!important;
+        font-size: 90%; 
+    }
+    #panel>input[type="text"]{
+        width:110%;
+    }
+    #panel>button{
+        padding: 15px 10px;
+        font-size: 90%; 
+    }
 }

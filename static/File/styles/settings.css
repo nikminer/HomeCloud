@@ -72,3 +72,32 @@ img{
     height:24px;
     margin-right:5px;
 }
+
+@media (max-width: 1024px){
+    body{
+       font-size: 130%;
+    }
+    #content{
+        font-size: 130%;
+        margin:auto;
+        width: 90%;
+    }
+    .row{
+        padding:15px;
+        border-bottom:solid lightgray 3px;
+    }
+    .del{
+        padding:10px;
+        border-bottom:solid lightgray 3px;
+        border-left:solid lightgray 3px;
+    }
+    #content>div{
+        grid-template-columns: auto 140px;
+        grid-column-gap: 15px;
+    }
+    img{
+        width:35px;
+        height:35px;
+        margin-right:10px;
+    }
+}

@@ -13,3 +13,25 @@
 .listinfo span{
     margin: 10px;
 }
+
+@media (max-width: 1024px){
+    .listinfo{
+        font-size: 130%;
+        margin-top: 5px;
+    }
+    .listinfo{
+        font-size: 130%;
+        margin-top: 15px;
+    }
+    .listinfo span{
+        margin: 15px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 110%;
+        margin-top: 5px;
+    }
+    .listinfo>span>img{
+        width: 35px!important;
+    }
+}

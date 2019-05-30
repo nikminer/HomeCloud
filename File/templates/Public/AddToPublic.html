@@ -61,7 +61,42 @@ form input{
     border-radius: 3px;
     cursor: pointer;
 }        
+@media (max-width: 1024px){
 
+    form{
+        height: 450px;
+        font-size: 130%;
+    }
+    form input{
+        padding: 10px;
+        margin: 20px 0;
+        font-size: 100%;
+    }
+    form>span{
+        font-size: 130%;
+    }
+    form>h2{
+        font-size: 130%;
+    }
+    #submit{
+        padding: 30px;
+    }
+    .selctbtn{
+        cursor: pointer;
+        padding: 20px;
+        margin: 5px;
+    }
+
+    .close{
+        grid-area: close;
+        margin:auto;
+        padding: 10px;
+        margin: 1px;
+        font-size: 25px;
+        transition: all 200ms ease;
+    }
+    
+}
 </style>
 
 
@@ -74,12 +109,14 @@ form input{
                 <input style="width:750px" type="text" id=filePAth name=path value="{{path|escape}}" readonly>
                 <span  onclick="showLiteDirModalPO(filePAth)" id=Change1 class=selctbtn >{% trans 'Change' %}</span>
             </div>
-            
-            <span>{% trans 'Shered Link' %}: {{host|escape}}/file/public/<input name=name type="text" id=pseudoname value="SharedFile" onchange="checkname()"></span>
-            <span id=mess>{% trans 'Pseudoname is avilable' %}!</span>
             <div>
-                <input type="checkbox" name=isVisible id=isVisible  checked><label for=isVisible> {% trans 'Is Visible' %}</label>
+                <span>{% trans 'Shered Link' %}: {{host|escape}}/file/public/<input name=name type="text" id=pseudoname value="SharedFile" onchange="checkname()"></span>
+                
             </div>
+            <span id=mess>{% trans 'Pseudoname is avilable' %}!</span>
+                <div>
+                    <input type="checkbox" name=isVisible id=isVisible  checked><label for=isVisible> {% trans 'Is Visible' %}</label>
+                </div>
             <input id=submit type="submit"  value="{% trans 'Share File' %}">
             {% csrf_token %}
         </form>

@@ -98,3 +98,61 @@ body{
     flex-direction: column;
     justify-content: space-between;
 }
+
+@media (max-width: 1024px){
+    body{
+        grid-template-columns: 10% auto;
+    }
+    #page{
+        padding-left: 0;
+    }
+
+    #content{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        font-size:130%;
+    }
+    #content span{
+        padding: 15px 10px;
+        font-size: 110%;
+    }
+    .title{
+        font-size:130%!important;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    #VMemory{
+        width: auto;
+        height: auto;
+        padding: 10px 0;
+    }
+    #SMemory{
+        width: auto;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    ul details:hover{
+        background-color: white;
+        color: black;
+    }
+    ul details{
+        margin: 0;
+        padding: 15px;
+    }
+    ul details summary{
+        padding: 7px;
+        font-size:120%;
+        cursor: pointer;
+        transition: all 0.7s ease;
+    }
+    ul span{
+        font-size:120%;
+        font-weight: bold;
+    }
+    
+    
+   
+}

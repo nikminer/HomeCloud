@@ -212,7 +212,7 @@ msgstr "Ссылка для скачивания"
 
 #: .\File\templates\Public\AddToPublic.html:79
 msgid "Pseudoname is avilable"
-msgstr "Псевдоним занят"
+msgstr "Псевдоним свободен"
 
 #: .\File\templates\Public\AddToPublic.html:81
 msgid "Is Visible"

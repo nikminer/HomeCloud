@@ -58,3 +58,41 @@ img{
     height:24px;
     margin-right:5px;
 }
+
+@media (max-width: 1024px){
+    body{
+        font-size: 130%;
+        min-height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    #content{
+        margin:auto;
+        margin-top: 40px;
+        width:100%;
+        padding: 50px;
+    }
+    .row{
+        margin:10px 0;
+        padding:20px 10px;
+        font-size: 130%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .del{
+        margin:10px 0;
+        padding:5px 20px;
+        font-size: 130%;
+    }
+    #content>div{
+        grid-template-columns: auto 140px;
+        grid-column-gap: 10px;
+    }
+    img{
+        width:35px;
+        height:35px;
+        margin-right:15px;
+    }
+}

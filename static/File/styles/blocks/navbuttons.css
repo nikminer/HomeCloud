@@ -19,15 +19,12 @@
     transition-duration: 0.2s;
     background-color: white;
 }
-
 .navBtn:hover > .navBtn_text {
     opacity: 1;
     transition-property: opacity;
     transition-duration: 0.3s;
     transition-delay: 0.2s;
 }
-
-
 .navBtn_text {
     padding-left: 7px;
     padding-right: 3px;
@@ -39,7 +36,7 @@
     font-size: 20px;
 }
 .navBtn_img{
-    height: 25px
+    height: 25px;
 }
 
 @media (max-width: 1024px){
@@ -59,7 +56,6 @@
         transition-property: none;
         transition-duration: none;
     }    
-    
     .navBtn_text {
         padding-left: 20px;
         padding-right: 3px;
