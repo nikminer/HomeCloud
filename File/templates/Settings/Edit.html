@@ -29,7 +29,7 @@
         </select>
     </div>
     <div id="icon">
-        <span>Icon:</span>
+        <span>{% trans 'Icon:'%}</span>
         <div>
             <img id=previewicon src="{% if icon %}{% static icon %}{% else %}{% static 'File/images/file.png' %}{% endif %}">
             {{forms}}
@@ -53,7 +53,7 @@
         </div>
     </div>
     <div id=panel>
-        <input id=send type="submit" value="Save" onclick="Save()">
+        <input id=send type="submit" value="{% trans 'Save'%}" onclick="Save()">
         <a href=".">{% trans 'Back'%}</a>
     </div>
     <input name=formatlists id=sendlist type="hidden">

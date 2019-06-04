@@ -27,6 +27,7 @@ header{
     color: #000;
     text-decoration: none;
     transition: all 0.5s ease;
+    padding: 2px;
 }
 .path a:hover{
     border-radius: 2px;
@@ -69,7 +70,7 @@ header{
         flex-wrap: wrap;
         align-items: center;
         padding: 10px;
-        font-size: 150%;
+        font-size: 30px;
         border-bottom: 1px solid lightgray;
         word-break: break-all;
     }

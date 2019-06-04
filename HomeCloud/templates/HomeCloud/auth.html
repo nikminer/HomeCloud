@@ -1,4 +1,5 @@
 {%load staticfiles%}
+{% load i18n %}
 <title>HomeCloud Auth</title>
 <link rel="stylesheet" href="{% static 'DaSH/styles/auth.css' %}" rel="stylesheet" type="text/css">
 
@@ -7,9 +8,11 @@
 
 <form method="post" action="/auth/">
     {% csrf_token %}
-    <span style="text-align: center; font-size: 35px;font-family: 'Ubuntu', sans-serif;font-weight: bold">Auth page</span>
+    <span style="text-align: center; font-size: 35px;font-family: 'Ubuntu', sans-serif;font-weight: bold">{% trans 'Auth page' %}</span>
     <input type=text placeholder="login" name="login">
     <input type="password" placeholder="password" name="pass">
-    <input type="submit" value="Enter">
+    <input type="submit" value="{% trans 'Enter' %}">
     <input type="hidden" name="next" value="{{ next|escape }}" />
 </form>
+
+<a class=public href="/file/public">{% trans 'Server Public Files' %}</a>

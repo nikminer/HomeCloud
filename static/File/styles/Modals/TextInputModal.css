@@ -69,42 +69,43 @@
 
 @media (max-width: 1024px){
 
-    #TextInputModal{
-      font-size: 130%;
-    }
     .MKwindow{
         grid-template-columns: auto auto 100px;
         grid-template-rows: 120px auto;
-        min-width: 80%;
-        min-height: 50%;
-        margin: 5%;
+        min-width: 100%;
+        min-height: 100%;
+        margin: 0;
         border-radius: 0;
     }
     .MKForm{
+        display:  flex;
+        flex-direction: column;
+        
         padding: 20px;
         margin-top: 10px;
-        display: flex;
-        flex-direction: row;
         align-items: center;
+        justify-content:center;
     }
     .MKForm input{
-        font-size: 130%;
+        font-size: 36px;
         padding: 20px;
         margin: auto;
     }
     #MKsubmit{
-        font-size: 120%;
+        font-size: 36px;
         padding: 20px;
         margin: auto;
+        background-color: #63cdda;
+        padding: 30px 65px;
     }
 
     .header{
         padding: 5%!important;
-        font-size: 130%!important;
+        font-size: 36px;
     }
     .close{
         padding: 20px!important;
-        font-size: 130%!important;
+        font-size: 36px;
     }     
 
 }

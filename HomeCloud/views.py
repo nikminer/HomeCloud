@@ -28,6 +28,7 @@ def CreateUser(request):
 def Save(request):
     if request.user.is_superuser:
         User.objects.create_user(username=request.POST['username'],password=request.POST['pass'])
+        os.mkdir(os.path.expanduser("~/"+request.POST['username']))
         return redirect(".")
     else:   
         return redirect('../..')
@@ -36,6 +37,7 @@ def DeleteUser(request,user):
     if request.user.is_superuser:
         u = User.objects.get(username = user)
         u.delete()
+        shutil.rmtree(os.path.expanduser("~/"+user))
         return redirect(".")
     else:   
         return redirect('../..')

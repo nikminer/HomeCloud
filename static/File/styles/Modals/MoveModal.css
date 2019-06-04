@@ -94,10 +94,6 @@
         padding: 20px;
         font-size: 130%;
     }
-
-    #MovetModal{
-        font-size: 130%;
-    }
     .MVwindow{
         display: grid;
         grid-template-columns: auto 100px 100px;
@@ -105,34 +101,40 @@
         grid-template-areas: 
         "Header Header close"
             "form form form";
-        min-width: 80%;
-        min-height: 70%;
-        margin: 5%;
+        min-width: 100%;
+        min-height: 100%;
+        margin: 0;
         border-radius: 0;
     }
+
     .header{
         padding: 5%!important;
-        font-size: 130%!important;
+        font-size: 36px;
     }     
     .close{
         padding: 20px!important;
-        font-size: 130%!important;
+        font-size: 36px;
     } 
 
     .MVForm>span{
-        font-size: 110%!important;
+        font-size: 30px;
     }
     .MVForm{
         display: grid;
         grid-area: form;
-        grid-template-rows: auto auto 60px;
+        grid-template-rows: 120px 120px auto ;
         grid-template-columns: auto 120px 90px;
         margin-top: 10px;
     }
     .MVForm input{
-        font-size: 110%!important;
+        font-size: 32px;
         padding: 20px;
         margin: auto;
+        
     }
-
+    #MVsubmit{
+        background-color: #63cdda;
+        font-size: 36px;
+        padding: 30px 65px;
+    }
 }

@@ -89,22 +89,19 @@
 }
 
 @media (max-width: 1024px){
-    #MDModal{
-        font-size: 130%;
-    }
     #MDwindow{
         display: grid;
         grid-template-columns: auto auto 100px;
         grid-template-rows: 120px auto 140px;
-        min-width: 80%;
-        min-height: 80%;
-        margin: 5%;
+        min-width: 100%;
+        min-height: 100%;
+        margin: 0;
         border-radius: 0;
     }
 
     #MDheader{
         padding: 5%!important;
-        font-size: 130%!important;
+        font-size: 36px;
     }
     #MDPath{
         padding-top: 2%;
@@ -112,7 +109,7 @@
         max-height: none;
     }
     #MDPath > li{
-        font-size: 130%;
+        font-size: 30px;
         padding: 2%!important;
         margin: 5%!important;
         list-style-type: none;
@@ -120,7 +117,7 @@
 
     #MDclose{
         padding: 20px!important;
-        font-size: 130%!important;
+        font-size: 36px!important;
     }
     #MDPanel{
         padding: 10px;
@@ -132,6 +129,6 @@
     }
     .MDbtn {
         padding: 30px 55px!important;
-        font-size: 130%!important;
+        font-size: 36px;
     }
 }

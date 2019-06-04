@@ -1,53 +1,340 @@
+
 body{
+    display: flex;
+    flex-direction: column;
     margin: 0;
-    display: grid;
-    grid-template-columns:  16% auto;
-    grid-template-rows: auto 50px auto;
-    grid-template-areas: 
-        "headeres headeres"
-        "nav nav"
-        "panel content "
-        "panel footer ";
     font-family: 'Ubuntu', sans-serif;
     min-height: 100%;
-    
-}
-.nav {
     background-color: #63cdda;
+    max-width: 100%;
+}
+.nav{
+    display: flex;
+    background-color: #63cdda;
+    flex-direction: row;
+    align-items: center;   
+}
+.frame{
+    display: grid;
+    grid-template-areas: "panel content";
+    grid-template-columns:  15% auto;
+    min-height: 85%;
+}
+.content{
+    background-color: white;
+    grid-area: content;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.bigspan{
+    display: flex;
+    flex-direction: row;
+    align-items:center; 
+    font-size: 24px;
+    font-weight: bold;
     padding: 10px;
-    z-index: 10;
+    padding-left: 0;
+    border-bottom: black 1px solid;
+    margin-bottom: 5px;
+    background-color: #63cdda;
+    border-radius:  5px 5px 0 0 ;
+    padding: 7px;
 }
-header{
-    display: grid!important;
+.groupe{
+    border-radius: 5px;
+    border-bottom: black 1px solid;
+    border-top : black 1px solid;
+    margin: 10px 0;
 }
-#navbar{
-    grid-area: nav;
-    transition: top 0.3s;
+.bigspan>img{
+    margin-left: 5px;
+    width:24px;
+}
+.row{
+    display: grid;
+    grid-template-areas: "check name middle panel";
+    grid-template-columns: 40px auto 100px 155px;
+    grid-column-gap: 15px;
+    min-height: 35px;
+    border-bottom: 1px lightgray solid;
+    margin-bottom: 5px;
+    padding: 5px;
+    transition: all 0.5s ease;
+}
+.row:hover{
+    background-color: #63cdda;
+    margin: 10px;
+}
+.row:hover>.panel{
+    opacity: 1;
+}
+.check{
+    grid-area: check;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px lightgray solid;
+    padding-right: 5px;
+
+}
+.check>input[type="checkbox"] {
+    display: none;
+}
+.check > label {
+    color: #000;
+    font-weight: normal;
+    line-height:100%;
+    font-size: 20px;
+    padding: 10px 0;
+    font-weight: bold;
+    vertical-align: middle;
+}
+.check > label:before {
+    content: " ";
+    color: #000;
+    margin-top: 5px;
+    display: inline-block;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    background: #FFF;
+    border: 1px solid #222;
+    cursor: pointer;
+}
+.check > input:checked + label:before {
+    content: ">";
+}
+.check > input:disabled + label:before {
+    background: #eee;
+    color: #aaa;
+}
+
+.name{
+    grid-area: name;
     display: flex;
     flex-direction: row;
     align-items: center;
-    max-height: 30px;
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    word-break: break-all;
+    border-right: 1px lightgray solid;
+    padding-right: 5px;
+    transition: all 0.5s ease;
+}
+.row:hover>.name:hover{
+    background-color: white;
+    padding: 0 10px;
+}
+.name>img{
+    margin-right: 10px;
+}
+.middle{
+    grid-area: middle;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 18px;
+}
+.panel{
+    grid-area: panel;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+.panel>img{
+    width:24px;
+    height:23px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: all 0.5s ease;
+}
+.panel>img:hover{
+    background-color: white;
+    padding: 5px;
+}
+
+#checkedPanel {
+    position: fixed;
+    bottom: 0;
+    right:  0;
+    left: 15%;
+    height: 50px;
+    background: #63cdda;
+    display: none;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 17px;
+    padding: 0 30px;
+}
+.btnChPnl {
+    cursor: pointer;
+    transition: all 1s ease;
+    padding:20px 10px;
+}
+.btnChPnl:hover{
+    background: #FFF;
+}
+.checkedRow {
+    background-color: #63cdda!important;
+}
+#fileCount {
+    margin-right: 10%;
+}
+#CHPanelClr {
+    background-color: #63cdda;
+    margin-right: 10px;
+    padding:5px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+#CHPanelClr:hover{
+    background-color:white;
+    padding:10px;
 }
 
 @media (max-width: 1024px){
-    body{
+    .nav{
+        display: flex;
+        background-color: #63cdda;
+        flex-direction: column;
+        align-items: stretch;   
+    }
+    
+    .frame{
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        margin-bottom: 100px;
+        
+    }
+    .content{
+        
+        background-color: white;
+        grid-area: content;
+        padding: 10px 0px;
+        padding-top: 60px;
+        display: flex;
+        flex-direction: column;
+    }
+    .bigspan{
+        font-size: 36px;
+        font-weight: normal;
+        padding: 20px;
+        border-bottom : black 2px solid;
+    }
+    .groupe{
+        border-radius:0;
+        border-bottom:none;
+        border-top : black 2px solid;
+        margin: 0 0;
+    }
+    .bigspan>img{
+        margin: 0 10px;
+        width:30px;
+    }
+    .row{
+        grid-template-columns: 70px auto 120px 150px;
+        grid-column-gap: 15px;
+        min-height: 45px;
+        border-bottom: 2px lightgray solid;
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+    .row:hover{
+        background-color: #63cdda;
         margin: 0;
-        display: flex;
-        flex-direction: column;
-        min-height: 100%;
+        margin-bottom: 15px;
+    }
+    .check{
+        border-right: 2px lightgray solid;
+        padding-right: 10px;
+    }
+    .check > label {
+        line-height:100%;
+        font-size: 40px;
+        padding: 20px 0;
+    }
+    .check > label:before {
+        width: 40px;
+        height: 40px;
+        margin-top: 0;
+        border: 2px solid #222;
+    }
+
+    .name{
+        font-size: 30px;
+        border-right: 2px lightgray solid;
+    }
+    .row:hover>.name:hover{
+        padding: 0;
+    }
+    .name>img{
+        margin-right: 10px;
+        width: 35px!important;
+    }
+    .middle{
         font-size: 25px;
-        min-width: 100%;
     }
-    .nav {
-        padding: 10px 20px;
-        z-index: 10;
-    }
-    #navbar{
-        grid-area: nav;
-        transition: top 0.3s;
+    .panel{
+        grid-area: panel;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        max-height: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        opacity: 1;
+        transition: all 0.5s ease;
+    }
+    .panel>img{
+        width:35px!important;
+        height:34px;
+        cursor: pointer;
+        margin: 10px;
+        transition: all 0.5s ease;
+    }
+    .panel>img:hover{
+        background-color: white;
+        padding: 5px;
+    }
+
+    #checkedPanel {
+        left: 0;
+        height: 100px;
+        font-size: 30px;
+        padding: 0 30px;
+    }
+    .btnChPnl {
+        padding:30px 20px;
+    }
+    .btnChPnl:hover{
+        background: #FFF;
+    }
+    .checkedRow {
+        background-color: #63cdda!important;
+    }
+    #fileCount {
+        margin-right: 10%;
+    }
+    #CHPanelClr {
+        background-color: #63cdda;
+        margin-right: 10px;
+        padding:30px;
+        cursor: pointer;
+        transition: all 0.5s ease;
+    }
+    #CHPanelClr:hover{
+        background-color:white;
+        padding:10px;
     }
 }

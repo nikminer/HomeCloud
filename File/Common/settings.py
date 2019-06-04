@@ -66,7 +66,7 @@ def Save(request):
 		if not icon :
 			shutil.copyfile("static/File/images/Groups/file.png","static/File/images/Groups/"+request.POST['groupname']+".png")
 			icon="File/images/Groups/"+request.POST['groupname']+".png"
-
+	
 	dic['icon']=icon
 	conf[request.POST['groupname']]=dic
 	open("static/File/config/Groups.json","w").write(json.dumps(conf))
