@@ -19,7 +19,7 @@
     </a>
     {% for i in users %}
     <div>
-        <a class="row">
+        <a href="{% url 'DaSH-USER-SETPASSWORD' i %}" class="row">
             <span>
                 {{i}}
             </span>

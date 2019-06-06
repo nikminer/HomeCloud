@@ -21,7 +21,8 @@ urlpatterns = [
     path('admin/Users/create',views.CreateUser),
     path('admin/Users/save',views.Save),
     path('admin/Users/del<str:user>',views.DeleteUser),
-    
+    path('admin/Users/chngepass',views.CHPass, name="DaSH-USER-CHANGEPASS"),
+    path('admin/Users/setpass/<str:user>',views.SetPass, name="DaSH-USER-SETPASSWORD"),
     #File
     re_path(r'^file/',include('File.urls'))
 ]
