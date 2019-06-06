@@ -1,13 +1,17 @@
 panel{
-    font-family:Dejavu Sans;
+    font-family: 'Ubuntu', sans-serif;
     grid-area: panel;
-    font-size: 19px;
+    font-size: 20px;
     background-color: #63cdda;
-    min-height: 70vh;        
+    min-height: 100%;    
 }
 #panelcnt{
     padding-top: 20px;
     background-color: #63cdda;
+    display: flex;
+    flex-direction: column;
+}
+#panelcnt>div{
     display: flex;
     flex-direction: column;
 }
@@ -23,14 +27,74 @@ panel{
 #freesize{
     width: 90%;
     margin-top: 5px;
+    border: 1px gray solid;
+    height: 24px;
+    
 }
 
 .w3-light-grey{
     color: #000 !important;
-    background-color: #f1f1f1 !important
+    background-color: #f1f1f1 !important;
 }
 .w3-center {
-    text-align: center !important;
-    display:block;
-    width: 100%
+    display: flex; 
+    height: 24px;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 1024px){
+    panel{
+        display:flex;
+        flex-direction: column;
+        min-height: auto;        
+    }
+    #panelcnt{
+        font-size: 36px;
+    }
+    #panelcnt a{
+        height: 70px;
+        padding: 10px 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 30px;
+    }
+    #panelcnt a>img{
+        width: 30px!important;
+        margin-right: 20px;
+    }
+    
+    #panelcnt>b{
+        text-align: center;
+        cursor: pointer;
+        background-color: white;
+        padding: 15px;
+        border-top: black 2px solid;
+        border-bottom:  black 3px solid;
+    }
+    #panelcnt>b:hover{
+        background-color: #63cdda;
+    }
+    #panelcnt>div{
+        margin: 0!important;
+        transition: all 0.5s ease;
+    }
+    #panelcnt>div:last-child{
+        margin: 0!important;
+        display: none!important;
+    }
+
+    #freesize{
+        width: 100%;
+        margin-top: 5px;
+    }  
+    
+}
+.hideAccord{
+    display: none!important;
+}
+.ShowAccord{
+    display: flex!important;
 }

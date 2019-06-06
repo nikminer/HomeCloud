@@ -1,6 +1,6 @@
 #page{
     grid-area: contentfield;
-    font-family: Dejavu Sans; 
+    font-family: 'Ubuntu', sans-serif;
     padding-left: 20px;
 }
 #content{
@@ -29,9 +29,9 @@
 }
 .title{
     background-color: #778beb;
-    border-radius: 10px;
+
     padding: 10px;
-    font-family: Dejavu Sans; 
+    font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
     font-size: 1.4rem;
     color: white;
@@ -49,13 +49,13 @@ ul details:hover{
 }
 ul details{
     margin: 5px;
-    padding: 2px;
-    border-radius: 2px;
+    padding: 5px;
 }
 ul details summary{
     padding: 2px;
     font-size:1.2rem;
     cursor: pointer;
+    transition: all 0.7s ease;
 }
 ul span{
     font-size: 1.34rem;
@@ -79,7 +79,7 @@ body{
 
 }
 #VMemory{
-    font-family: Dejavu Sans; 
+    font-family: 'Ubuntu', sans-serif; 
     background-color: white;
     width: 400px;
     height: 200px;
@@ -89,7 +89,7 @@ body{
     justify-content: space-between;
 }
 #SMemory{
-    font-family: Dejavu Sans; 
+    font-family: 'Ubuntu', sans-serif; 
     background-color: white;
     width: 400px;
     height: 200px;
@@ -97,4 +97,62 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+@media (max-width: 1024px){
+    body{
+        grid-template-columns: 10% auto;
+    }
+    #page{
+        padding-left: 0;
+    }
+
+    #content{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        font-size:130%;
+    }
+    #content span{
+        padding: 15px 10px;
+        font-size: 110%;
+    }
+    .title{
+        font-size:130%!important;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    #VMemory{
+        width: auto;
+        height: auto;
+        padding: 10px 0;
+    }
+    #SMemory{
+        width: auto;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    ul details:hover{
+        background-color: white;
+        color: black;
+    }
+    ul details{
+        margin: 0;
+        padding: 15px;
+    }
+    ul details summary{
+        padding: 7px;
+        font-size:120%;
+        cursor: pointer;
+        transition: all 0.7s ease;
+    }
+    ul span{
+        font-size:120%;
+        font-weight: bold;
+    }
+    
+    
+   
 }

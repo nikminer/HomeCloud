@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-24 02:46+0300\n"
+"POT-Creation-Date: 2019-06-06 02:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,13 +20,26 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: .\HomeCloud\templates\HomeCloud\Settings\Users.html:7
+#: .\HomeCloud\templates\HomeCloud\blocks\navigation.html:27
+msgid "Users"
+msgstr "Пользователи"
+
+#: .\HomeCloud\templates\HomeCloud\Settings\Users.html:17
+msgid "Add new user"
+msgstr "Добавить нового пользователя"
+
+#: .\HomeCloud\templates\HomeCloud\Settings\Users.html:27
+msgid "Delete"
+msgstr "Удалить"
+
 #: .\HomeCloud\templates\HomeCloud\Settings\create.html:14
 msgid "Creating new user"
 msgstr "Создание нового пользователя"
 
 #: .\HomeCloud\templates\HomeCloud\Settings\create.html:17
 msgid "Name:"
-msgstr "Имя пользователя:"
+msgstr "Имя:"
 
 #: .\HomeCloud\templates\HomeCloud\Settings\create.html:19
 msgid "Password:"
@@ -70,83 +83,95 @@ msgid "CPU Usage: "
 msgstr "Использование ЦП: "
 
 #: .\HomeCloud\templates\HomeCloud\admin.html:29
-msgid "Memory information"
-msgstr "Информация об оперативной памяти "
-
-#: .\HomeCloud\templates\HomeCloud\admin.html:30
-msgid "Network information"
-msgstr "Информация о сети "
-
-#: .\HomeCloud\templates\HomeCloud\admin.html:31
-msgid "Data sent: "
-msgstr "Информации отправлено: "
-
-#: .\HomeCloud\templates\HomeCloud\admin.html:32
-msgid "Data receive: "
-msgstr "Информации получено: "
-
-#: .\HomeCloud\templates\HomeCloud\admin.html:33
-msgid "Packets sent: "
-msgstr "Пакетов отправлено: "
-
-#: .\HomeCloud\templates\HomeCloud\admin.html:34
-msgid "Packets receive: "
-msgstr "Пакетов получено: "
-
-#: .\HomeCloud\templates\HomeCloud\admin.html:37
-msgid "Network interface: "
-msgstr "Сетевые интерфейсы: "
-
-#: .\HomeCloud\templates\HomeCloud\admin.html:42
-msgid "Address: "
-msgstr "Адрес: "
-
-#: .\HomeCloud\templates\HomeCloud\admin.html:42
-msgid "Netmask: "
-msgstr "Маска: "
-
-#: .\HomeCloud\templates\HomeCloud\admin.html:49
 msgid "Main disk"
 msgstr "Основной диск"
 
-#: .\HomeCloud\templates\HomeCloud\admin.html:50
-#: .\HomeCloud\templates\HomeCloud\admin.html:61
-#: .\HomeCloud\templates\HomeCloud\admin.html:72
+#: .\HomeCloud\templates\HomeCloud\admin.html:30
+#: .\HomeCloud\templates\HomeCloud\admin.html:42
+#: .\HomeCloud\templates\HomeCloud\admin.html:53
 msgid "Total: "
 msgstr "Всего: "
 
-#: .\HomeCloud\templates\HomeCloud\admin.html:51
-#: .\HomeCloud\templates\HomeCloud\admin.html:62
-#: .\HomeCloud\templates\HomeCloud\admin.html:73
+#: .\HomeCloud\templates\HomeCloud\admin.html:31
+#: .\HomeCloud\templates\HomeCloud\admin.html:43
+#: .\HomeCloud\templates\HomeCloud\admin.html:54
 msgid "Used: "
 msgstr "Используется: "
 
-#: .\HomeCloud\templates\HomeCloud\admin.html:52
-#: .\HomeCloud\templates\HomeCloud\admin.html:63
-#: .\HomeCloud\templates\HomeCloud\admin.html:74
+#: .\HomeCloud\templates\HomeCloud\admin.html:32
+#: .\HomeCloud\templates\HomeCloud\admin.html:44
+#: .\HomeCloud\templates\HomeCloud\admin.html:55
 msgid "Free: "
 msgstr "Свободно: "
 
-#: .\HomeCloud\templates\HomeCloud\admin.html:54
+#: .\HomeCloud\templates\HomeCloud\admin.html:34
 #: .\HomeCloud\templates\HomeCloud\index.html:52
 msgid "Main disk Usage: "
 msgstr "Загруженость основного диска: "
 
-#: .\HomeCloud\templates\HomeCloud\admin.html:60
+#: .\HomeCloud\templates\HomeCloud\admin.html:39
+msgid "Memory information"
+msgstr "Информация об оперативной памяти "
+
+#: .\HomeCloud\templates\HomeCloud\admin.html:41
 msgid "Virtual Memory"
 msgstr "Виртуальная память"
 
-#: .\HomeCloud\templates\HomeCloud\admin.html:65
+#: .\HomeCloud\templates\HomeCloud\admin.html:46
 msgid "Virtual Memory Usage: "
 msgstr "Использование виртуальной памяти: "
 
-#: .\HomeCloud\templates\HomeCloud\admin.html:71
+#: .\HomeCloud\templates\HomeCloud\admin.html:52
 msgid "Swap Memory"
 msgstr "Память подкачки"
 
-#: .\HomeCloud\templates\HomeCloud\admin.html:76
+#: .\HomeCloud\templates\HomeCloud\admin.html:57
 msgid "Swap Memory Usage: "
 msgstr "Использование памяти подкачки: "
+
+#: .\HomeCloud\templates\HomeCloud\admin.html:62
+msgid "Network information"
+msgstr "Информация о сети "
+
+#: .\HomeCloud\templates\HomeCloud\admin.html:63
+msgid "Data sent: "
+msgstr "Информации отправлено: "
+
+#: .\HomeCloud\templates\HomeCloud\admin.html:64
+msgid "Data receive: "
+msgstr "Информации получено: "
+
+#: .\HomeCloud\templates\HomeCloud\admin.html:65
+msgid "Packets sent: "
+msgstr "Пакетов отправлено: "
+
+#: .\HomeCloud\templates\HomeCloud\admin.html:66
+msgid "Packets receive: "
+msgstr "Пакетов получено: "
+
+#: .\HomeCloud\templates\HomeCloud\admin.html:69
+msgid "Network interface: "
+msgstr "Сетевые интерфейсы: "
+
+#: .\HomeCloud\templates\HomeCloud\admin.html:74
+msgid "Address: "
+msgstr "Адрес: "
+
+#: .\HomeCloud\templates\HomeCloud\admin.html:74
+msgid "Netmask: "
+msgstr "Маска: "
+
+#: .\HomeCloud\templates\HomeCloud\auth.html:11
+msgid "Auth page"
+msgstr "Аутентификация"
+
+#: .\HomeCloud\templates\HomeCloud\auth.html:14
+msgid "Enter"
+msgstr "Войти"
+
+#: .\HomeCloud\templates\HomeCloud\auth.html:18
+msgid "Server Public Files"
+msgstr "Публичные файлы"
 
 #: .\HomeCloud\templates\HomeCloud\blocks\IndexAdmin.html:6
 msgid "Admin panel for control system"
@@ -168,10 +193,6 @@ msgstr " в 2019"
 msgid "Free Cloud in your home"
 msgstr "Свободное облако в вашем доме"
 
-#: .\HomeCloud\templates\HomeCloud\blocks\navigation.html:27
-msgid "Users"
-msgstr "Пользователи"
-
 #: .\HomeCloud\templates\HomeCloud\blocks\navigation.html:33
 msgctxt "Logout"
 msgid "Exit"
@@ -182,8 +203,8 @@ msgid "Change"
 msgstr "Изменить"
 
 #: .\HomeCloud\templates\HomeCloud\index.html:26
-msgid "Profile"
-msgstr "Профиль"
+msgid "Change Password"
+msgstr "Сменить пароль"
 
 #: .\HomeCloud\templates\HomeCloud\index.html:27
 msgid "Exit"
@@ -203,9 +224,8 @@ msgstr "Публичные файлы для быстрого скачивани
 
 #: .\HomeCloud\templates\HomeCloud\index.html:45
 msgid "Enter Public"
-msgstr "Войти в Паблик"
+msgstr "Войти в Public"
 
-#: .\HomeCloud\views.py:118
+#: .\HomeCloud\views.py:120
 msgid "Free disk space less 10 GB"
 msgstr "Свободного пространство на диске меньше 10Гб"
-

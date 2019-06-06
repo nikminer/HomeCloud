@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+
 #content{
     flex-direction: column;
     align-items: stretch;
@@ -8,7 +10,6 @@
     justify-content: space-evenly;
     padding: 40px;
     min-height: 475px;
-    
 }
 #file{
     height: 450px;
@@ -42,7 +43,7 @@
     background-color:#32bcce;
 }
 .FileBigSpan{
-    font-size: 35px;
+    font-size: 36px;
     padding: 20px;
     font-weight: bold;
 }
@@ -60,55 +61,175 @@
     left: 0;
     right: 0;
 }
-        body{
-            margin:0;
-            min-height: 100%;
-            display: grid;
-            grid-template-areas: "Head"
-            "body";
-            grid-template-rows: 100px auto;
-            font-family: Dejavu Sans
-        }
-        #firstline{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-        #firstLine>div:last-child{
-            margin: 20px 10px;
-            padding: 10px;
-        }
-        #firstLine>div>a{
-            padding: 10px 20px;
-            margin-right: 10px;
-            text-decoration: none;
-            background-color:#778beb;
-            color: white;
-            font-size: 20px;
-            transition: all 0.5s ease;
-        }
-        #firstLine>div>a:hover{
-            background-color:#5b72e4;
-            cursor: pointer;
-        }
-        .langsel{
-            margin: 20px;
-        }
-        .langsel>select{
-            padding: 10px;
-            width: 200px;
-            cursor: pointer;
-        }
-        .langsel>input[type="submit"]{
-            padding: 10px;
-            background-color:#778beb;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: all 0.5s ease;
-        }
-        .langsel>input[type="submit"]:hover{
-            background-color:#5b72e4;
-            cursor: pointer;
-        }
+body{
+    margin:0;
+    min-height: 100%;
+    display: grid;
+    grid-template-areas: "Head"
+    "body";
+    grid-template-rows: 100px auto;
+    font-family: 'Ubuntu', sans-serif;
+}
+#firstline{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+#firstLine>div:last-child{
+    margin: 20px 10px;
+    padding: 10px;
+}
+#firstLine>div>a{
+    padding: 10px 20px;
+    margin-right: 10px;
+    text-decoration: none;
+    background-color:#778beb;
+    color: white;
+    font-size: 20px;
+    transition: all 0.5s ease;
+}
+#firstLine>div>a:hover{
+    background-color:#5b72e4;
+    cursor: pointer;
+}
+.langsel{
+    margin: 20px;
+}
+.langsel>select{
+    padding: 10px;
+    width: 200px;
+    cursor: pointer;
+    background-color: white;
+}
+.langsel>input[type="submit"]{
+    padding: 10px;
+    background-color:#778beb;
+    color: white;
+    
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.langsel>input[type="submit"]:hover{
+    background-color:#5b72e4;
+    cursor: pointer;
+}
+@media (max-width: 1024px){
+    body{
+        margin:auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    #content{
+        width: 100%;
+    }
+    #panelFile{
+        justify-content: center;
+        padding: 0;
+        min-height: 650px;
+    }
+
+    #file{
+        width: 50%;
+        height: auto;
+        border-right: black 2px dashed;
+    }
+    #public{
+        width: 50%;
+        height: auto;
+    }
+
+    .Filebtn{
+        font-weight: bold;
+        padding: 30px 40px;
+        margin: 30px;
+        font-size: 36px;
+    }
+
+    .FileBigSpan{
+        font-size: 40px;
+        padding: 20px;
+        font-weight: bold;
+    }
+    .FileSpan{
+        font-size: 30px;
+        padding: 10px;
+        padding-bottom: 20px;
+        word-break:normal;
+        text-align: center;
+        height: 90px;
+    }
+
+    #firstline{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding-top: 3%;
+    }
+    #firstLine>div:last-child{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+    }
+    
+    
+    #firstLine>div>a{
+        padding: 20px 30px;
+        width: 50%;
+        font-size: 32px;
+        margin: 0;
+        text-align: center;
+        border: lightgray solid 2px;
+        background-color: white;
+        color: black;
+        border-right: none;
+        border-top: none;
+    }
+    #firstLine>div>a:hover{
+        color: white;
+    }
+
+    .langsel{
+        width: 100%;
+        margin: 0;
+        margin-top: 4%;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+    }
+    .langsel>select{
+        padding: 30px;
+        width: 50%;
+        font-size: 32px;
+        border: lightgray solid 2px;
+        border-right: none;
+    }
+    .langsel>select>option{
+        font-size: 25px;
+    }
+    .langsel>input[type="submit"]{
+        padding: 10px;
+        width: 50%;
+        font-size: 32px;
+        border: lightgray solid 2px;
+        border-right: none;
+    }
+
+    #diskspace{
+        height: 50px;
+        font-size: 34px;
+    }
+    #diskspace>div{
+        height: 100%;
+    }
+    #diskspace>div>div{
+        height: 100%;
+    }
+}

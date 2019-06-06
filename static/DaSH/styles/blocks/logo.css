@@ -2,7 +2,7 @@
     grid-area: logoline;
     color: black;
     text-align: left;
-    font-family: Dejavu Sans; 
+    font-family: 'Ubuntu', sans-serif; 
     font-size: 150%;
     margin-left: 20px;
     text-decoration: none;
@@ -17,4 +17,10 @@ logo h1{
     margin-left: 2px;
     margin-top: -5px;
     color: #777777
+}
+
+@media (max-width: 1024px){
+    .logo{
+        font-size: 170%;
+    }
 }

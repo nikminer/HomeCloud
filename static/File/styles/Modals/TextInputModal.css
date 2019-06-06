@@ -4,13 +4,14 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: black;
+    background-color: rgba( 0, 0, 0, 0.8);
     opacity: 0;
     z-index: -100;
+    font-family: 'Ubuntu', sans-serif;
 }
 .MKwindow{
     display: grid;
-    grid-template-columns: auto auto 40px;
+    grid-template-columns: auto auto 60px;
     grid-template-rows: 50px auto;
     grid-template-areas: 
         "Header Header close"
@@ -64,4 +65,47 @@
 #MKsubmit:hover{
     cursor: pointer;
     background-color: #63cdda;
+}
+
+@media (max-width: 1024px){
+
+    .MKwindow{
+        grid-template-columns: auto auto 100px;
+        grid-template-rows: 120px auto;
+        min-width: 100%;
+        min-height: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+    .MKForm{
+        display:  flex;
+        flex-direction: column;
+        
+        padding: 20px;
+        margin-top: 10px;
+        align-items: center;
+        justify-content:center;
+    }
+    .MKForm input{
+        font-size: 36px;
+        padding: 20px;
+        margin: auto;
+    }
+    #MKsubmit{
+        font-size: 36px;
+        padding: 20px;
+        margin: auto;
+        background-color: #63cdda;
+        padding: 30px 65px;
+    }
+
+    .header{
+        padding: 5%!important;
+        font-size: 36px;
+    }
+    .close{
+        padding: 20px!important;
+        font-size: 36px;
+    }     
+
 }

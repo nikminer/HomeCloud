@@ -1,21 +1,21 @@
 {%load staticfiles%}
 {% load i18n %}
 
-<link href="{% static 'File/Modals/LiteDirectory.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'File/styles/Modals/LiteDirectory.css' %}" rel="stylesheet" type="text/css"/>
     <script>
         var pathtodir,callback;
         function showLiteDirModal(outputPathNode,callbackMeth){
             pathtodir=outputPathNode;
             callback=callbackMeth;
             LiteDir.style.zIndex=200;
-            LiteDir.style.opacity=0.8;
+            LiteDir.style.opacity=1;
             LiteDirPath.innerText=pathParser(pathtodir.value);
             getDirs()
         }
         function showLiteDirModalPO(outputPathNode){
             pathtodir=outputPathNode;
             LiteDir.style.zIndex=200;
-            LiteDir.style.opacity=0.8;
+            LiteDir.style.opacity=1;
             LiteDirPath.innerText=pathParser(pathtodir.value);
             getDirs()
         }
@@ -40,7 +40,7 @@
             xhr.onreadystatechange=function(){
                 if(xhr.status==200 && xhr.readyState==4){
                     if(LiteDirPath.innerText.length!=0)
-                        LiteDirs.innerHTML="<div class=Literow onclick=\"back()\"> <img src=\"{% static 'File/images/back.png' %}\" style=\"width:20px;\" ><span>{% trans 'Back' %}</span></div>"
+                        LiteDirs.innerHTML="<div class=Literow onclick=\"back()\"> <img src=\"{% static 'File/images/back.png' %}\" style=\"width:20px;\" > <span> {% trans 'Back' %}</span></div>"
                     var resp=JSON.parse(xhr.responseText)
                     for (let i in resp)
                         LiteDirs.innerHTML+="<div class=Literow onclick='changedir(\""+resp[i]+"\")'><img src=\"{% static 'File/images/folder.png' %}\" style=\"width:20px;\" ><span> "+resp[i]+"</span></div>";

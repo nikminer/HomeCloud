@@ -1,13 +1,13 @@
 body{
     margin: 0;
     display: grid;
-    grid-template-columns: auto 15%;
+    grid-template-columns: auto;
     grid-template-rows: auto auto;
     grid-template-areas: 
-        "headeres headeres"
-        "content content"
+        "headeres "
+        "content "
         ;
-    font-family: Dejavu Sans; 
+        font-family: 'Ubuntu', sans-serif;
 }
 #content{
     margin:auto;
@@ -111,6 +111,7 @@ body{
     margin: 0 5px;
     font-size: 18px;
     border: none;
+    width: auto!important;
 }
 #panel>input:hover{
     color:white;
@@ -126,4 +127,102 @@ body{
 }
 #panel>a:hover{
     color: white;
+}
+
+@media (max-width: 1024px){
+    body{   
+        font-size: 130%;
+    }
+    #content{
+        margin:auto;
+        width:90%;
+        font-size: 130%;
+    }
+    #content>div{
+        margin:5px;
+        display: flex;
+        flex-direction: column;
+    }
+    #content>div>select{
+        padding:10px;
+        width: 50%;
+        font-size: 90%;
+    }
+    #content>div>span{
+        font-size: 90%;
+    }
+    #content>div>input{
+        padding: 10px;
+        width: 50%;
+        font-size: 90%;
+    }
+    
+    #icon>div{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-left: 20px;
+    }
+    #icon>div>img{
+        width: 35px;
+        height: 35px;
+        margin-right: 10px;
+    }
+    #fileicon{
+        font-size: 80%;
+    }
+    #formatlist{
+        margin-left: 15px;
+    }
+    #formatlist>div{
+        padding: 10px 20px;
+        font-size: 90%;
+    }
+    #formatlist>div>span{
+        font-size: 90%;
+        margin-left: 10px;
+    }
+    #addformat{
+        font-size: 90%;
+    }
+    #addformat>input{
+        padding:10px;
+        margin-right: 10px;
+        font-size: 100%;
+    }
+    #addformat>span{
+        padding: 10px 15px;
+        border-radius: 0;
+        font-size: 100%;
+    }
+
+    #panel{
+        margin-top: 40px!important;
+        padding: 5px 0;
+        border-top: lightgray solid 3px;
+        display: flex!important;
+        flex-direction: row!important;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    #panel>input{
+        padding: 10px 20px!important;
+        border-radius: 0;
+        margin: 10px 5px;
+        font-size: 100%;
+        
+    }
+    #panel>input:hover{
+        color:white;
+    }
+    #panel>a{
+        padding: 10px 20px;
+        border-radius: 0;
+
+        font-size: 90%;
+        margin: 10px 5px;
+    }
+    #panel>a:hover{
+        color: white;
+    }
 }

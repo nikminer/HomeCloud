@@ -5,7 +5,9 @@ import shutil
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext
+from django.contrib.auth.forms import PasswordChangeForm,SetPasswordForm
 from django.contrib.auth.models import User
+from File.models import Publicfile
 
 def getlogin(request):
     return render(request,'HomeCloud/auth.html',{"next":request.GET['next']})
@@ -28,6 +30,7 @@ def CreateUser(request):
 def Save(request):
     if request.user.is_superuser:
         User.objects.create_user(username=request.POST['username'],password=request.POST['pass'])
+        os.mkdir(os.path.expanduser("~/"+request.POST['username']))
         return redirect(".")
     else:   
         return redirect('../..')
@@ -36,6 +39,10 @@ def DeleteUser(request,user):
     if request.user.is_superuser:
         u = User.objects.get(username = user)
         u.delete()
+        for i in Publicfile.objects.filter(Sharinguser=user):
+            i.delete()
+        if os.path.exists(os.path.expanduser("~/"+user)):
+            shutil.rmtree(os.path.expanduser("~/"+user))
         return redirect(".")
     else:   
         return redirect('../..')
@@ -126,3 +133,32 @@ def index(request):
     return render(request,'HomeCloud/index.html',{
         "diskspace":getDiskspace(),
     })
+
+@login_required
+def CHPass(request):
+    if not request.POST:
+        return render(request, "HomeCloud/Settings/ChangePassword.html", {'form':PasswordChangeForm(user=request.user)})
+    else:
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            auth.logout(request)
+            return HttpResponseRedirect("/accounts/login/?next=/")
+        else:
+            return render(request, "HomeCloud/Settings/ChangePassword.html", {'form':form})
+
+@login_required
+def SetPass(request,user):
+    if request.user.is_superuser:
+        if not request.POST:
+            return render(request, "HomeCloud/Settings/setpassword.html", {'form':SetPasswordForm(user=User.objects.get(username = user))})
+        else:
+            form = SetPasswordForm(user=User.objects.get(username = user), data=request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect("/admin/Users/")
+            else:
+                return render(request, "HomeCloud/Settings/setpassword.html", {'form':form})
+    else:   
+        return redirect('..')   
+    

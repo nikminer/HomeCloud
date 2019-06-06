@@ -5,13 +5,14 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: black;
+    background-color: rgba( 0, 0, 0, 0.8);
     opacity: 0;
     z-index: -100;
+    font-family: 'Ubuntu', sans-serif;
 }
 .windowUp{
     display: none;
-    grid-template-columns: auto 100px 40px;
+    grid-template-columns: auto 100px 60px;
     grid-template-rows: 50px 50px auto 60px;
     grid-row-gap: 2px;
     grid-template-areas: 
@@ -30,6 +31,11 @@
 .windowUp label label, .windowUp label input{
     display: none;
 }
+#uploadpath{
+    padding: 20px;
+    font-size: 20px;
+    border: none;
+}
 .header{
     padding: 10px;
     background-color: #63cdda;
@@ -44,15 +50,16 @@
 }
 .close{
     grid-area: close;
-    margin:auto;
-    padding: 10px;
-    margin: 1px;
+    margin: auto;
+    padding: 5px 10px;
     font-size: 25px;
-    transition: all 200ms ease;
+    transition: all 300ms ease;
 }
 .close:hover{
+    border: none;
     background-color: #e15f41;
-    border-radius: 3px;
+    border-radius: 5px;
+    padding: 7px 12px;
     cursor: pointer;
 }        
 .fileinput{
@@ -121,4 +128,65 @@
 .selctbtn:hover{
     transition: all 200ms ease;
     background-color: #3dc1d3; 
+}
+
+@media (max-width: 1024px){
+
+    .windowUp{
+        display: grid;
+        grid-template-columns: auto 100px 100px;
+        grid-template-rows: 120px 150px auto 140px;
+        grid-template-areas: 
+        "Header Header close"
+        "path selectbtn selectbtn"
+        "file file file"
+        "panel panel panel";
+        min-width: 100%;
+        min-height: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    #uploadpath{
+        padding: 20px;
+        font-size: 30px;
+    }
+
+    .header{
+        padding: 5%!important;
+        font-size: 36px;
+    }
+    .close{
+        padding: 20px!important;
+        font-size: 36px;
+    }     
+
+
+    .selctbtn{
+        font-size: 36px;
+        padding: 20px;
+        margin: auto;
+    }
+
+
+    .fileinput{
+        margin-top: 5%;
+        font-size: 34px;
+        padding: 25px;
+    }
+
+    .fileinput span {
+        font-weight:normal;
+    }
+    
+    #btnUpload{
+        font-size: 36px;
+    }
+
+    #Uploadpath{
+        grid-area: path;
+        margin-left: 5px;
+    }
+    
+
 }

@@ -38,15 +38,24 @@ def explorer(request, path):
     FileList=Files()
     GroupQueue={}
     QueueIndex=0
-    
-    path= os.path.splitdrive(os.path.expanduser(path).replace('\\','/'))[1]
+
+    replacment=os.path.splitdrive(os.path.expanduser('~'))[1].replace('\\','/')
+
+    if not request.user.is_superuser:
+        replacment+="/"+request.user.username
+
+    path= os.path.splitdrive(path.replace("~",replacment).replace('\\','/'))[1]
+
+    if not request.user.is_superuser and not replacment in path:
+        return redirect(request.scheme + "://" +request.get_host())
+
     for i in conf:
         for i1 in conf[i]['formats']:
             FileList.formats.update({i1:i})
         FileList.groups.append(Groupe(i,conf[i]['icon']))
         GroupQueue.update({i:QueueIndex})
         QueueIndex+=1
-    FileList.groups.append(Groupe("Others","images/file.png"))
+    FileList.groups.append(Groupe("Others","File/images/file.png"))
     GroupQueue.update({"Other":QueueIndex})
     
     for i in os.listdir(path):

@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" href="{% static 'DaSH/styles/settings/Users.css' %}" rel="stylesheet" type="text/css">
 <link rel="icon" href="{% static 'DaSH/images/favicon.ico' %}" type="image/x-icon">
-<title>HomeCloud Users</title>
+<title>HomeCloud {% trans 'Users' %}</title>
 
 {% include "../blocks/logo.html" %}
 
@@ -14,17 +14,17 @@
     <a class="row" href="./create">
         <img src="{% static 'DaSH/images/add.png' %}" />
         <span>
-            Add new user
+            {% trans 'Add new user' %}
         </span>
     </a>
     {% for i in users %}
     <div>
-        <a class="row">
+        <a href="{% url 'DaSH-USER-SETPASSWORD' i %}" class="row">
             <span>
                 {{i}}
             </span>
         </a>
-        <a class="del" href="./del{{i}}">Delete</a>
+        <a class="del" href="./del{{i}}">{% trans 'Delete' %}</a>
     </div>
     {% endfor %}
 </div>

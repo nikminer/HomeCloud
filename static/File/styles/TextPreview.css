@@ -11,7 +11,7 @@ body{
         "headeres"
         "back"
         "content";
-    font-family: Dejavu Sans; 
+    font-family: 'Ubuntu', sans-serif;
 }
 .preview{
     word-wrap: break-word;

@@ -11,12 +11,13 @@
 <style>
 body{
     margin: 0;
-    font-family: DejaVu Sans;
+    font-family: 'Ubuntu', sans-serif;
 }
 .rows{
     margin: 0 20px;
     display:flex;
     flex-direction: column;
+   
 }
 .file{
     width:100%;
@@ -24,17 +25,17 @@ body{
     flex-direction: row;
     justify-content:space-between;
     align-items: stretch;
+    
 }
 .file>a{
     display: grid;
     grid-template-areas: "File size"
     "path size";
     grid-template-columns: auto 10%;
-
+    padding: 5px;
     text-decoration: none;
     color: black;
     font-size: 18px;
-    padding-top:5px;
     padding-bottom: 10px;
     width:100%;
     border-bottom: lightgrey 0.5px solid;
@@ -87,6 +88,33 @@ body{
 }
 .DelBtn:hover{
     background-color:#e15f41;
+}
+@media (max-width: 1024px){
+    body{
+        font-size: 130%;
+    }
+
+    .file>a{
+        grid-template-columns: auto 80px;
+        font-size: 130%;
+        padding:15px 0;
+    }
+
+    .file>a>span{
+        font-size: 70%;
+    }
+
+    .ToMyFiles{
+        padding: 10px 20px;
+        margin-right: 20px;
+    }
+
+    .FileBtn{
+        padding: 5px 10px;
+        font-size: 120%;
+        width:16%;
+    }
+
 }
 </style>
 

@@ -26,26 +26,6 @@
                         <div class="w3-container w3 w3-center" id=cpuusage style="width:0%;background-color:#778beb; color: white">00%</div>
                     </div>
                 </span>
-                <span style="grid-area: title1;" class="title">{% trans "Memory information" %}</span>
-                <span style="grid-area: title2;" class="title">{% trans "Network information" %}</span>
-                <span style="grid-area: Netinfo1;"> {% trans "Data sent: "%}<b> {{bytesent|filesizeformat|escape}}</b></span>
-                <span style="grid-area: Netinfo2;"> {% trans "Data receive: "%}<b> {{byterecv|filesizeformat|escape}}</b></span>
-                <span style="grid-area: Netinfo3;"> {% trans "Packets sent: "%}<b> {{packsent|escape}}</b></span>
-                <span style="grid-area: Netinfo4;"> {% trans "Packets receive: "%}<b> {{packrecv|escape}}</b></span>
-                {% if iflist%}
-                <ul style="grid-area: IFList; list-style:none">
-                    <span>{% trans "Network interface: "%}</span>
-                    {% for i in iflist.items %} 
-                    <details>
-                            <summary>{{i.0}}</summary>
-                            {% for i1 in i.1%}
-                                <p style="padding: 6px;">{% trans "Address: " %}<b>{{i1.address}}</b> {% trans "Netmask: " %}<b>{{i1.netmask}}</b> Broadcast:<b>{{i1.broadcast}}</b></p>
-                            {%endfor%}
-                    </details>
-                    
-                    {% endfor %}
-                </ul>
-                {%endif%}
                 <span style="grid-area: DiskSpan"><b>{% trans "Main disk"%}</b></span>
                 <span style="grid-area: DiskTotal">{% trans "Total: "%} <b>{{diskspace.total|filesizeformat|escape}}</b></span>
                 <span style="grid-area: DiskUsed">{% trans "Used: " %} <b>{{diskspace.used|filesizeformat|escape}}</b></span>
@@ -56,6 +36,7 @@
                         <div class="w3-container w3 w3-center" style="width:{{diskspace.percent|escape}}%;background-color:#778beb; color: white">{{diskspace.percent|escape}}%</div>
                     </div>
                 </span>
+                <span style="grid-area: title1;" class="title">{% trans "Memory information" %}</span>
                 <div id=VMemory>
                     <center><b>{% trans "Virtual Memory"%}</b></center>
                     <span>{% trans "Total: "%} <b>{{VMspace.total|filesizeformat|escape}}</b></span>
@@ -78,6 +59,27 @@
                         <div class="w3-container w3 w3-center" id=swapusage style="width:{{SMspace.percent|escape}}%;background-color:#778beb; color: white">{{SMspace.percent|escape}}%</div>
                     </div>
                 </div>
+                <span style="grid-area: title2;" class="title">{% trans "Network information" %}</span>
+                <span style="grid-area: Netinfo1;"> {% trans "Data sent: "%}<b> {{bytesent|filesizeformat|escape}}</b></span>
+                <span style="grid-area: Netinfo2;"> {% trans "Data receive: "%}<b> {{byterecv|filesizeformat|escape}}</b></span>
+                <span style="grid-area: Netinfo3;"> {% trans "Packets sent: "%}<b> {{packsent|escape}}</b></span>
+                <span style="grid-area: Netinfo4;"> {% trans "Packets receive: "%}<b> {{packrecv|escape}}</b></span>
+                {% if iflist%}
+                <ul style="grid-area: IFList; list-style:none">
+                    <span>{% trans "Network interface: "%}</span>
+                    {% for i in iflist.items %} 
+                    <details>
+                            <summary>{{i.0}}</summary>
+                            {% for i1 in i.1%}
+                                <p style="padding: 6px;">{% trans "Address: " %}<b>{{i1.address}}</b> {% trans "Netmask: " %}<b>{{i1.netmask}}</b> Broadcast:<b>{{i1.broadcast}}</b></p>
+                            {%endfor%}
+                    </details>
+                    
+                    {% endfor %}
+                </ul>
+                {%endif%}
+                
+                
             </div>
         </div>
         {% include "./blocks/footer.html" %}

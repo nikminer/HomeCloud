@@ -2,12 +2,11 @@
 
 <link href="{% static 'File/styles/blocks/panel.css' %}" rel="stylesheet" type="text/css"/>
 
-
 <panel>
     <div id=panelcnt>
+        <b onclick="accordion()" style="padding-left:20px;">{% trans "Groups:" %}</b>
+        <div class="hideAccord ShowAccord" id=groupsAccord>
         {% if dirs%}
-            <b style="padding-left:20px;">{% trans "Groups:" %}</b>
-       
             <a href="#Folders">
                 <img style="width:17px;" src="{% static 'File/images/folder.png' %}"> Folders ({{dirs|length|escape}})
             </a>
@@ -19,15 +18,31 @@
                 </a>
             {% endif %}
         {% endfor %}
-        <div style="margin-top: 20%;display: flex; font-size: 15px; flex-direction: column;align-items: center ">
+        </div>
+        <div  style="margin-top: 20%;display: flex; font-size: 15px; flex-direction: column;align-items: center">
             <span style="font-weight:bold">{% trans "Disk usage:" %}</span> 
             <span>{{disk.free|filesizeformat|escape}} {% trans "of" %} {{disk.total|filesizeformat|escape}}</span>
-            <div id="freesize" style="border:1px solid grey;" class="w3-light-grey">
-                <div class="w3-center" style="width:{{disk.percent|escape}}%;background-color:#63cdda; color: white">{{disk.percent|escape}}%</div>
-            </div>
-            
+            <div id="freesize" class="w3-light-grey">
+                <div class="w3-center" style="width:{{disk.percent|escape}}%;background-color:#63cdda; color: white">
+                    <span>{{disk.percent|escape}}%</span>
+                </div>
+            </div>   
          </div>
     </div>
     
     
 </panel>
+
+<script>
+        function accordion() {
+            if (groupsAccord.className.indexOf("ShowAccord") == -1) 
+                groupsAccord.className += "ShowAccord";
+            else 
+                groupsAccord.className = groupsAccord.className.replace("ShowAccord", "");
+
+        }
+            accordion()
+        if (screen.width > 1023){
+            groupsAccord.className += "ShowAccord";
+        }
+    </script>
