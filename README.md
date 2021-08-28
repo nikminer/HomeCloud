@@ -1,6 +1,5 @@
 # HomeCloud
-Free cloud for your Home
-
+Маленький аналог Яндекс диск/Google Drive
 Required for work:
 - Python 3.X
 - Django
